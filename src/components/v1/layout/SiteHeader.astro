@@ -1,0 +1,32 @@
+---
+import Logo from "../../brand/Logo.astro";
+import { mainNav } from "../../../data/v1/navigation";
+---
+
+<a class="skip" href="#conteudo">
+  Pular para o conteúdo
+</a>
+
+<header class="site-header" id="topo">
+  <div class="wrap">
+    <a href="#inicio" class="brand-link" aria-label="WingsBr, início">
+      <Logo class="logo" />
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <i aria-hidden="true"></i>Menu
+    </button>
+    <nav class="nav" id="menu-principal" aria-label="Navegação principal">
+      {mainNav.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+      <a class="btn sm" href="#demonstracao">
+        Agende uma demonstração <span class="arw" aria-hidden="true"></span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { initHeader } from "../../../scripts/v1/header.js";
+  initHeader();
+</script>

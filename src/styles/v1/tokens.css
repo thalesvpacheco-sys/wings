@@ -1,0 +1,51 @@
+/* =====================================================================
+   WingsBr — tokens de design
+   Extraídos do Mini Brand Book v1.0 aprovado (Grifo Agency, out 2026).
+   Não altere cores, fontes ou o desenho da logo: são da identidade aprovada.
+   ===================================================================== */
+
+:root {
+  /* Paleta aprovada */
+  --navy: #051f44;
+  --band: #092952;
+  --royal: #017eff;
+  --royal-ui: #0070e8;
+  --royal-txt: #0062cc;
+  --sky: #3fbfee;
+  --cyan: #00cefd;
+  --mist: #ecf1f7;
+  --haze: #dce3ee;
+  --slate: #374353;
+  --muted: #5b6779;
+  --white: #ffffff;
+  --ink: #020d1f;
+  --work: #f5f7fb;
+  --ok: #12a672;
+  --warn: #e8962c;
+  --crit: #e5484d;
+
+  /* Tipografia aprovada */
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --text: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  /* Layout */
+  --max: 1240px;
+  --g: clamp(16px, 4.2vw, 56px);
+  --r-card: 12px;
+  --r-ctl: 8px;
+  --header-h: 76px;
+
+  /* Movimento (Precision · Fluidity · Depth · Restraint · Feedback) */
+  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-hover: 200ms;
+  --t-ui: 380ms;
+  --t-reveal: 760ms;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-h: 64px;
+  }
+}

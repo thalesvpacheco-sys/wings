@@ -1,0 +1,38 @@
+/* Revelações na rolagem: só com JS (classe .js no <html>) e sem redução de movimento.
+   Usa animação (e não transição de transform) para não anular o hover dos cards que também se movem. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+.js [data-reveal]:not(.in) {
+  opacity: 0;
+}
+.js [data-reveal].in {
+  animation: reveal var(--t-reveal) var(--ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    animation: none;
+  }
+}

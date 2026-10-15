@@ -1,0 +1,85 @@
+/* 05 · Para quem é */
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--haze);
+}
+.who {
+  position: relative;
+  padding: 40px clamp(18px, 2.4vw, 36px) 44px;
+  border-right: 1px solid var(--haze);
+  transition: background-color var(--t-ui) var(--ease);
+}
+.who:last-child {
+  border-right: 0;
+}
+.who:first-child {
+  padding-left: 0;
+}
+.who .n {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--royal);
+  letter-spacing: -0.04em;
+  margin-bottom: 28px;
+  display: block;
+}
+.who .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--royal-txt);
+  margin-bottom: 16px;
+}
+.who h3 {
+  font-size: clamp(22px, 2vw, 27px);
+  font-weight: 600;
+  margin-bottom: 14px;
+  line-height: 1.18;
+}
+.who p {
+  color: var(--slate);
+  font-size: 15.5px;
+}
+.who .sign {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--haze);
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 15px;
+}
+.who::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  background: var(--royal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-ui) var(--ease);
+}
+.who:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 900px) {
+  .who-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .who {
+    border-right: 0;
+    border-bottom: 1px solid var(--haze);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

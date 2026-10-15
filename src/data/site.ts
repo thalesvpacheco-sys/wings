@@ -8,9 +8,15 @@ export const site = {
     "Do planejamento ao pós-venda. A WingsBr conecta estratégia, projetos, marketing, CRM e vendas em uma plataforma para o mercado imobiliário.",
   tagline: "Real Estate Intelligence",
   locale: "pt_BR",
-  themeColor: "#FFFFFF",
+  themeColor: "#051F44",
   ogImage: { path: "/images/og-wingsbr.png", width: 1200, height: 630 },
+  contact: {
+    email: "contato@wingsbr.app",
+    demoSubject: "Demonstração WingsBr",
+  },
 };
+
+export const demoMailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(site.contact.demoSubject)}`;
 
 /** Dados estruturados (schema.org) da página inicial. */
 export const structuredData = {

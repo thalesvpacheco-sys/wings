@@ -1,30 +1,26 @@
 ---
+import "../styles/v1/main.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SiteHeader from "../components/layout/SiteHeader.astro";
-import SiteFooter from "../components/layout/SiteFooter.astro";
-import HeroSection from "../components/sections/HeroSection.astro";
-import ProblemSection from "../components/sections/ProblemSection.astro";
-import DaySection from "../components/sections/DaySection.astro";
-import PlatformSection from "../components/sections/PlatformSection.astro";
-import DemoSection from "../components/sections/DemoSection.astro";
-import AudienceSection from "../components/sections/AudienceSection.astro";
-import MethodSection from "../components/sections/MethodSection.astro";
-import AboutSection from "../components/sections/AboutSection.astro";
-import BenefitsSection from "../components/sections/BenefitsSection.astro";
-import CtaSection from "../components/sections/CtaSection.astro";
+import SiteHeader from "../components/v1/layout/SiteHeader.astro";
+import SiteFooter from "../components/v1/layout/SiteFooter.astro";
+import HeroSection from "../components/v1/sections/HeroSection.astro";
+import ProblemSection from "../components/v1/sections/ProblemSection.astro";
+import PlatformSection from "../components/v1/sections/PlatformSection.astro";
+import ShowcaseSection from "../components/v1/sections/ShowcaseSection.astro";
+import AudienceSection from "../components/v1/sections/AudienceSection.astro";
+import MethodSection from "../components/v1/sections/MethodSection.astro";
+import AboutSection from "../components/v1/sections/AboutSection.astro";
+import BenefitsSection from "../components/v1/sections/BenefitsSection.astro";
+import CtaSection from "../components/v1/sections/CtaSection.astro";
 ---
 
 <BaseLayout>
-  <a class="skip" href="#conteudo">
-    Pular para o conteúdo
-  </a>
   <SiteHeader />
   <main id="conteudo">
     <HeroSection />
     <ProblemSection />
-    <DaySection />
     <PlatformSection />
-    <DemoSection />
+    <ShowcaseSection />
     <AudienceSection />
     <MethodSection />
     <AboutSection />
@@ -34,9 +30,7 @@ import CtaSection from "../components/sections/CtaSection.astro";
   <SiteFooter />
 
   <script>
-    import { initSwitchers } from "../scripts/switcher.js";
-    import { initSpotlight } from "../scripts/spotlight.js";
-    initSwitchers();
-    initSpotlight();
+    import { initReveal } from "../scripts/v1/reveal.js";
+    initReveal();
   </script>
 </BaseLayout>

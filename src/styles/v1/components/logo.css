@@ -1,0 +1,17 @@
+/* Logo: cores oficiais por fundo (Mini Brand Book §04). O desenho vem do sprite em BrandSprite.astro. */
+.on-light {
+  --cs: #051f44;
+  --cw: #017eff;
+  --cb: #051f44;
+  --cd: #051f44;
+}
+.on-dark {
+  --cs: #3fbfee;
+  --cw: #3fbfee;
+  --cb: #ffffff;
+  --cd: #3fbfee;
+}
+.logo {
+  display: block;
+  height: auto;
+}

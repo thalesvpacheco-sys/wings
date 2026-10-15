@@ -1,0 +1,201 @@
+/* 03 · Conexão: jornada da plataforma em 8 etapas */
+.platform {
+  overflow: hidden;
+}
+.journey {
+  position: relative;
+}
+.journey-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.journey-svg .base {
+  fill: none;
+  stroke: rgba(63, 191, 238, 0.18);
+  stroke-width: 2;
+}
+.journey-svg .prog {
+  fill: none;
+  stroke: var(--sky);
+  stroke-width: 2;
+  stroke-dasharray: var(--len, 3000);
+  stroke-dashoffset: calc(var(--len, 3000) * (1 - var(--p, 0)));
+  transition: stroke-dashoffset 600ms var(--ease);
+}
+.jgrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 84px 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.jnode {
+  position: relative;
+}
+.jbtn {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 28px 22px 24px;
+  background: var(--band);
+  border: 1px solid rgba(63, 191, 238, 0.1);
+  min-height: 100%;
+  transition:
+    transform var(--t-ui) var(--ease),
+    background-color var(--t-ui) var(--ease),
+    border-color var(--t-ui) var(--ease),
+    box-shadow var(--t-ui) var(--ease);
+}
+.jbtn:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
+}
+.jdot {
+  position: absolute;
+  top: -7px;
+  left: 22px;
+  width: 14px;
+  height: 14px;
+  transform: rotate(45deg);
+  background: var(--navy);
+  border: 2px solid rgba(63, 191, 238, 0.5);
+  transition:
+    background-color var(--t-ui),
+    border-color var(--t-ui),
+    box-shadow var(--t-ui);
+}
+.jnum {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--sky);
+  margin-bottom: 26px;
+  display: block;
+}
+.jbtn h3 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.jbtn p {
+  font-size: 14.5px;
+  color: #afc1de;
+}
+.jdemo {
+  display: inline-flex;
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--sky);
+  text-transform: uppercase;
+  gap: 8px;
+  align-items: center;
+}
+.jdemo::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  border: 1.5px solid var(--sky);
+}
+.jnode.on .jbtn,
+.jbtn:hover {
+  background: #0e3466;
+  border-color: rgba(63, 191, 238, 0.45);
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -30px rgba(0, 0, 0, 0.8);
+}
+.jnode.on .jdot,
+.jnode.done .jdot {
+  background: var(--sky);
+  border-color: var(--sky);
+}
+.jnode.on .jdot {
+  box-shadow: 0 0 0 6px rgba(63, 191, 238, 0.18);
+}
+
+/* painel de detalhe */
+.jdetail {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+  padding: 28px 0 0;
+  border-top: 1px solid rgba(63, 191, 238, 0.18);
+}
+.jdetail .idx {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.9;
+  color: var(--sky);
+  letter-spacing: -0.04em;
+}
+.jdetail .cat {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #8fa6cc;
+  text-transform: uppercase;
+}
+.jdetail h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 600;
+  margin: 6px 0 8px;
+}
+.jdetail p {
+  max-width: 62ch;
+}
+.jdetail .nav-j {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 1180px) {
+  .jgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 56px 18px;
+  }
+}
+@media (max-width: 900px) {
+  .jdetail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .jdetail .idx {
+    font-size: 52px;
+  }
+}
+@media (max-width: 600px) {
+  .jgrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 38px;
+  }
+  .journey-svg {
+    display: none;
+  }
+  .jnode::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: -38px;
+    height: 38px;
+    width: 2px;
+    background: rgba(63, 191, 238, 0.25);
+  }
+  .jnode:first-child::before {
+    display: none;
+  }
+}

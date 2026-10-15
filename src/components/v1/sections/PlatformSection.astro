@@ -1,0 +1,78 @@
+---
+/** 03 · Conexão: as 8 etapas da plataforma numa jornada navegável. */
+import SectionHeading from "../ui/SectionHeading.astro";
+import { journey } from "../../../data/v1/journey";
+import { screenLabel } from "../../../data/v1/showcase-screens";
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const first = journey[0];
+---
+
+<section id="plataforma" class="sec dark platform" aria-labelledby="platform-title">
+  <div class="wrap">
+    <SectionHeading eyebrow="A plataforma" titleId="platform-title">
+      Um ecossistema. Todas as etapas.
+      <br />
+      <span class="accent">Infinitas possibilidades.</span>
+      <Fragment slot="lead">
+        Da concepção de um lançamento à gestão comercial e ao pós-venda, as áreas essenciais do seu negócio conectadas
+        em uma única experiência.
+      </Fragment>
+    </SectionHeading>
+
+    <div class="journey" id="journey">
+      <svg class="journey-svg" aria-hidden="true">
+        <path class="base"></path>
+        <path class="prog"></path>
+      </svg>
+      <ol class="jgrid">
+        {journey.map((step, i) => (
+          <li
+            class="jnode"
+            data-reveal
+            style={`--d:${(i % 4) * 80}ms`}
+            data-demo={step.demo}
+            data-demo-name={step.demo && screenLabel(step.demo)}
+          >
+            <span class="jdot" aria-hidden="true" />
+            <button class="jbtn" type="button" aria-pressed="false" data-i={i}>
+              <span class="jnum">{`${pad(i + 1)} / ${step.category.toUpperCase()}`}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              {step.demo && <span class="jdemo">Na demonstração: {screenLabel(step.demo)}</span>}
+            </button>
+          </li>
+        ))}
+      </ol>
+      <div class="jdetail" aria-live="polite">
+        <div class="idx mono" id="j-idx">
+          01
+        </div>
+        <div>
+          <div class="cat" id="j-cat">
+            01 / {first.category.toUpperCase()}
+          </div>
+          <h3 id="j-title">{first.title}</h3>
+          <p id="j-text">{first.text}</p>
+          <a class="link-arrow" id="j-demo" href="#produto" data-screen={first.demo} style="margin-top:14px">
+            Ver na demonstração: <span id="j-demo-name">{first.demo && screenLabel(first.demo)}</span>
+            <i aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="nav-j">
+          <button class="icon-btn prev" type="button" id="j-prev" aria-label="Etapa anterior">
+            <i></i>
+          </button>
+          <button class="icon-btn" type="button" id="j-next" aria-label="Próxima etapa">
+            <i></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initJourney } from "../../../scripts/v1/journey.js";
+  initJourney();
+</script>

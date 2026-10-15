@@ -1,0 +1,70 @@
+/* Ajustes de celular da versão principal. Vem por último na cascata. */
+
+@media (max-width: 600px) {
+  /* hero: composição do produto sem inclinação 3D, nada cortado na borda */
+  .hero-stage {
+    height: auto;
+    perspective: none;
+    margin-top: 12px;
+  }
+  .stage-rig {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    transform: none !important;
+  }
+  .pcard,
+  .pc-main,
+  .pc-dist,
+  .pc-status {
+    position: relative;
+    inset: auto;
+    width: auto;
+    transform: none;
+  }
+  .pc-main {
+    grid-column: 1 / -1;
+  }
+  .pc-dist,
+  .pc-status {
+    padding: 14px;
+  }
+  .status-list div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  /* plataforma: etapas em acordeão; a etapa tocada abre o texto */
+  .jgrid {
+    gap: 12px;
+  }
+  .jnode::before {
+    top: -12px;
+    height: 12px;
+  }
+  .jbtn {
+    padding: 18px 18px 16px;
+  }
+  .jnum {
+    margin-bottom: 10px;
+  }
+  .jbtn h3 {
+    margin-bottom: 0;
+  }
+  .jnode:not(.on) .jbtn p,
+  .jnode:not(.on) .jdemo {
+    display: none;
+  }
+  .jnode.on .jbtn h3 {
+    margin-bottom: 10px;
+  }
+  .jnode.on .jbtn,
+  .jbtn:hover {
+    transform: none;
+  }
+  .jdetail {
+    display: none;
+  }
+}

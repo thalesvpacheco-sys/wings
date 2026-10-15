@@ -1,0 +1,339 @@
+/* Layout de celular e tablet. Vem por último na cascata: sobrepõe as seções sem mexer no desktop. */
+
+/* troca de painel (timeline, segmentos, MICCA) com uma entrada curta */
+.tlcard,
+.segpanel,
+.micd {
+  animation: fadein 0.35s var(--e) both;
+}
+
+/* feedback de toque */
+@media (hover: none) {
+  .btn:active,
+  .tab:active,
+  .seg:active,
+  .microw:active,
+  .tlb:active,
+  .li:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ---------------------------------------------------------------- até 880px */
+@media (max-width: 880px) {
+  /* Um dia na operação: régua horizontal com os quatro horários */
+  .tlnav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .tlnav::before,
+  .tlnav::after {
+    display: block;
+    top: 16px;
+    left: 12.5%;
+    height: 2px;
+  }
+  .tlnav::before {
+    right: 12.5%;
+    bottom: auto;
+    width: auto;
+  }
+  .tlnav::after {
+    width: calc(75% * var(--tl, 0));
+    transition: width 0.55s var(--e);
+  }
+  .tlb,
+  .tlb.on {
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 2px 4px;
+    text-align: center;
+    background: none;
+    box-shadow: none;
+  }
+  .tlb .dot {
+    margin: 0;
+    width: 14px;
+    height: 14px;
+  }
+  .tlb .hr {
+    font-size: 13px;
+  }
+  .tlb .lb {
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: var(--muted);
+  }
+  .tlcard {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+  .tlcard h3 {
+    font-size: 19px;
+  }
+
+  /* demonstração: abas num trilho, sem a barra lateral repetida */
+  .tabs.c {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin-inline: -20px;
+    padding: 2px 20px 8px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .tabs.c::-webkit-scrollbar {
+    display: none;
+  }
+  .tab {
+    flex: none;
+    scroll-snap-align: start;
+  }
+  .winside {
+    display: none;
+  }
+  .winbar > span:first-of-type {
+    display: none;
+  }
+  .winmain {
+    padding: 16px;
+  }
+  .kpi b {
+    font-size: 16px;
+  }
+  .row {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+  .row > span:first-child {
+    flex: 1 1 100% !important;
+    font-weight: 500;
+  }
+  .row .bar {
+    flex: 1;
+    width: auto;
+  }
+
+  /* MICCA: as cinco letras formam a palavra e viram as abas */
+  .micl {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .microw {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding: 16px 0 14px;
+  }
+  .microw .L {
+    width: auto;
+    font-size: 36px;
+  }
+  .microw.on .L {
+    transform: none;
+    color: #fff;
+  }
+  .microw.on {
+    background: rgba(63, 191, 238, 0.18);
+    border-color: var(--sky);
+  }
+  .microw .nm {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .microw .ch {
+    display: none;
+  }
+  .micd {
+    padding: 22px 20px;
+  }
+  .micd .big {
+    font-size: 48px;
+  }
+}
+
+/* ---------------------------------------------------------------- até 760px */
+@media (max-width: 760px) {
+  /* Por que WingsBr: fragmentos empilhados ligados por uma linha vertical */
+  .frags {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 0;
+  }
+  .fline {
+    display: block;
+    left: 50%;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+    margin: 0 0 0 -1px;
+    background: linear-gradient(180deg, var(--royal), var(--sky));
+    transform-origin: top;
+  }
+  @supports (animation-timeline: view()) {
+    @keyframes lineinY {
+      from {
+        transform: scaleY(0);
+      }
+      to {
+        transform: scaleY(1);
+      }
+    }
+    .fline {
+      animation-name: lineinY;
+      animation-range: entry 30% cover 60%;
+    }
+  }
+
+  /* Para quem é: segmentos num trilho */
+  .segs.c {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin-inline: -20px;
+    padding: 2px 20px 8px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .segs.c::-webkit-scrollbar {
+    display: none;
+  }
+  .seg {
+    flex: none;
+    height: 42px;
+    scroll-snap-align: start;
+  }
+  .segpanel {
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+  .segside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .segside .btn {
+    grid-column: 1 / -1;
+  }
+  .segstat b {
+    font-size: 22px;
+  }
+}
+
+/* ---------------------------------------------------------------- até 640px */
+@media (max-width: 640px) {
+  /* hero: celular menor, destaques lado a lado e cartões num carrossel de arrastar */
+  .pcard {
+    border-radius: 20px;
+    padding: 20px 16px;
+  }
+  .pgrid {
+    gap: 18px;
+  }
+  .phone {
+    zoom: 0.8;
+  }
+  .pcol:first-child {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .pcol:first-child > :not(.dcard) {
+    grid-column: 1 / -1;
+  }
+  .pcol:first-child .dcard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+  }
+  .pcol:last-child {
+    flex-direction: row;
+    overflow-x: auto;
+    margin-inline: -16px;
+    padding: 2px 16px 6px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .pcol:last-child::-webkit-scrollbar {
+    display: none;
+  }
+  .pcol:last-child > .dcard {
+    flex: 0 0 84%;
+    scroll-snap-align: center;
+  }
+
+  /* chamada final: botões na largura toda */
+  #cta .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------------------------------------------------------------- até 560px */
+@media (max-width: 560px) {
+  /* plataforma: módulos como lista, num card só */
+  .mods {
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .mod {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 2px;
+    padding: 16px 18px;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .mod:last-child {
+    border-bottom: 0;
+  }
+  .mod:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .mod::before {
+    display: none;
+  }
+  .mod .mi {
+    grid-row: span 2;
+    width: 38px;
+    height: 38px;
+  }
+
+  /* benefícios: grade de duas colunas */
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .ben.w2 {
+    grid-column: 1 / -1;
+  }
+  .ben {
+    padding: 16px;
+    min-height: 0;
+    gap: 10px;
+  }
+  .ben h3 {
+    font-size: 15px;
+  }
+  .ben p {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,167 @@
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: var(--header-h);
+  color: #fff;
+  transition: height var(--t-ui) var(--ease);
+}
+/* Fundo e blur ficam num pseudo-elemento: backdrop-filter no próprio header o torna o containing block
+   do .nav (position:fixed) no mobile, e o menu aberto depois de rolar ficava preso nos 66px do header. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(5, 31, 68, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(63, 191, 238, 0.14);
+  opacity: 0;
+  transition: opacity var(--t-ui) var(--ease);
+}
+.site-header.scrolled::before {
+  opacity: 1;
+}
+.site-header.menu-open::before {
+  opacity: 1;
+  background: var(--navy);
+}
+.site-header.scrolled {
+  --header-h: 66px;
+  height: 66px;
+}
+.site-header .wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+body.menu-lock {
+  overflow: hidden;
+}
+.brand-link {
+  display: block;
+  width: 150px;
+  flex: none;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.nav a:not(.btn) {
+  font-size: 14px;
+  font-weight: 500;
+  color: #c9d6ea;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 0;
+  transition: color var(--t-hover) var(--ease);
+}
+.nav a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--sky);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-ui) var(--ease);
+}
+.nav a:not(.btn):hover,
+.nav a[aria-current="true"] {
+  color: #fff;
+}
+.nav a:not(.btn):hover::after,
+.nav a[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+.menu-toggle i {
+  display: grid;
+  gap: 4px;
+}
+.menu-toggle i::before,
+.menu-toggle i::after {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  transition: transform var(--t-ui) var(--ease);
+}
+.menu-toggle[aria-expanded="true"] i::before {
+  transform: translateY(3px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] i::after {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px var(--g) 24px;
+    background: var(--navy);
+    border-top: 1px solid rgba(63, 191, 238, 0.15);
+    transform: translateY(-12px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity var(--t-ui) var(--ease),
+      transform var(--t-ui) var(--ease),
+      visibility 0s linear var(--t-ui);
+    box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.6);
+  }
+  .nav.open {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    transition:
+      opacity var(--t-ui) var(--ease),
+      transform var(--t-ui) var(--ease);
+  }
+  .nav a:not(.btn) {
+    font-size: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nav a:not(.btn)::after {
+    display: none;
+  }
+  .nav .btn {
+    margin-top: 18px;
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+}
+@media (max-width: 600px) {
+  .site-header.scrolled {
+    --header-h: 64px;
+    height: 64px;
+  }
+  .brand-link {
+    width: 124px;
+  }
+}

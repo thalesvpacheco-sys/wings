@@ -1,0 +1,28 @@
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    border-color var(--t-hover),
+    background-color var(--t-hover);
+}
+.icon-btn:hover {
+  border-color: var(--sky);
+  background: rgba(255, 255, 255, 0.05);
+}
+.icon-btn i {
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+.icon-btn.prev i {
+  transform: rotate(-135deg);
+}

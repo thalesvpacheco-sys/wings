@@ -1,0 +1,107 @@
+/* 06 · Método MICCA */
+.micca {
+  overflow: hidden;
+}
+.micca .wrap {
+  position: relative;
+  z-index: 1;
+}
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pillar {
+  position: relative;
+  border-radius: 14px;
+  padding: 26px 20px 24px;
+  background: rgba(9, 41, 82, 0.82);
+  border: 1px solid rgba(63, 191, 238, 0.12);
+  transition:
+    transform var(--t-ui) var(--ease),
+    border-color var(--t-ui),
+    background-color var(--t-ui);
+}
+.pillar .L {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(64px, 7vw, 104px);
+  line-height: 0.9;
+  color: var(--sky);
+  letter-spacing: -0.04em;
+  display: block;
+}
+.pillar b {
+  display: block;
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  margin: 22px 0 6px;
+}
+.pillar span {
+  font-size: 14px;
+  color: #afc1de;
+}
+.pillar::after {
+  content: "";
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1.5px solid rgba(63, 191, 238, 0.5);
+}
+.pillar:hover {
+  transform: translateY(-6px);
+  border-color: rgba(63, 191, 238, 0.45);
+  background: #0e3466;
+}
+.micca-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  margin-top: 48px;
+}
+.micca-foot .lead {
+  color: #b4c3db;
+}
+
+@media (max-width: 900px) {
+  .micca-foot {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pillars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pillars li:last-child {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 600px) {
+  .pillars {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pillars li:last-child {
+    grid-column: auto;
+  }
+  .pillar {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 4px 14px;
+    align-items: center;
+    padding: 18px;
+  }
+  .pillar .L {
+    font-size: 60px;
+    grid-row: span 2;
+  }
+  .pillar b {
+    margin: 0;
+  }
+}

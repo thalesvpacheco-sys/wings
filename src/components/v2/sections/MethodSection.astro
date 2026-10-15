@@ -1,0 +1,53 @@
+---
+/** 07 · Método MICCA: os cinco pilares em acordeão. */
+import { pillars } from "../../../data/v2/interactive.js";
+---
+
+<section class="sec dark" id="micca" data-switch>
+  <svg class="bands" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="2300" cy="3300" r="2350" fill="none" stroke="#092952" stroke-width="150"></circle>
+    <circle cx="2300" cy="3300" r="2650" fill="none" stroke="#092952" stroke-width="150"></circle>
+    <circle cx="2300" cy="3300" r="2950" fill="none" stroke="#092952" stroke-width="150"></circle>
+  </svg>
+  <div class="wrap" style="position:relative">
+    <div class="sechead rv">
+      <span class="ey lt">Inteligência que orienta resultados</span>
+      <h2 class="h2">
+        Não é só software.
+        <br />
+        <span style="color:var(--sky)">É uma metodologia de performance.</span>
+      </h2>
+      <p class="lead lt">
+        O método MICCA foi desenvolvido por Bruno Dourado, sócio-fundador da Grifo Agency. Clique em cada pilar.
+      </p>
+    </div>
+    <div class="micw rv">
+      <div class="micl st">
+        {pillars.map((p, i) => (
+          <button
+            type="button"
+            class:list={["microw", { on: i === 0 }]}
+            aria-pressed={i === 0 ? "true" : "false"}
+            data-switch-tab={i}
+          >
+            <span class="L">{p.L}</span>
+            <span class="nm">{p.name}</span>
+            <svg class="ch" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 3l6 5-6 5" />
+            </svg>
+          </button>
+        ))}
+      </div>
+      {pillars.map((p, i) => (
+        <div class="micd" data-switch-panel={i} hidden={i !== 0}>
+          <span class="big">{p.L}</span>
+          <h3>{p.name}</h3>
+          <p class="lead lt">{p.text}</p>
+          <div class="q">
+            <b>Na plataforma:</b> {p.where}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

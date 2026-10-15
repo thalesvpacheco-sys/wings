@@ -1,0 +1,32 @@
+---
+import Logo from "../../brand/Logo.astro";
+import { footerNav, site } from "../../../data/v1/navigation";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <Logo class="lg logo" />
+      <b>{site.name}</b> · {site.tagline}
+      <br />
+      Do planejamento ao pós-venda. Tudo conectado.
+    </div>
+    <nav aria-label="Rodapé">
+      {footerNav.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <div>
+      Grifo Agency + Attomo
+      <br />© <span id="year">{year}</span> {site.name} · wingsbr.app
+    </div>
+  </div>
+</footer>
+
+<script>
+  // o ano do build pode ficar para trás; o navegador atualiza
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
+</script>

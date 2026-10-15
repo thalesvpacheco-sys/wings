@@ -1,0 +1,42 @@
+/* 09 · Conversão */
+.cta {
+  overflow: hidden;
+  text-align: left;
+}
+.cta .wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: end;
+}
+.cta h2 {
+  font-size: clamp(36px, 5vw, 68px);
+  margin-top: 22px;
+}
+.cta .lead {
+  color: #c3d0e4;
+}
+.cta .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.cta-mark {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  width: min(46vw, 620px);
+  transform: translateY(-50%);
+  opacity: 0.07;
+  fill: var(--sky);
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .cta .wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

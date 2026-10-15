@@ -1,0 +1,45 @@
+---
+import "../../styles/v2/main.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SiteHeader from "../../components/v2/layout/SiteHeader.astro";
+import SiteFooter from "../../components/v2/layout/SiteFooter.astro";
+import HeroSection from "../../components/v2/sections/HeroSection.astro";
+import ProblemSection from "../../components/v2/sections/ProblemSection.astro";
+import DaySection from "../../components/v2/sections/DaySection.astro";
+import PlatformSection from "../../components/v2/sections/PlatformSection.astro";
+import DemoSection from "../../components/v2/sections/DemoSection.astro";
+import AudienceSection from "../../components/v2/sections/AudienceSection.astro";
+import MethodSection from "../../components/v2/sections/MethodSection.astro";
+import AboutSection from "../../components/v2/sections/AboutSection.astro";
+import BenefitsSection from "../../components/v2/sections/BenefitsSection.astro";
+import CtaSection from "../../components/v2/sections/CtaSection.astro";
+---
+
+<BaseLayout themeColor="#FFFFFF">
+  <a class="skip" href="#conteudo">
+    Pular para o conteúdo
+  </a>
+  <SiteHeader />
+  <main id="conteudo">
+    <HeroSection />
+    <ProblemSection />
+    <DaySection />
+    <PlatformSection />
+    <DemoSection />
+    <AudienceSection />
+    <MethodSection />
+    <AboutSection />
+    <BenefitsSection />
+    <CtaSection />
+  </main>
+  <SiteFooter />
+
+  <script>
+    import { initSwitchers } from "../../scripts/v2/switcher.js";
+    import { initSpotlight } from "../../scripts/v2/spotlight.js";
+    import { initReveal } from "../../scripts/v2/reveal.js";
+    initSwitchers();
+    initSpotlight();
+    initReveal();
+  </script>
+</BaseLayout>

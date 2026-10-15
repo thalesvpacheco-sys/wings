@@ -1,0 +1,34 @@
+---
+/** 09 · Conversão: chamada final para a demonstração. */
+import Bands from "../../brand/Bands.astro";
+import { demoMailto } from "../../../data/v1/navigation";
+---
+
+<section id="demonstracao" class="sec dark cta" aria-labelledby="cta-title">
+  <Bands />
+  <svg class="cta-mark" viewBox="0 0 632 772" aria-hidden="true">
+    <use href="#sym"></use>
+  </svg>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-reveal>
+        O futuro da gestão imobiliária começa aqui
+      </div>
+      <h2 id="cta-title" data-reveal style="--d:80ms">
+        Dê asas aos seus projetos.
+        <br />
+        <span class="accent">Eleve os resultados da sua empresa.</span>
+      </h2>
+    </div>
+    <div class="actions">
+      <p class="lead" data-reveal style="--d:160ms">
+        Chegou a hora de deixar para trás processos fragmentados, planilhas intermináveis e oportunidades perdidas.
+        Descubra como a WingsBr pode conectar sua operação, organizar sua equipe e transformar a gestão dos seus
+        empreendimentos.
+      </p>
+      <a class="btn" id="cta-demo" data-reveal style="--d:240ms" href={demoMailto}>
+        Solicitar demonstração <span class="arw" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</section>

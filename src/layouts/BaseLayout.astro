@@ -1,14 +1,15 @@
 ---
-import "../styles/main.css";
 import BrandSprite from "../components/brand/BrandSprite.astro";
 import { site, structuredData } from "../data/site";
 
 interface Props {
   title?: string;
   description?: string;
+  /** Cor da barra do navegador no celular; acompanha o header da página. */
+  themeColor?: string;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
+const { title = site.title, description = site.description, themeColor = site.themeColor } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL(site.ogImage.path, site.url).href;
 ---
@@ -20,7 +21,7 @@ const ogImage = new URL(site.ogImage.path, site.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content={site.themeColor} />
+    <meta name="theme-color" content={themeColor} />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="website" />

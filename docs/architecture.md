@@ -1,5 +1,11 @@
 # Arquitetura
 
+## Duas versões
+
+O site tem duas páginas com layouts independentes: `/` (v1, layout original, página principal) e `/home/2` (v2, protótipo v4 do canvas). Cada versão tem pastas próprias em `components/`, `data/`, `scripts/` e `styles/`; só a marca (`components/brand`), o `BaseLayout`, `data/site.ts`, `scripts/utils` e `styles/fonts.css` são compartilhados. Cada página importa o seu `main.css`, então o CSS de uma nunca chega à outra.
+
+O restante deste documento descreve a v2; a v1 segue a mesma organização (seções em componentes, CSS por seção, um módulo de JS por comportamento).
+
 ## Visão geral
 
 Landing page de uma rota, gerada estaticamente pelo Astro. Não há servidor, banco de dados ou framework de UI no navegador: o HTML sai pronto do build, com todas as variações de conteúdo já renderizadas, e quatro módulos pequenos de JavaScript só alternam o que aparece.
