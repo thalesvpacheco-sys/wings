@@ -1,32 +1,290 @@
-/* Revelações na rolagem: só com JS (classe .js no <html>) e sem redução de movimento. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity var(--t-reveal) var(--ease),
-    transform var(--t-reveal) var(--ease);
-  transition-delay: var(--d, 0ms);
-}
-.js [data-reveal].in {
-  opacity: 1;
-  transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* Entradas, animações ligadas à rolagem e microinterações. Fica por último na cascata. */
+@keyframes rv {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  .rv {
+    animation: rv linear both;
+    animation-timeline: view();
+    animation-range: entry 4% entry 44%;
+  }
+}
+.up {
+  animation: rv 0.85s var(--e) both;
+  animation-delay: var(--d, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 1ms !important;
-    animation-delay: 0ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important;
-    transition-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
   }
-  .js [data-reveal] {
-    opacity: 1;
-    transform: none;
+  .rv,
+  .up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===== v4 · ritmo e movimento ===== */
+/* correções do header e de layout */
+.nav > .navlink {
+  align-self: center;
+}
+.sec {
+  scroll-margin-top: var(--hh);
+}
+/* overflow:hidden tornaria a seção um container de rolagem e travaria as animações de scroll */
+.sec.dark,
+.sec.ink {
+  overflow: clip;
+}
+.tlnav {
+  align-self: start;
+}
+.segstat b span,
+.imetric b span {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+.two {
+  align-items: stretch;
+}
+.two .plusic {
+  align-self: center;
+}
+.sechead.c {
+  max-width: 880px;
+}
+.sechead.c {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+.sechead.c .lead {
+  margin-inline: auto;
+}
+.tabs.c,
+.segs.c {
+  justify-content: center;
+}
+/* brilho que acompanha o cursor */
+.mod::after,
+.ben.spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(1, 126, 255, 0.09), transparent 65%);
+  transition: opacity 0.35s var(--e);
+}
+.ben.nv.spot::after {
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(63, 191, 238, 0.16), transparent 65%);
+}
+.mod:hover::after,
+.ben.spot:hover::after {
+  opacity: 1;
+}
+.ben.spot {
+  overflow: hidden;
+}
+/* timeline: linha preenche até o horário escolhido */
+.tlnav::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 14px;
+  width: 2px;
+  height: calc((100% - 28px) * var(--tl, 0));
+  background: var(--royal);
+  transition: height 0.55s var(--e);
+}
+@media (max-width: 880px) {
+  .tlnav::after {
+    display: none;
+  }
+}
+/* barra de leitura sob o header */
+.readbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hh);
+  height: 2px;
+  z-index: 61;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--royal), var(--sky));
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: view()) {
+  .readbar {
+    animation: readbar linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes readbar {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 36px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  .st > * {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+  .st > :nth-child(4n + 2) {
+    animation-range: entry 8% entry 68%;
+  }
+  .st > :nth-child(4n + 3) {
+    animation-range: entry 16% entry 76%;
+  }
+  .st > :nth-child(4n + 4) {
+    animation-range: entry 24% entry 84%;
+  }
+  @keyframes tilt {
+    from {
+      opacity: 0.35;
+      transform: perspective(1800px) rotateX(18deg) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .tilt {
+    transform-origin: 50% 0;
+    animation: tilt linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 42%;
+  }
+  @keyframes drift {
+    from {
+      translate: 0 -7%;
+    }
+    to {
+      translate: 0 7%;
+    }
+  }
+  .sec .bands {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
+  @keyframes from-l {
+    from {
+      opacity: 0;
+      translate: -56px 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  @keyframes from-r {
+    from {
+      opacity: 0;
+      translate: 56px 0;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      scale: 0.55;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+  .meet > .org:first-child {
+    animation: from-l linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 38%;
+  }
+  .meet > .org:last-child {
+    animation: from-r linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 38%;
+  }
+  .meet > .plusic {
+    animation: pop linear both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 45%;
+  }
+  /* fragmentos espalhados e tracejados que se alinham e se conectam na rolagem */
+  @keyframes scatter {
+    from {
+      translate: var(--fx) var(--fy);
+      rotate: var(--fr);
+      border-style: dashed;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: var(--dmuted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    to {
+      translate: 0 0;
+      rotate: 0deg;
+    }
+  }
+  .frags .tag {
+    animation: scatter linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 50%;
+  }
+  @keyframes linein {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  .fline {
+    animation: linein linear both;
+    animation-timeline: view();
+    animation-range: cover 35% cover 55%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .st > *,
+  .tilt,
+  .sec .bands,
+  .meet > *,
+  .frags .tag,
+  .fline,
+  .readbar {
+    animation: none !important;
+  }
+  .readbar {
+    display: none;
   }
 }

@@ -4,8 +4,9 @@ import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
 import ProblemSection from "../components/sections/ProblemSection.astro";
+import DaySection from "../components/sections/DaySection.astro";
 import PlatformSection from "../components/sections/PlatformSection.astro";
-import ShowcaseSection from "../components/sections/ShowcaseSection.astro";
+import DemoSection from "../components/sections/DemoSection.astro";
 import AudienceSection from "../components/sections/AudienceSection.astro";
 import MethodSection from "../components/sections/MethodSection.astro";
 import AboutSection from "../components/sections/AboutSection.astro";
@@ -14,12 +15,16 @@ import CtaSection from "../components/sections/CtaSection.astro";
 ---
 
 <BaseLayout>
+  <a class="skip" href="#conteudo">
+    Pular para o conteúdo
+  </a>
   <SiteHeader />
   <main id="conteudo">
     <HeroSection />
     <ProblemSection />
+    <DaySection />
     <PlatformSection />
-    <ShowcaseSection />
+    <DemoSection />
     <AudienceSection />
     <MethodSection />
     <AboutSection />
@@ -29,7 +34,9 @@ import CtaSection from "../components/sections/CtaSection.astro";
   <SiteFooter />
 
   <script>
-    import { initReveal } from "../scripts/reveal.js";
-    initReveal();
+    import { initSwitchers } from "../scripts/switcher.js";
+    import { initSpotlight } from "../scripts/spotlight.js";
+    initSwitchers();
+    initSpotlight();
   </script>
 </BaseLayout>

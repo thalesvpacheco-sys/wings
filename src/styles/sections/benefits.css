@@ -1,90 +1,78 @@
-/* 08 · Valor: muito além dos lançamentos */
 .bento {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 }
 .ben {
-  grid-column: span 2;
+  position: relative;
+  padding: 22px;
+  border-radius: 14px;
   background: #fff;
-  border-radius: 16px;
-  padding: 28px;
+  border: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
-  min-height: 210px;
+  gap: 12px;
+  min-height: 146px;
   transition:
-    transform var(--t-ui) var(--ease),
-    box-shadow var(--t-ui);
+    transform 0.28s var(--e),
+    box-shadow 0.28s var(--e),
+    border-color 0.28s;
 }
 .ben:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 26px 50px -34px rgba(5, 31, 68, 0.45);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 42px -24px rgba(5, 31, 68, 0.3);
+  border-color: #c6d9f2;
 }
-.ben svg {
-  width: 32px;
-  height: 32px;
-  color: var(--royal-ui);
-  margin-bottom: auto;
+.ben.w2 {
+  grid-column: span 2;
 }
-.ben h3 {
-  font-size: 22px;
-  font-weight: 600;
-}
-.ben p {
-  color: var(--slate);
-  font-size: 15px;
-}
-.ben.wide {
-  grid-column: span 3;
-}
-.ben.wide.center {
-  grid-column: 2 / span 4;
-}
-.ben.navy {
+.ben.nv {
   background: var(--navy);
+  border-color: transparent;
   color: #fff;
 }
-.ben.navy svg {
+.ben.nv p {
+  color: var(--dmuted);
+}
+.ben .bi {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: var(--work);
+  border: 1px solid var(--line);
+  color: var(--royal-hi);
+  transition: transform 0.3s var(--e);
+}
+.ben.nv .bi {
+  background: rgba(63, 191, 238, 0.13);
+  border-color: rgba(63, 191, 238, 0.22);
   color: var(--sky);
 }
-.ben.navy p {
-  color: #b4c3db;
+.ben:hover .bi {
+  transform: translateY(-2px) scale(1.05);
 }
-.ben.royal {
-  background: var(--royal-ui);
-  color: #fff;
+.ben h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: auto;
 }
-.ben.royal svg {
-  color: #fff;
+.ben p {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
 }
-.ben.royal p {
-  color: #fff;
-}
-
 @media (max-width: 900px) {
   .bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .ben,
-  .ben.wide,
-  .ben.wide.center {
-    grid-column: span 1;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 560px) {
   .bento {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
-  .ben,
-  .ben.wide,
-  .ben.wide.center {
-    grid-column: auto;
-    min-height: 0;
-  }
-  .ben svg {
-    margin-bottom: 18px;
+  .ben.w2 {
+    grid-column: span 1;
   }
 }

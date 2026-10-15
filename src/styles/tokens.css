@@ -1,51 +1,29 @@
-/* =====================================================================
-   WingsBr — tokens de design
-   Extraídos do Mini Brand Book v1.0 aprovado (Grifo Agency, out 2026).
-   Não altere cores, fontes ou o desenho da logo: são da identidade aprovada.
-   ===================================================================== */
-
+/* Tokens da marca WingsBr (Mini Brand Book v1.0) e do layout. */
 :root {
-  /* Paleta aprovada */
   --navy: #051f44;
   --band: #092952;
+  --deep: #020d1f;
   --royal: #017eff;
   --royal-ui: #0070e8;
-  --royal-txt: #0062cc;
+  --royal-hi: #0062cc;
   --sky: #3fbfee;
-  --cyan: #00cefd;
   --mist: #ecf1f7;
   --haze: #dce3ee;
+  --work: #f5f7fb;
+  --white: #ffffff;
   --slate: #374353;
   --muted: #5b6779;
-  --white: #ffffff;
-  --ink: #020d1f;
-  --work: #f5f7fb;
+  --soft: #8a96a8;
+  --line: #e2e8f0;
+  --line2: #d3dce8;
+  --dmuted: #8fa6cc;
+  --dline: rgba(255, 255, 255, 0.1);
   --ok: #12a672;
   --warn: #e8962c;
   --crit: #e5484d;
-
-  /* Tipografia aprovada */
-  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --display: "Montserrat", Arial, sans-serif;
   --text: "Geist", "Helvetica Neue", Arial, sans-serif;
   --mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
-
-  /* Layout */
-  --max: 1240px;
-  --g: clamp(16px, 4.2vw, 56px);
-  --r-card: 12px;
-  --r-ctl: 8px;
-  --header-h: 76px;
-
-  /* Movimento (Precision · Fluidity · Depth · Restraint · Feedback) */
-  --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
-  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
-  --t-hover: 200ms;
-  --t-ui: 380ms;
-  --t-reveal: 760ms;
-}
-
-@media (max-width: 600px) {
-  :root {
-    --header-h: 64px;
-  }
+  --e: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --hh: 68px;
 }

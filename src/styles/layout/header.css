@@ -1,167 +1,318 @@
-.site-header {
+/* ===== HEADER fixo, largo, mega-menu com hover-intent em JS ===== */
+.spacer {
+  height: var(--hh);
+}
+.hd {
   position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 50;
-  height: var(--header-h);
-  color: #fff;
-  transition: height var(--t-ui) var(--ease);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: var(--hh);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.3s var(--e),
+    border-color 0.3s var(--e),
+    box-shadow 0.3s var(--e);
 }
-/* Fundo e blur ficam num pseudo-elemento: backdrop-filter no próprio header o torna o containing block
-   do .nav (position:fixed) no mobile, e o menu aberto depois de rolar ficava preso nos 66px do header. */
-.site-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(5, 31, 68, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(63, 191, 238, 0.14);
-  opacity: 0;
-  transition: opacity var(--t-ui) var(--ease);
+.hd.on {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border-bottom-color: var(--line);
+  box-shadow: 0 1px 18px -10px rgba(5, 31, 68, 0.3);
 }
-.site-header.scrolled::before {
-  opacity: 1;
-}
-.site-header.menu-open::before {
-  opacity: 1;
-  background: var(--navy);
-}
-.site-header.scrolled {
-  --header-h: 66px;
-  height: 66px;
-}
-.site-header .wrap {
-  height: 100%;
+.hdnav {
+  height: var(--hh);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 18px;
 }
-body.menu-lock {
-  overflow: hidden;
+.hdleft {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  height: 100%;
 }
-.brand-link {
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 9px;
+  align-self: center;
+  transition: background-color 0.2s;
+}
+.brand:hover {
+  background: var(--mist);
+}
+.brand svg {
+  height: 19px;
+  width: 95px;
   display: block;
-  width: 150px;
-  flex: none;
 }
 .nav {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  align-items: stretch;
+  gap: 2px;
+  height: 100%;
 }
-.nav a:not(.btn) {
+/* item ocupa a altura toda do header: acaba com a zona morta do hover */
+.navitem {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.navtrigger,
+.navlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 13px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #c9d6ea;
-  text-decoration: none;
-  position: relative;
-  padding: 6px 0;
-  transition: color var(--t-hover) var(--ease);
+  color: var(--slate);
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
-.nav a:not(.btn)::after {
-  content: "";
+.navlink:hover,
+.navitem.open .navtrigger,
+.navtrigger:hover {
+  background: var(--mist);
+  color: var(--navy);
+}
+.chev {
+  width: 11px;
+  height: 11px;
+  transition: transform 0.3s var(--e);
+}
+.navitem.open .chev {
+  transform: rotate(180deg);
+}
+/* painel ancorado no item, sem faixa invisível por cima da página */
+.navpanel {
   position: absolute;
+  top: 100%;
   left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: var(--sky);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--t-ui) var(--ease);
+  padding-top: 9px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-7px) scale(0.985);
+  transform-origin: top left;
+  transition:
+    opacity 0.24s var(--e),
+    transform 0.24s var(--e),
+    visibility 0s linear 0.24s;
 }
-.nav a:not(.btn):hover,
-.nav a[aria-current="true"] {
-  color: #fff;
+.navitem.open .navpanel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition:
+    opacity 0.24s var(--e),
+    transform 0.24s var(--e),
+    visibility 0s;
 }
-.nav a:not(.btn):hover::after,
-.nav a[aria-current="true"]::after {
-  transform: scaleX(1);
+.panelbox {
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow:
+    0 30px 68px -26px rgba(5, 31, 68, 0.44),
+    0 8px 20px -14px rgba(5, 31, 68, 0.18);
 }
-.menu-toggle {
-  display: none;
+.panelcard {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 7px;
+  background: var(--work);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  width: min(640px, calc(100vw - 48px));
+}
+.li {
+  display: flex;
+  gap: 11px;
+  padding: 9px;
+  border-radius: 8px;
+  transition:
+    background-color 0.18s,
+    box-shadow 0.18s;
+}
+.li:hover {
+  background: #fff;
+  box-shadow:
+    0 1px 0 rgba(5, 31, 68, 0.04),
+    0 6px 16px -10px rgba(5, 31, 68, 0.25);
+}
+.li .tile {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(5, 31, 68, 0.05);
+  color: var(--royal-hi);
+  transition:
+    border-color 0.18s,
+    transform 0.25s var(--e);
+}
+.li:hover .tile {
+  border-color: #bbd5f7;
+  transform: translateY(-1px) scale(1.04);
+}
+.li .tx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+}
+.li b {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--navy);
+}
+.li span {
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.panelfoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px 7px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.panelsplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 248px;
+  gap: 6px;
+  width: min(700px, calc(100vw - 48px));
+}
+.plainlist {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 10px 6px;
+}
+.plainlist a {
+  display: flex;
   align-items: center;
   gap: 10px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 8px 10px;
   border-radius: 8px;
-  padding: 9px 12px;
-  color: #fff;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.18s;
 }
-.menu-toggle i {
-  display: grid;
-  gap: 4px;
+.plainlist a:hover {
+  background: var(--work);
 }
-.menu-toggle i::before,
-.menu-toggle i::after {
-  content: "";
+.plainlist svg {
+  width: 15px;
+  height: 15px;
+  color: var(--slate);
+  flex: none;
+}
+.hdright {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.burger {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line2);
+  border-radius: 9px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: background-color 0.2s;
+}
+.burger:hover {
+  background: var(--mist);
+}
+.bl {
   display: block;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  transition: transform var(--t-ui) var(--ease);
+  width: 17px;
+  height: 1.6px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition:
+    transform 0.3s var(--e),
+    opacity 0.25s var(--e);
 }
-.menu-toggle[aria-expanded="true"] i::before {
-  transform: translateY(3px) rotate(45deg);
+.bl + .bl {
+  margin-top: 4.5px;
 }
-.menu-toggle[aria-expanded="true"] i::after {
-  transform: translateY(-3px) rotate(-45deg);
+.burger.x .bl:nth-child(1) {
+  transform: translateY(6.1px) rotate(45deg);
 }
-
-@media (max-width: 900px) {
-  .nav {
-    position: fixed;
-    inset: var(--header-h) 0 0 0;
-    overflow-y: auto;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 12px var(--g) 24px;
-    background: var(--navy);
-    border-top: 1px solid rgba(63, 191, 238, 0.15);
-    transform: translateY(-12px);
+.burger.x .bl:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.4);
+}
+.burger.x .bl:nth-child(3) {
+  transform: translateY(-6.1px) rotate(-45deg);
+}
+.mpanel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--hh);
+  bottom: 0;
+  z-index: 59;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 1px solid var(--line);
+  padding: 18px clamp(20px, 4vw, 48px) 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: mp 0.28s var(--e) both;
+}
+@keyframes mp {
+  from {
     opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity var(--t-ui) var(--ease),
-      transform var(--t-ui) var(--ease),
-      visibility 0s linear var(--t-ui);
-    box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.6);
+    transform: scale(0.985);
   }
-  .nav.open {
+  to {
     opacity: 1;
     transform: none;
-    visibility: visible;
-    transition:
-      opacity var(--t-ui) var(--ease),
-      transform var(--t-ui) var(--ease);
-  }
-  .nav a:not(.btn) {
-    font-size: 18px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .nav a:not(.btn)::after {
-    display: none;
-  }
-  .nav .btn {
-    margin-top: 18px;
-  }
-  .menu-toggle {
-    display: inline-flex;
   }
 }
-@media (max-width: 600px) {
-  .site-header.scrolled {
-    --header-h: 64px;
-    height: 64px;
+.mgrp {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--soft);
+  padding-top: 6px;
+}
+@media (max-width: 1100px) {
+  .nav,
+  .hdright .btn {
+    display: none;
   }
-  .brand-link {
-    width: 124px;
+  .burger {
+    display: inline-flex;
   }
 }

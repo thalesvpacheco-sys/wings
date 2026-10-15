@@ -1,56 +1,66 @@
 ---
-/** 07 · Quem somos: Grifo Agency + Attomo. */
-import SectionHeading from "../ui/SectionHeading.astro";
+/** 08 · Quem somos: Grifo Agency + Attomo. */
 ---
 
-<section id="sobre" class="sec" aria-labelledby="about-title">
+<section class="sec" id="sobre">
   <div class="wrap">
-    <SectionHeading eyebrow="Quem somos" titleId="about-title">
-      Criada por quem entende de mercado.
-      <br />
-      <span class="accent">Desenvolvida por quem domina tecnologia.</span>
-      <Fragment slot="lead">
-        A WingsBr nasceu da união de duas empresas com competências complementares: a experiência estratégica e
-        comercial da Grifo Agency e a capacidade de desenvolvimento tecnológico da Attomo.
-      </Fragment>
-    </SectionHeading>
-    <div class="about-grid">
-      <article class="org" data-reveal>
+    <div class="sechead c rv">
+      <span class="ey">Quem somos</span>
+      <h2 class="h2">
+        Criada por quem entende de mercado.
+        <br />
+        <span style="color:var(--royal)">Desenvolvida por quem domina tecnologia.</span>
+      </h2>
+    </div>
+    <div class="two meet">
+      <article class="org">
         <span class="pill">Estratégia e performance</span>
         <h3>Grifo Agency</h3>
         <div class="stats">
-          <div class="stat">
+          <div>
             <b>11 anos</b>
             <p>de experiência em marketing e gestão.</p>
           </div>
-          <div class="stat">
+          <div>
             <b>+100</b>
-            <p>lançamentos imobiliários realizados, com experiência no atendimento de centenas de empresas.</p>
+            <p>lançamentos imobiliários realizados.</p>
           </div>
         </div>
       </article>
-      <div class="plus" aria-hidden="true">
-        <i></i>
+      <div class="plusic">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M12 5v14M5 12h14"></path>
+        </svg>
       </div>
-      <article class="org" data-reveal style="--d:120ms">
+      <article class="org">
         <span class="pill">Engenharia e tecnologia</span>
         <h3>Attomo</h3>
         <div class="stats">
-          <div class="stat">
+          <div>
             <b>Software house</b>
             <p>
-              Focada no desenvolvimento de soluções digitais sob medida, arquitetura tecnológica e plataformas que
-              conectam processos e negócios.
+              Soluções digitais sob medida, arquitetura tecnológica e plataformas que conectam processos e negócios.
             </p>
           </div>
         </div>
       </article>
     </div>
-    <blockquote class="quote" data-reveal>
+    <div class="quote rv">
+      <span class="qm" aria-hidden="true">
+        ”
+      </span>
       <p>
         Não é tecnologia tentando entender o mercado imobiliário. É o conhecimento do mercado imobiliário transformado
         em tecnologia.
       </p>
-    </blockquote>
+    </div>
   </div>
 </section>

@@ -1,33 +1,41 @@
 ---
-/** 09 · Conversão: chamada final para a demonstração. */
-import Bands from "../brand/Bands.astro";
-import { demoMailto } from "../../data/site";
+/** 10 · Chamada final. */
 ---
 
-<section id="demonstracao" class="sec dark cta" aria-labelledby="cta-title">
-  <Bands />
-  <svg class="cta-mark" viewBox="0 0 632 772" aria-hidden="true">
-    <use href="#sym"></use>
+<section class="sec dark" id="cta" style="text-align:center">
+  <svg class="bands" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="2300" cy="3300" r="2350" fill="none" stroke="#092952" stroke-width="150"></circle>
+    <circle cx="2300" cy="3300" r="2650" fill="none" stroke="#092952" stroke-width="150"></circle>
   </svg>
-  <div class="wrap">
-    <div>
-      <div class="eyebrow" data-reveal>
-        O futuro da gestão imobiliária começa aqui
-      </div>
-      <h2 id="cta-title" data-reveal style="--d:80ms">
-        Dê asas aos seus projetos.
-        <br />
-        <span class="accent">Eleve os resultados da sua empresa.</span>
-      </h2>
-    </div>
-    <div class="actions">
-      <p class="lead" data-reveal style="--d:160ms">
-        Chegou a hora de deixar para trás processos fragmentados, planilhas intermináveis e oportunidades perdidas.
-        Descubra como a WingsBr pode conectar sua operação, organizar sua equipe e transformar a gestão dos seus
-        empreendimentos.
-      </p>
-      <a class="btn" id="cta-demo" data-reveal style="--d:240ms" href={demoMailto}>
-        Solicitar demonstração <span class="arw" aria-hidden="true"></span>
+  <svg
+    viewBox="0 0 632 772"
+    aria-hidden="true"
+    style="position:absolute;right:-30px;bottom:-70px;width:280px;height:auto;opacity:.09"
+  >
+    <path
+      fill="#3FBFEE"
+      d="M245 0L189 59L418 288L328 388L421 482L189 715L248 772L632 387ZM114 271L0 388L116 502L231 386ZM279 412L62 628L119 685L335 470ZM119 94L63 152L278 367L335 309Z"
+    ></path>
+  </svg>
+  <div class="wrap rv" style="position:relative;display:flex;flex-direction:column;align-items:center;gap:20px">
+    <span class="ey lt">O futuro da gestão imobiliária começa aqui</span>
+    <h2 class="h2">
+      Dê asas aos seus projetos.
+      <br />
+      <span style="color:var(--sky)">Eleve os resultados da sua empresa.</span>
+    </h2>
+    <p class="lead lt" style="margin-inline:auto;text-align:center">
+      Chegou a hora de deixar para trás processos fragmentados, planilhas intermináveis e oportunidades perdidas.
+    </p>
+    <div style="display:flex;gap:11px;flex-wrap:wrap;justify-content:center">
+      <a href="mailto:contato@wingsbr.app?subject=Demonstra%C3%A7%C3%A3o%20WingsBr" class="btn wt">
+        Solicitar demonstração
+        <svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4"></path>
+        </svg>
+      </a>
+      <a href="#demo" class="btn gh">
+        Ver a plataforma funcionando
       </a>
     </div>
   </div>

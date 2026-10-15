@@ -1,0 +1,132 @@
+/* ===== timeline "um dia na operação" ===== */
+.tl {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: clamp(20px, 2.6vw, 44px);
+}
+.tlnav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+.tlnav::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: var(--line);
+}
+.tlb {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 12px;
+  border-radius: 11px;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+.tlb:hover {
+  background: var(--mist);
+}
+.tlb .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--line2);
+  margin-left: 7px;
+  flex: none;
+  position: relative;
+  z-index: 1;
+  transition:
+    border-color 0.22s,
+    background-color 0.22s,
+    transform 0.22s var(--e);
+}
+.tlb .hr {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.tlb .lb {
+  font-size: 13.5px;
+  color: var(--slate);
+}
+.tlb.on {
+  background: #fff;
+  box-shadow:
+    0 1px 0 rgba(5, 31, 68, 0.04),
+    0 10px 26px -16px rgba(5, 31, 68, 0.3);
+}
+.tlb.on .dot {
+  background: var(--royal);
+  border-color: var(--royal);
+  transform: scale(1.2);
+}
+.tlb.on .hr {
+  color: var(--royal-hi);
+  font-weight: 500;
+}
+.tlb.on .lb {
+  color: var(--navy);
+  font-weight: 500;
+}
+.tlcard {
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 24px 54px -32px rgba(5, 31, 68, 0.3);
+}
+.tlcard h3 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.tlsplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.tlbox {
+  padding: 16px;
+  border-radius: 13px;
+  border: 1px solid var(--line);
+  background: var(--work);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tlbox .tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tlbox p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--slate);
+}
+@media (max-width: 880px) {
+  .tl {
+    grid-template-columns: 1fr;
+  }
+  .tlnav::before {
+    display: none;
+  }
+  .tlnav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .tlsplit {
+    grid-template-columns: 1fr;
+  }
+}

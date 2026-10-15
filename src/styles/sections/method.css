@@ -1,107 +1,100 @@
-/* 06 · Método MICCA */
-.micca {
-  overflow: hidden;
-}
-.micca .wrap {
-  position: relative;
-  z-index: 1;
-}
-.pillars {
+/* ===== MICCA acordeão ===== */
+.micw {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(20px, 2.6vw, 48px);
+  align-items: start;
 }
-.pillar {
-  position: relative;
-  border-radius: 14px;
-  padding: 26px 20px 24px;
-  background: rgba(9, 41, 82, 0.82);
-  border: 1px solid rgba(63, 191, 238, 0.12);
-  transition:
-    transform var(--t-ui) var(--ease),
-    border-color var(--t-ui),
-    background-color var(--t-ui);
+.micl {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
-.pillar .L {
+.microw {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 18px;
+  border-radius: 13px;
+  border: 1px solid var(--dline);
+  background: rgba(255, 255, 255, 0.03);
+  width: 100%;
+  transition: all 0.26s var(--e);
+}
+.microw:hover {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(63, 191, 238, 0.3);
+}
+.microw .L {
   font-family: var(--display);
+  font-size: 26px;
   font-weight: 300;
-  font-size: clamp(64px, 7vw, 104px);
-  line-height: 0.9;
+  line-height: 1;
   color: var(--sky);
-  letter-spacing: -0.04em;
-  display: block;
+  width: 26px;
+  flex: none;
+  transition: transform 0.26s var(--e);
 }
-.pillar b {
-  display: block;
-  font-family: var(--display);
-  font-size: 19px;
-  font-weight: 600;
+.microw .nm {
+  font-size: 15px;
+  font-weight: 500;
   color: #fff;
-  margin: 22px 0 6px;
+  flex: 1;
 }
-.pillar span {
-  font-size: 14px;
-  color: #afc1de;
+.microw .ch {
+  width: 15px;
+  height: 15px;
+  color: var(--dmuted);
+  transition: transform 0.26s var(--e);
 }
-.pillar::after {
-  content: "";
-  position: absolute;
-  top: 22px;
-  right: 20px;
-  width: 8px;
-  height: 8px;
-  transform: rotate(45deg);
-  border: 1.5px solid rgba(63, 191, 238, 0.5);
-}
-.pillar:hover {
-  transform: translateY(-6px);
+.microw.on {
+  background: rgba(63, 191, 238, 0.1);
   border-color: rgba(63, 191, 238, 0.45);
-  background: #0e3466;
 }
-.micca-foot {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 32px;
-  align-items: end;
-  margin-top: 48px;
+.microw.on .L {
+  transform: scale(1.18);
 }
-.micca-foot .lead {
-  color: #b4c3db;
+.microw.on .ch {
+  transform: translateX(4px);
+  color: var(--sky);
 }
-
+.micd {
+  padding: 26px 28px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadein 0.32s var(--e) both;
+}
+.micd .big {
+  font-family: var(--display);
+  font-size: 62px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--sky);
+  opacity: 0.9;
+}
+.micd h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+.micd .q {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 13px;
+  color: var(--dmuted);
+  line-height: 1.55;
+}
+.micd .q b {
+  color: #fff;
+  font-weight: 500;
+}
 @media (max-width: 900px) {
-  .micca-foot {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .pillars {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .pillars li:last-child {
-    grid-column: span 2;
-  }
-}
-@media (max-width: 600px) {
-  .pillars {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .pillars li:last-child {
-    grid-column: auto;
-  }
-  .pillar {
-    display: grid;
-    grid-template-columns: 72px minmax(0, 1fr);
-    gap: 4px 14px;
-    align-items: center;
-    padding: 18px;
-  }
-  .pillar .L {
-    font-size: 60px;
-    grid-row: span 2;
-  }
-  .pillar b {
-    margin: 0;
+  .micw {
+    grid-template-columns: 1fr;
   }
 }

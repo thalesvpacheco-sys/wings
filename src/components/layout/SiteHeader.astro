@@ -1,30 +1,436 @@
 ---
+/** Header fixo com mega-menu, menu mobile e barra de leitura. */
 import Logo from "../brand/Logo.astro";
-import { mainNav } from "../../data/site";
 ---
 
-<a class="skip" href="#conteudo">
-  Pular para o conteúdo
-</a>
-
-<header class="site-header" id="topo">
-  <div class="wrap">
-    <a href="#inicio" class="brand-link" aria-label="WingsBr, início">
-      <Logo class="logo" />
-    </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <i aria-hidden="true"></i>Menu
-    </button>
-    <nav class="nav" id="menu-principal" aria-label="Navegação principal">
-      {mainNav.map((link) => (
-        <a href={link.href}>{link.label}</a>
-      ))}
-      <a class="btn sm" href="#demonstracao">
-        Agende uma demonstração <span class="arw" aria-hidden="true"></span>
+<header class="hd" data-header>
+  <div class="wide hdnav">
+    <div class="hdleft">
+      <a href="#" class="brand" aria-label="WingsBr, início">
+        <Logo on="light" decorative />
       </a>
-    </nav>
+      <nav class="nav" aria-label="Principal" style="border-style: none; border-width: 1px; border-color: #141413">
+        <div class="navitem" data-navitem>
+          <button type="button" class="navtrigger" aria-expanded="false">
+            Plataforma
+            <svg
+              class="chev"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              aria-hidden="true"
+            >
+              <path d="M4 6l4 4 4-4"></path>
+            </svg>
+          </button>
+          <div class="navpanel">
+            <div class="panelbox">
+              <div class="panelcard">
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <rect x="4" y="5" width="16" height="15"></rect>
+                      <path d="M4 10h16M8 3v4M16 3v4"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>Planejamento e mídia</b>
+                    <span>Metas, verba, canais e cronograma num plano só.</span>
+                  </span>
+                </a>
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 4v16h16M8 8h7M11 12h8M8 16h5"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>Gestão de projetos</b>
+                    <span>Etapas, responsáveis, entregas e prazos.</span>
+                  </span>
+                </a>
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 10v4h3l9 5V5L7 10H4z"></path>
+                      <path d="M19 9l2-2M19 15l2 2M20 12h2"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>Campanhas integradas</b>
+                    <span>Digital e offline, com a origem de cada lead.</span>
+                  </span>
+                </a>
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 5h16l-6 7v6l-4 2v-8z"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>CRM e funil de vendas</b>
+                    <span>Leads, histórico e funis sob medida por produto.</span>
+                  </span>
+                </a>
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 3v7M12 10l-7 6M12 10l7 6M5 16v4M19 16v4M12 10v10"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>Distribuição de leads</b>
+                    <span>Filas e regras por equipe, ligadas ao WhatsApp.</span>
+                  </span>
+                </a>
+                <a href="#plataforma" class="li">
+                  <span class="tile">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="square"
+                      aria-hidden="true"
+                    >
+                      <path d="M4 20h16M7 16v-3M11 16V9M15 16v-5M19 16V5"></path>
+                    </svg>
+                  </span>
+                  <span class="tx">
+                    <b>Dashboards</b>
+                    <span>Marketing, atendimento e vendas em números.</span>
+                  </span>
+                </a>
+              </div>
+              <div class="panelfoot">
+                <span>Quer ver funcionando com os seus dados?</span>
+                <a href="#cta" class="lnk">
+                  Agende uma demonstração
+                  <svg
+                    class="ar"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 8h10M9 4l4 4-4 4"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navitem" data-navitem>
+          <button type="button" class="navtrigger" aria-expanded="false">
+            Empresa
+            <svg
+              class="chev"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              aria-hidden="true"
+            >
+              <path d="M4 6l4 4 4-4"></path>
+            </svg>
+          </button>
+          <div class="navpanel">
+            <div class="panelbox">
+              <div class="panelsplit">
+                <div class="panelcard" style="grid-template-columns:1fr;width:auto">
+                  <a href="#sobre" class="li">
+                    <span class="tile">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="square"
+                        aria-hidden="true"
+                      >
+                        <circle cx="9" cy="8" r="3"></circle>
+                        <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 7h5M16 11h5"></path>
+                      </svg>
+                    </span>
+                    <span class="tx">
+                      <b>Quem somos</b>
+                      <span>Grifo Agency e Attomo: mercado e tecnologia.</span>
+                    </span>
+                  </a>
+                  <a href="#micca" class="li">
+                    <span class="tile">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="square"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 3l9 9-9 9-9-9z"></path>
+                      </svg>
+                    </span>
+                    <span class="tx">
+                      <b>Método MICCA</b>
+                      <span>A metodologia por trás de cada tela.</span>
+                    </span>
+                  </a>
+                  <a href="#sobre" class="li">
+                    <span class="tile">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        stroke-linecap="square"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 4l2.2 5.1 5.8.5-4.4 3.8 1.3 5.6L12 16.3 7.1 19l1.3-5.6L4 9.6l5.8-.5z"></path>
+                      </svg>
+                    </span>
+                    <span class="tx">
+                      <b>Casos de lançamento</b>
+                      <span>+100 lançamentos imobiliários conduzidos.</span>
+                    </span>
+                  </a>
+                </div>
+                <div class="plainlist">
+                  <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                      <path d="M7 3h7l5 5v13H7z"></path>
+                      <path d="M14 3v5h5"></path>
+                    </svg>
+                    Termos de uso
+                  </a>
+                  <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                      <path d="M12 3l8 3v6c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V6z"></path>
+                    </svg>
+                    Privacidade e LGPD
+                  </a>
+                  <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <path d="M12 17v-.01M12 14c0-2 2-2.2 2-4a2 2 0 10-4 0"></path>
+                    </svg>
+                    Central de ajuda
+                  </a>
+                  <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                      <path d="M4 19V5h10l6 6v8z"></path>
+                      <path d="M8 10h6M8 14h8"></path>
+                    </svg>
+                    Blog
+                  </a>
+                  <a href="#">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                      <path d="M3 7h18v12H3z"></path>
+                      <path d="M3 7l9 6 9-6"></path>
+                    </svg>
+                    Falar com o time
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#demo" class="navlink">
+          Demonstração
+        </a>
+        <a href="#publico" class="navlink">
+          Soluções
+        </a>
+      </nav>
+    </div>
+    <div class="hdright">
+      <a href="#" class="btn ol sm">
+        Entrar
+      </a>
+      <a href="#cta" class="btn sm">
+        Agende uma demo
+        <svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4"></path>
+        </svg>
+      </a>
+      <button
+        type="button"
+        class="burger"
+        aria-expanded="false"
+        aria-controls="mmenu"
+        aria-label="Abrir ou fechar o menu"
+        data-burger
+      >
+        <i class="bl"></i>
+        <i class="bl"></i>
+        <i class="bl"></i>
+      </button>
+    </div>
   </div>
 </header>
+
+<div class="mpanel" id="mmenu" hidden>
+  <span class="mgrp">Plataforma</span>
+  <a href="#plataforma" class="li">
+    <span class="tile">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        aria-hidden="true"
+      >
+        <rect x="4" y="5" width="16" height="15"></rect>
+        <path d="M4 10h16M8 3v4M16 3v4"></path>
+      </svg>
+    </span>
+    <span class="tx">
+      <b>Planejamento e mídia</b>
+      <span>Metas, verba, canais e cronograma.</span>
+    </span>
+  </a>
+  <a href="#plataforma" class="li">
+    <span class="tile">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        aria-hidden="true"
+      >
+        <path d="M4 4v16h16M8 8h7M11 12h8M8 16h5"></path>
+      </svg>
+    </span>
+    <span class="tx">
+      <b>Gestão de projetos</b>
+      <span>Etapas, responsáveis e prazos.</span>
+    </span>
+  </a>
+  <a href="#plataforma" class="li">
+    <span class="tile">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        aria-hidden="true"
+      >
+        <path d="M4 5h16l-6 7v6l-4 2v-8z"></path>
+      </svg>
+    </span>
+    <span class="tx">
+      <b>CRM e funil de vendas</b>
+      <span>Leads e funis por produto.</span>
+    </span>
+  </a>
+  <a href="#plataforma" class="li">
+    <span class="tile">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        aria-hidden="true"
+      >
+        <path d="M4 20h16M7 16v-3M11 16V9M15 16v-5M19 16V5"></path>
+      </svg>
+    </span>
+    <span class="tx">
+      <b>Dashboards</b>
+      <span>Indicadores de toda a operação.</span>
+    </span>
+  </a>
+  <span class="mgrp">Navegar</span>
+  <a href="#publico" class="navlink" style="height:auto;padding:12px 0;font-size:16px">
+    Soluções
+  </a>
+  <a href="#demo" class="navlink" style="height:auto;padding:12px 0;font-size:16px">
+    Demonstração
+  </a>
+  <a href="#micca" class="navlink" style="height:auto;padding:12px 0;font-size:16px">
+    Método MICCA
+  </a>
+  <a href="#sobre" class="navlink" style="height:auto;padding:12px 0;font-size:16px">
+    Quem somos
+  </a>
+  <div style="display:flex;flex-direction:column;gap:9px;margin-top:8px">
+    <a href="#" class="btn ol" style="width:100%">
+      Entrar
+    </a>
+    <a href="#cta" class="btn" style="width:100%">
+      Agende uma demonstração
+      <svg class="ar" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+        <path d="M3 8h10M9 4l4 4-4 4"></path>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<div class="readbar" aria-hidden="true"></div>
+
+<div class="spacer" aria-hidden="true"></div>
 
 <script>
   import { initHeader } from "../../scripts/header.js";

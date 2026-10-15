@@ -1,0 +1,337 @@
+/* ===== demo com abas que funcionam ===== */
+.tabs {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  transition: all 0.22s var(--e);
+}
+.tab svg {
+  width: 15px;
+  height: 15px;
+  color: var(--royal-hi);
+  transition: color 0.2s;
+}
+.tab:hover {
+  border-color: #becbdc;
+  transform: translateY(-1px);
+}
+.tab.on {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.tab.on svg {
+  color: var(--sky);
+}
+.win {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 40px 80px -36px rgba(5, 31, 68, 0.38);
+}
+.winbar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  background: var(--work);
+  border-bottom: 1px solid var(--line);
+  font: 400 11px var(--mono);
+  color: var(--soft);
+}
+.winbar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--line2);
+}
+.winbody {
+  display: grid;
+  grid-template-columns: 206px minmax(0, 1fr);
+  min-height: 382px;
+}
+.winside {
+  border-right: 1px solid var(--line);
+  background: var(--work);
+  padding: 12px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.winside button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  color: var(--slate);
+  width: 100%;
+  transition: background-color 0.18s;
+}
+.winside button:hover {
+  background: #fff;
+}
+.winside button.on {
+  background: #fff;
+  color: var(--navy);
+  font-weight: 500;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.winside button svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--royal-hi);
+}
+.winmain {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadein 0.32s var(--e) both;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.kpi {
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  transition:
+    border-color 0.22s,
+    transform 0.22s var(--e);
+}
+.kpi:hover {
+  border-color: #c6d9f2;
+  transform: translateY(-2px);
+}
+.kpi small {
+  display: block;
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.kpi b {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+}
+.tr {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10.5px;
+  color: var(--ok);
+  margin-left: 6px;
+}
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 118px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.chart i {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #4fa3ff, #017eff);
+  transform-origin: bottom;
+  animation: grow 1s var(--e) both;
+  animation-delay: var(--d, 0ms);
+}
+.chart i.m {
+  background: var(--haze);
+}
+@keyframes grow {
+  from {
+    transform: scaleY(0.04);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.chartx {
+  display: flex;
+  gap: 10px;
+  font: 400 10.5px var(--mono);
+  color: var(--soft);
+  margin-top: 8px;
+}
+.chartx span {
+  flex: 1;
+  text-align: center;
+}
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  transition: background-color 0.18s;
+}
+.row:hover {
+  background: var(--work);
+}
+.row .st {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  color: var(--slate);
+  white-space: nowrap;
+}
+.row .st i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.row .who {
+  font-size: 11.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.bar {
+  height: 5px;
+  border-radius: 99px;
+  background: var(--haze);
+  overflow: hidden;
+  width: 92px;
+  flex: none;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--royal);
+  border-radius: 99px;
+}
+.kb {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.kcol {
+  background: var(--work);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 220px;
+}
+.kcol .h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 4px;
+}
+.kcol .h em {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--soft);
+}
+.kcard {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px;
+  font-size: 12px;
+  box-shadow: 0 1px 0 rgba(5, 31, 68, 0.03);
+  transition:
+    transform 0.2s var(--e),
+    box-shadow 0.2s;
+}
+.kcard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -14px rgba(5, 31, 68, 0.3);
+}
+.kcard span {
+  display: block;
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.mica {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+}
+.micb {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--work);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.micb b {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--royal-hi);
+}
+.micb span {
+  font-size: 11px;
+  color: var(--muted);
+}
+@media (max-width: 880px) {
+  .winbody {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .winside {
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kb {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mica {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

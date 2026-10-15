@@ -11,7 +11,9 @@
   --cb: #ffffff;
   --cd: #3fbfee;
 }
-.logo {
+.foot-logo {
   display: block;
-  height: auto;
+  height: 20px;
+  width: 100px;
+  margin-bottom: 14px;
 }

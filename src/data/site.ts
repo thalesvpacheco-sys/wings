@@ -1,4 +1,4 @@
-/** Metadados do site e links de navegação. */
+/** Metadados do site (SEO e compartilhamento). */
 
 export const site = {
   name: "WingsBr",
@@ -8,15 +8,9 @@ export const site = {
     "Do planejamento ao pós-venda. A WingsBr conecta estratégia, projetos, marketing, CRM e vendas em uma plataforma para o mercado imobiliário.",
   tagline: "Real Estate Intelligence",
   locale: "pt_BR",
-  themeColor: "#051F44",
+  themeColor: "#FFFFFF",
   ogImage: { path: "/images/og-wingsbr.png", width: 1200, height: 630 },
-  contact: {
-    email: "contato@wingsbr.app",
-    demoSubject: "Demonstração WingsBr",
-  },
 };
-
-export const demoMailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(site.contact.demoSubject)}`;
 
 /** Dados estruturados (schema.org) da página inicial. */
 export const structuredData = {
@@ -30,23 +24,3 @@ export const structuredData = {
   url: `${site.url}/`,
   publisher: { "@type": "Organization", name: site.name },
 };
-
-export interface NavLink {
-  label: string;
-  href: string;
-}
-
-export const mainNav: NavLink[] = [
-  { label: "Plataforma", href: "#plataforma" },
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Método MICCA", href: "#micca" },
-  { label: "Quem somos", href: "#sobre" },
-];
-
-export const footerNav: NavLink[] = [
-  { label: "Plataforma", href: "#plataforma" },
-  { label: "Demonstração", href: "#produto" },
-  { label: "Soluções", href: "#solucoes" },
-  { label: "Método MICCA", href: "#micca" },
-  { label: "Quem somos", href: "#sobre" },
-];

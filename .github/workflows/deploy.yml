@@ -1,0 +1,60 @@
+# Publica o site a cada push na main.
+# Gera o build (dist/) e grava o resultado no branch "deploy".
+# A Hostinger (hPanel → Avançado → Git) puxa o branch "deploy" para o public_html,
+# avisada pelo webhook de implantação automática. Nenhuma senha fica no GitHub.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v7
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar o site
+        run: npm run build
+
+      - name: Publicar no branch deploy
+        env:
+          REPO_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # mantém o histórico do branch para a Hostinger conseguir fazer pull sem conflito
+          if git ls-remote --exit-code --heads "$REPO_URL" deploy >/dev/null; then
+            git clone --quiet --depth 1 --branch deploy "$REPO_URL" out
+          else
+            git init --quiet -b deploy out
+            git -C out remote add origin "$REPO_URL"
+          fi
+          rsync -a --delete --exclude .git dist/ out/
+          cd out
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nada mudou no site."
+          else
+            git commit --quiet -m "deploy: ${GITHUB_SHA::7}"
+            git push --quiet origin deploy
+          fi

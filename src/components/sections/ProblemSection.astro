@@ -1,53 +1,45 @@
 ---
-/** 02 · Clareza: o problema (operação fragmentada) e a proposta de conexão. */
-const fragments = [
-  { label: "planilhas", x: "2%", y: "26px", r: "-6deg", cx: "0%" },
-  { label: "sistemas isolados", x: "38%", y: "10px", r: "5deg", cx: "15%" },
-  { label: "informações desencontradas", x: "14%", y: "132px", r: "4deg", cx: "36%" },
-  { label: "processos manuais", x: "66%", y: "118px", r: "-7deg", cx: "64%" },
-];
+/** 02 · Por que WingsBr: o problema e os fragmentos que se conectam (copy da v1). */
 ---
 
-<section id="por-que" class="sec why" aria-labelledby="why-title">
+<section class="sec ink" id="por-que">
   <div class="wrap">
-    <div>
-      <div class="eyebrow" data-reveal>
-        Por que WingsBr?
-      </div>
-      <h2 id="why-title" data-reveal style="--d:80ms">
+    <div class="sechead c rv">
+      <span class="ey lt">Por que WingsBr?</span>
+      <h2 class="h2">
         O mercado imobiliário evoluiu.
         <br />
-        <span class="accent">Sua gestão também precisa evoluir.</span>
+        <span style="color:var(--sky)">Sua gestão também precisa evoluir.</span>
       </h2>
     </div>
-    <div class="copy">
-      <p data-reveal style="--d:120ms">
+    <div class="why2 st">
+      <p class="lead lt">
         Um lançamento envolve decisões, equipes, investimentos e oportunidades. Mas ainda há empresas operando com
         planilhas, sistemas isolados, informações desencontradas e processos manuais.
       </p>
-      <p data-reveal style="--d:200ms">
+      <p class="lead lt">
         A WingsBr nasceu para conectar pessoas, organizar a operação e transformar dados em decisões estratégicas.
         Porque o sucesso de um empreendimento não depende apenas de gerar leads: depende de fazer toda a operação
         funcionar.
       </p>
     </div>
-    <div class="frag" id="frag" aria-hidden="true">
-      {fragments.map((f) => (
-        <span class="tag" style={`--x:${f.x};--y:${f.y};--r:${f.r};--cx:${f.cx}`}>
-          {f.label}
-        </span>
-      ))}
-      <span class="line"></span>
+    <div class="frags" aria-hidden="true">
+      <span class="fline"></span>
+      <span class="tag" style="--fx:-40px;--fy:-38px;--fr:-6deg">
+        planilhas
+      </span>
+      <span class="tag" style="--fx:30px;--fy:34px;--fr:5deg">
+        sistemas isolados
+      </span>
+      <span class="tag" style="--fx:-24px;--fy:-30px;--fr:4deg">
+        informações desencontradas
+      </span>
+      <span class="tag" style="--fx:44px;--fy:40px;--fr:-7deg">
+        processos manuais
+      </span>
     </div>
-  </div>
-  <div class="wrap">
-    <blockquote class="quote" data-reveal>
+    <blockquote class="wquote rv">
       <p>Menos processos desconectados. Mais controle, produtividade e negócios fechados.</p>
     </blockquote>
   </div>
 </section>
-
-<script>
-  import { initFragments } from "../../scripts/reveal.js";
-  initFragments();
-</script>

@@ -1,0 +1,352 @@
+---
+/** 05 · A plataforma em ação: janela navegável com quatro telas (dados fictícios). */
+---
+
+<section class="sec" id="demo" data-demo>
+  <div class="wrap">
+    <div class="sechead c rv">
+      <span class="ey">A plataforma em ação</span>
+      <h2 class="h2">Navegue pelas telas de verdade.</h2>
+      <p class="lead">Troque de módulo e veja o que cada tela entrega. Dados fictícios; nada aqui altera informação.</p>
+    </div>
+    <div class="tabs c rv">
+      <button type="button" class="tab on" data-tab="Visao" aria-pressed="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M4 20h16M7 16v-3M11 16V9M15 16v-5M19 16V5"></path>
+        </svg>
+        Visão geral
+      </button>
+      <button type="button" class="tab" data-tab="Cron" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M4 4v16h16M8 8h7M11 12h8M8 16h5"></path>
+        </svg>
+        Cronograma
+      </button>
+      <button type="button" class="tab" data-tab="Camp" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <path d="M4 10v4h3l9 5V5L7 10H4z"></path>
+        </svg>
+        Campanhas
+      </button>
+      <button type="button" class="tab" data-tab="Plan" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+          <rect x="4" y="5" width="16" height="15"></rect>
+          <path d="M4 10h16M8 3v4M16 3v4"></path>
+        </svg>
+        Planejador MICCA
+      </button>
+    </div>
+    <div class="win tilt">
+      <div class="winbar">
+        <i></i>
+        <i></i>
+        <i></i>
+        <span style="margin-left:10px">app.wingsbr · Residencial Alameda (exemplo)</span>
+        <span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px">
+          <i style="width:6px;height:6px;background:var(--ok);border-radius:50%"></i>Dados sincronizados
+        </span>
+      </div>
+      <div class="winbody">
+        <div class="winside">
+          <button type="button" class="on" data-tab="Visao">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M4 20h16M7 16v-3M11 16V9M15 16v-5M19 16V5"></path>
+            </svg>
+            Visão geral
+          </button>
+          <button type="button" data-tab="Cron">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M4 4v16h16M8 8h7M11 12h8M8 16h5"></path>
+            </svg>
+            Cronograma
+          </button>
+          <button type="button" data-tab="Camp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M4 10v4h3l9 5V5L7 10H4z"></path>
+            </svg>
+            Campanhas
+          </button>
+          <button type="button" data-tab="Plan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <rect x="4" y="5" width="16" height="15"></rect>
+              <path d="M4 10h16M8 3v4M16 3v4"></path>
+            </svg>
+            Planejador MICCA
+          </button>
+          <button type="button" data-tab="Visao" data-shortcut>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M12 3l9 9-9 9-9-9z"></path>
+            </svg>
+            Estratégia
+          </button>
+          <button type="button" data-tab="Camp" data-shortcut>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="12"></rect>
+              <path d="M9 20h6M12 16v4"></path>
+            </svg>
+            Mídia digital
+          </button>
+        </div>
+
+        <div class="winpanel" data-panel="Visao">
+          <div class="winmain">
+            <div class="kpis">
+              <div class="kpi">
+                <small>Investimento previsto</small>
+                <b>R$ 386,4 mil</b>
+              </div>
+              <div class="kpi">
+                <small>Mídia digital</small>
+                <b>R$ 104,5 mil</b>
+              </div>
+              <div class="kpi">
+                <small>Entregas concluídas</small>
+                <b>
+                  16 / 32
+                  <span class="tr">
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.4"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 15l7-7 7 7"></path>
+                    </svg>
+                    50%
+                  </span>
+                </b>
+              </div>
+              <div class="kpi">
+                <small>Aguardando orçamento</small>
+                <b>3</b>
+              </div>
+            </div>
+            <div>
+              <div class="chart">
+                <i style="height:34%;--d:0ms"></i>
+                <i style="height:78%;--d:70ms"></i>
+                <i style="height:48%;--d:140ms"></i>
+                <i style="height:100%;--d:210ms"></i>
+                <i class="m" style="height:56%;--d:280ms"></i>
+              </div>
+              <div class="chartx">
+                <span>Teaser</span>
+                <span>Pré-lanç.</span>
+                <span>Rodada</span>
+                <span>Lançamento</span>
+                <span>Sustentação</span>
+              </div>
+            </div>
+            <a href="#" class="lnk">
+              Abrir o relatório completo
+              <svg
+                class="ar"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="winpanel" data-panel="Cron" hidden>
+          <div class="winmain">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <b style="font-family:var(--display);font-weight:500;font-size:17px">Cronograma e produção</b>
+              <span class="mono" style="font-size:11px;color:var(--soft)">
+                14 itens · 16 concluídos
+              </span>
+            </div>
+            <div class="rows">
+              <div class="row">
+                <span style="flex:1">Landing page do empreendimento</span>
+                <span class="who">Lucas Andrade</span>
+                <span class="bar">
+                  <i style="width:100%"></i>
+                </span>
+                <span class="st">
+                  <i style="background:var(--ok)"></i>Concluído
+                </span>
+              </div>
+              <div class="row">
+                <span style="flex:1">Vídeo teaser · 30s</span>
+                <span class="who">Felipe Moreira</span>
+                <span class="bar">
+                  <i style="width:62%"></i>
+                </span>
+                <span class="st">
+                  <i style="background:var(--royal)"></i>Em andamento
+                </span>
+              </div>
+              <div class="row">
+                <span style="flex:1">Book digital de vendas</span>
+                <span class="who">Camila Rocha</span>
+                <span class="bar">
+                  <i style="width:28%"></i>
+                </span>
+                <span class="st">
+                  <i style="background:var(--royal)"></i>Em produção
+                </span>
+              </div>
+              <div class="row">
+                <span style="flex:1">Roteiro do meeting de corretores</span>
+                <span class="who">Rafael Lima</span>
+                <span class="bar">
+                  <i style="width:80%"></i>
+                </span>
+                <span class="st">
+                  <i style="background:var(--warn)"></i>Em análise
+                </span>
+              </div>
+              <div class="row">
+                <span style="flex:1">Outdoor · praça central</span>
+                <span class="who">Bruna Alves</span>
+                <span class="bar">
+                  <i style="width:0%"></i>
+                </span>
+                <span class="st">
+                  <i style="background:#B4C0D0"></i>A iniciar
+                </span>
+              </div>
+            </div>
+            <a href="#" class="lnk">
+              Ver em Kanban
+              <svg
+                class="ar"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path d="M3 8h10M9 4l4 4-4 4"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="winpanel" data-panel="Camp" hidden>
+          <div class="winmain">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <b style="font-family:var(--display);font-weight:500;font-size:17px">Campanhas e aprovações</b>
+              <span class="mono" style="font-size:11px;color:var(--soft)">
+                Arraste os cartões entre as colunas
+              </span>
+            </div>
+            <div class="kb">
+              <div class="kcol">
+                <span class="h">
+                  A iniciar<em>2</em>
+                </span>
+                <div class="kcard">
+                  Remarketing de visitantes<span>Meta Ads · R$ 6,2 mil</span>
+                </div>
+                <div class="kcard">
+                  Rádio institucional<span>Spot 30s · R$ 9 mil</span>
+                </div>
+              </div>
+              <div class="kcol">
+                <span class="h">
+                  Em produção<em>2</em>
+                </span>
+                <div class="kcard">
+                  Carrossel de plantas<span>Camila · entrega 16/10</span>
+                </div>
+                <div class="kcard">
+                  Vídeo tour 360°<span>Felipe · entrega 18/10</span>
+                </div>
+              </div>
+              <div class="kcol">
+                <span class="h">
+                  Em análise<em>1</em>
+                </span>
+                <div class="kcard">
+                  Anúncio de pré-lançamento<span>Revisão do atendimento</span>
+                </div>
+              </div>
+              <div class="kcol">
+                <span class="h">
+                  Em veiculação<em>2</em>
+                </span>
+                <div class="kcard">
+                  Google Ads · pesquisa<span>312 leads · R$ 48,2 mil</span>
+                </div>
+                <div class="kcard">
+                  Meta · formulário<span>184 leads · R$ 22,4 mil</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="winpanel" data-panel="Plan" hidden>
+          <div class="winmain">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <b style="font-family:var(--display);font-weight:500;font-size:17px">Planejador MICCA</b>
+              <span class="mono" style="font-size:11px;color:var(--soft)">
+                Plano do Residencial Alameda
+              </span>
+            </div>
+            <div class="mica">
+              <div class="micb">
+                <b>M</b>
+                <span style="font-weight:500;color:var(--navy);font-size:12.5px">Meta</span>
+                <span>120 unidades em 90 dias</span>
+              </div>
+              <div class="micb">
+                <b>I</b>
+                <span style="font-weight:500;color:var(--navy);font-size:12.5px">Investimento</span>
+                <span>R$ 386,4 mil distribuídos</span>
+              </div>
+              <div class="micb">
+                <b>C</b>
+                <span style="font-weight:500;color:var(--navy);font-size:12.5px">Conteúdo</span>
+                <span>18 peças aprovadas</span>
+              </div>
+              <div class="micb">
+                <b>C</b>
+                <span style="font-weight:500;color:var(--navy);font-size:12.5px">Canais</span>
+                <span>6 canais ativos</span>
+              </div>
+              <div class="micb">
+                <b>A</b>
+                <span style="font-weight:500;color:var(--navy);font-size:12.5px">Atendimento</span>
+                <span>4 corretores na fila</span>
+              </div>
+            </div>
+            <div>
+              <div class="chart">
+                <i style="height:52%;--d:0ms"></i>
+                <i style="height:68%;--d:70ms"></i>
+                <i style="height:44%;--d:140ms"></i>
+                <i style="height:88%;--d:210ms"></i>
+                <i style="height:72%;--d:280ms"></i>
+                <i class="m" style="height:36%;--d:350ms"></i>
+              </div>
+              <div class="chartx">
+                <span>Rádio</span>
+                <span>Digital</span>
+                <span>PDV</span>
+                <span>Outdoor</span>
+                <span>Impresso</span>
+                <span>Eventos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initDemo } from "../../scripts/demo.js";
+  initDemo();
+</script>

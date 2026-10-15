@@ -1,32 +1,29 @@
 ---
+/** Rodapé. */
 import Logo from "../brand/Logo.astro";
-import { footerNav, site } from "../../data/site";
-
-const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="wrap">
+<footer class="sec dark" style="padding-block:44px;border-top:1px solid rgba(255,255,255,.08)">
+  <div class="wrap foot">
     <div>
-      <Logo class="lg logo" />
-      <b>{site.name}</b> · {site.tagline}
-      <br />
-      Do planejamento ao pós-venda. Tudo conectado.
+      <Logo on="dark" class="foot-logo" />
+      <p style="font-size:13px;color:var(--dmuted);line-height:1.6;max-width:320px">
+        <b style="color:#fff">WingsBr</b> · Real Estate Intelligence
+        <br />
+        Do planejamento ao pós-venda. Tudo conectado.
+      </p>
     </div>
     <nav aria-label="Rodapé">
-      {footerNav.map((link) => (
-        <a href={link.href}>{link.label}</a>
-      ))}
+      <a href="#demo">Demonstração</a>
+      <a href="#publico">Soluções</a>
+      <a href="#micca">Método MICCA</a>
+      <a href="#sobre">Quem somos</a>
     </nav>
-    <div>
+    <div style="font-size:13px;color:var(--dmuted);line-height:1.6">
       Grifo Agency + Attomo
-      <br />© <span id="year">{year}</span> {site.name} · wingsbr.app
+      <br />
+      contato@wingsbr.app
+      <br />© 2026 WingsBr · wingsbr.app
     </div>
   </div>
 </footer>
-
-<script>
-  // o ano do build pode ficar para trás; o navegador atualiza
-  const year = document.getElementById("year");
-  if (year) year.textContent = String(new Date().getFullYear());
-</script>
