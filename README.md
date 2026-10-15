@@ -54,22 +54,16 @@ npm run dev       # servidor local em http://localhost:4321
 
 ## Deploy na Hostinger
 
-Automático: todo push na `main` publica o site.
+Automático: a Hostinger está ligada a este repositório (hPanel → **Web app Node.js**, conectado ao GitHub). Todo push na `main` gera o build e publica o site.
 
-```
-push na main → GitHub Actions (.github/workflows/deploy.yml) gera o build
-             → grava o dist/ no branch "deploy"
-             → webhook avisa a Hostinger, que puxa o branch "deploy" para o public_html
-```
+Configuração do app no hPanel:
 
-Configuração (uma vez só):
-
-1. No hPanel, ative o SSL do domínio (**Segurança → SSL**); o `.htaccess` redireciona tudo para HTTPS.
-2. Faça um push na `main` e espere a action **Deploy** terminar (aba **Actions** do GitHub). Ela cria o branch `deploy`.
-3. No hPanel, **Avançado → Git**: repositório `https://github.com/thalesvpacheco-sys/wings.git`, branch `deploy`, diretório vazio (= `public_html`). O `public_html` precisa estar vazio antes. Se o repositório for privado, copie a chave SSH que o hPanel mostra para **GitHub → Settings → Deploy keys** e use o endereço SSH do repositório.
-4. Ainda em **Git**, ative a **implantação automática** e copie a URL do webhook. No GitHub: **Settings → Webhooks → Add webhook**, cole a URL, tipo `application/json`, evento **Just the push event**.
-
-O `.htaccess` (em `public/`) cuida de HTTPS, domínio sem `www`, página 404, compressão, cache longo dos arquivos com hash, cabeçalhos de segurança e bloqueia o acesso à pasta `.git` que o deploy por Git deixa no servidor.
+| Campo            | Valor           |
+| ---------------- | --------------- |
+| Branch           | `main`          |
+| Versão do Node   | 22 ou superior  |
+| Comando de build | `npm run build` |
+| Pasta de saída   | `dist`          |
 
 ## Histórico
 
