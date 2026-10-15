@@ -1,0 +1,150 @@
+/* WingsBr — dados da demonstração interativa.
+   TODOS os nomes, valores, datas e registros abaixo são FICTÍCIOS.
+   As estruturas (telas, campos, status e fases) reproduzem o que aparece no vídeo "WingsBr Funções".
+   Para atualizar a demonstração, edite somente este arquivo. */
+window.WB_DEMO = {
+  project: { name: "Residencial Alameda", owner: "Projeto de exemplo", records: 49, today: "2026-10-13" },
+
+  statuses: {
+    "Não informado": "nt",
+    "A iniciar": "nt",
+    "Em andamento": "in",
+    "Em análise": "wn",
+    "Em produção": "in",
+    "Entregue": "ok",
+    "Concluído": "ok"
+  },
+  kanbanColumns: ["Não informado", "A iniciar", "Em andamento", "Em análise", "Em produção", "Entregue", "Concluído"],
+
+  overview: {
+    kpis: [
+      { label: "Investimento previsto", value: "R$ 386.400", note: "Soma dos valores informados" },
+      { label: "Mídia digital", value: "R$ 104.500", note: "Campanhas com orçamento" },
+      { label: "Entregas concluídas", value: "16 / 32", note: "50% do cronograma e produção" },
+      { label: "Aguardando orçamento", value: "3", note: "Itens ativos sem valor definido" }
+    ],
+    phases: [
+      { name: "Teaser", value: 42000 },
+      { name: "Pré-lançamento", value: 96000 },
+      { name: "Rodada", value: 58500 },
+      { name: "Lançamento", value: 121900 },
+      { name: "Sustentação", value: 68000 }
+    ],
+    composition: [
+      { name: "Rádio e outdoor", value: 111400, color: "#051F44" },
+      { name: "Digital", value: 104500, color: "#017EFF" },
+      { name: "PDV e estande", value: 96300, color: "#3FBFEE" },
+      { name: "Impresso", value: 74200, color: "#9AA5B6" }
+    ],
+    alert: { title: "Datas para revisar no planejamento", text: "Abertura de vendas aparece em 17/10 e 31/10. O evento de lançamento tem prazo de 24/10 e período de 31/10." },
+    journey: [
+      { name: "Preparação", period: "01 a 13/09", state: "done" },
+      { name: "Teaser Corretores", period: "14 a 28/09", state: "done" },
+      { name: "Meeting", period: "29/09", state: "done" },
+      { name: "Pré-lançamento", period: "30/09 a 09/10", state: "done" },
+      { name: "Rodada de Negócios", period: "10 a 16/10", state: "cur" },
+      { name: "Lançamento", period: "31/10/2026", state: "next" },
+      { name: "Sustentação", period: "18/10 a 17/11", state: "next" }
+    ]
+  },
+
+  processes: [
+    { date: "2026-10-02", time: "10:12", by: "Marketing", task: "1. Preparação", type: "Estratégia", from: "Em andamento", to: "Concluído" },
+    { date: "2026-10-02", time: "16:40", by: "Agência", task: "Desenvolver e publicar landing page com formulário e rastreamento", type: "Cronograma", from: "Em análise", to: "Concluído" },
+    { date: "2026-10-06", time: "09:05", by: "Comercial", task: "Treinamento da equipe de corretores", type: "Cronograma", from: "A iniciar", to: "Concluído" },
+    { date: "2026-10-09", time: "19:23", by: "Marketing", task: "2. Teaser Corretores", type: "Estratégia", from: "Em andamento", to: "Concluído" },
+    { date: "2026-10-09", time: "19:23", by: "Marketing", task: "3. Meeting", type: "Estratégia", from: "Não informado", to: "Concluído" },
+    { date: "2026-10-09", time: "19:34", by: "Marketing", task: "Domínio + landing page", type: "Mídia digital", from: "Não informado", to: "Concluído" },
+    { date: "2026-10-09", time: "19:34", by: "Marketing", task: "Meta Ads – vídeos teaser", type: "Mídia digital", from: "Não informado", to: "Concluído" },
+    { date: "2026-10-09", time: "19:35", by: "Marketing", task: "Meta Ads – geração de leads", type: "Mídia digital", from: "Em andamento", to: "Concluído" },
+    { date: "2026-10-12", time: "11:02", by: "Agência", task: "Material de estande e sinalização", type: "Cronograma", from: "Em produção", to: "Em análise" },
+    { date: "2026-10-12", time: "15:47", by: "Comercial", task: "5. Rodada de Negócios", type: "Estratégia", from: "A iniciar", to: "Em andamento" },
+    { date: "2026-10-13", time: "08:58", by: "Marketing", task: "Meta Ads – remarketing e conversão", type: "Mídia digital", from: "A iniciar", to: "Em andamento" },
+    { date: "2026-10-13", time: "10:21", by: "Agência", task: "Peças de rádio e outdoor", type: "Cronograma", from: "A iniciar", to: "Em andamento" },
+    { date: "2026-10-13", time: "14:06", by: "Agência", task: "Produzir comunicação completa do PDV", type: "Cronograma", from: "A iniciar", to: "Em produção" }
+  ],
+
+  planner: {
+    name: "Residencial Alameda", location: "Cidade, estado (exemplo)",
+    duration: 60, units: 320, cpl: 30, contingency: 0, conversion: 1.2,
+    briefing: "Planeje o lançamento do projeto, com 320 apartamentos, campanha de 60 dias e CPL de R$ 30. Utilize Meta Ads, Google Ads, Rádio e Outdoor.",
+    channels: ["Meta Ads", "Google Ads", "Rádio", "Outdoor"],
+    knownChannels: ["Meta Ads", "Google Ads", "YouTube", "TikTok", "Rádio", "Outdoor", "Panfleto", "Impresso", "PDV", "Estande", "E-mail", "Televisão", "Jornal"],
+    digitalChannels: ["Meta Ads", "Google Ads", "YouTube", "TikTok", "E-mail"],
+    distribution: [
+      { name: "Meta Ads", value: 82500, color: "#017EFF", digital: true },
+      { name: "Google Ads", value: 22000, color: "#3FBFEE", digital: true },
+      { name: "Rádio", value: 46400, color: "#051F44" },
+      { name: "Outdoor", value: 65000, color: "#374353" },
+      { name: "Impresso", value: 74200, color: "#9AA5B6" },
+      { name: "PDV e estande", value: 96300, color: "#00CEFD" }
+    ],
+    objective: "Gerar conhecimento do empreendimento, apoiar o meeting de corretores e captar demanda para visitas e vendas.",
+    strategy: "Integrar performance digital, presença regional, materiais impressos e ponto de venda."
+  },
+
+  campaigns: [
+    { name: "Meta Ads – remarketing e conversão", period: "10 a 16/10", owner: "Marketing", status: "Em andamento", open: true, arts: ["a", "b", "c"],
+      reviews: [
+        { piece: "Carrossel · versão 2", state: "Aguardando aprovação", chip: "wn" },
+        { piece: "Vídeo 15s · versão 1", state: "Com ajustes", chip: "cr" },
+        { piece: "Stories · versão 3", state: "Aprovado", chip: "ok" },
+        { piece: "Feed estático · versão 2", state: "Aprovado", chip: "ok" },
+        { piece: "Anúncio de formulário · versão 1", state: "Aguardando aprovação", chip: "wn" }
+      ] },
+    { name: "Meta Ads – abertura de vendas", period: "17 a 19/10", owner: "Marketing", status: "Em andamento", open: true, arts: ["c", "a"],
+      reviews: [
+        { piece: "Vídeo de lançamento · versão 1", state: "Aguardando aprovação", chip: "wn" },
+        { piece: "Carrossel de plantas · versão 2", state: "Aprovado", chip: "ok" },
+        { piece: "Stories contagem regressiva · versão 1", state: "Aprovado", chip: "ok" }
+      ] },
+    { name: "Meta Ads – performance", period: "18/10 a 17/11", owner: "Sem responsável", status: "A iniciar", open: true, arts: [], reviews: [] },
+    { name: "Meta Ads – geração de leads", period: "30/09 a 09/10", owner: "Marketing", status: "Concluído", open: false, arts: ["b", "a", "c"],
+      reviews: [
+        { piece: "Anúncio de formulário · versão 3", state: "Aprovado", chip: "ok" },
+        { piece: "Vídeo 30s · versão 2", state: "Aprovado", chip: "ok" }
+      ] }
+  ],
+
+  strategy: [
+    { id: "e1", name: "1. Preparação", sub: "1. Preparação", period: "01 a 13/09", owner: "Marketing", status: "Concluído", invest: "—", done: 4, total: 6, elapsed: "Tempo decorrido do período: 100% · 13/13 dias" },
+    { id: "e2", name: "2. Teaser Corretores", sub: "2. Teaser Corretores", period: "14 a 28/09", owner: "Marketing", status: "Concluído", invest: "R$ 42.000", done: 3, total: 3, elapsed: "Tempo decorrido do período: 100% · 15/15 dias" },
+    { id: "e3", name: "3. Meeting", sub: "3. Meeting", period: "29/09", owner: "Comercial", status: "Concluído", invest: "—", done: 2, total: 2, elapsed: "Tempo decorrido do período: 100% · 1/1 dia" },
+    { id: "e4", name: "4. Pré-lançamento", sub: "4. Pré-lançamento", period: "30/09 a 09/10", owner: "Marketing", status: "Entregue", invest: "R$ 96.000", done: 5, total: 5, elapsed: "Tempo decorrido do período: 100% · 10/10 dias" },
+    { id: "e5", name: "5. Rodada de Negócios", sub: "5. Rodada de Negócios", period: "10 a 16/10", owner: "Comercial", status: "Em andamento", invest: "R$ 58.500", done: 1, total: 3, elapsed: "Tempo decorrido do período: 57% · 4/7 dias" },
+    { id: "e6", name: "6. Lançamento", sub: "6. Lançamento", period: "31/10/2026", owner: "Comercial", status: "A iniciar", invest: "R$ 121.900", done: 0, total: 4, elapsed: "Tempo decorrido do período: 0% · 0/1 dia" },
+    { id: "e7", name: "7. Sustentação", sub: "7. Sustentação", period: "18/10 a 17/11", owner: "Marketing", status: "A iniciar", invest: "R$ 68.000", done: 0, total: 2, elapsed: "Tempo decorrido do período: 0% · 0/31 dias" }
+  ],
+
+  schedule: [
+    { id: "c1", name: "Aprovar conceito, linha visual e plano final de campanha", sub: "Estratégia: 1. Preparação", period: "01/09", owner: "Marketing + Agência", status: "Concluído", done: 1, total: 1 },
+    { id: "c2", name: "Registrar domínio do empreendimento", sub: "Estratégia: 1. Preparação", period: "01 a 05/09", owner: "Marketing", status: "Concluído", done: 1, total: 1 },
+    { id: "c3", name: "Desenvolver e publicar landing page com formulário e rastreamento", sub: "Estratégia: 1. Preparação", period: "01 a 11/09", owner: "Agência", status: "Concluído", done: 1, total: 1 },
+    { id: "c4", name: "Finalizar book digital, vídeo do produto, A4 e caderno de plantas", sub: "Estratégia: 1. Preparação", period: "01 a 18/09", owner: "Agência", status: "Entregue", done: 4, total: 4 },
+    { id: "c5", name: "Gravar vídeos teaser para corretores", sub: "Estratégia: 2. Teaser Corretores", period: "01 a 12/09", owner: "Agência", status: "Concluído", done: 1, total: 1 },
+    { id: "c6", name: "Produzir comunicação completa do PDV", sub: "Estratégia: 4. Pré-lançamento", period: "Até 18/10", owner: "Agência", status: "Em produção", done: 3, total: 5 },
+    { id: "c7", name: "Treinamento da equipe de corretores", sub: "Estratégia: 3. Meeting", period: "29/09", owner: "Comercial", status: "Concluído", done: 1, total: 1 },
+    { id: "c8", name: "Kit do meeting de corretores", sub: "Estratégia: 3. Meeting", period: "22 a 28/09", owner: "Marketing", status: "Entregue", done: 3, total: 3 },
+    { id: "c9", name: "Campanha de geração de leads", sub: "Estratégia: 4. Pré-lançamento", period: "30/09 a 09/10", owner: "Marketing", status: "Concluído", done: 2, total: 2 },
+    { id: "c10", name: "Material de estande e sinalização", sub: "Estratégia: 5. Rodada de Negócios", period: "01 a 10/10", owner: "Agência", status: "Em análise", done: 2, total: 3 },
+    { id: "c11", name: "Peças de rádio e outdoor", sub: "Estratégia: 5. Rodada de Negócios", period: "05 a 15/10", owner: "Agência", status: "Em andamento", done: 1, total: 4 },
+    { id: "c12", name: "Roteiro do evento de lançamento", sub: "Estratégia: 6. Lançamento", period: "Até 24/10", owner: "Comercial", status: "A iniciar", done: 0, total: 1 },
+    { id: "c13", name: "Convites e comunicação do lançamento", sub: "Estratégia: 6. Lançamento", period: "15 a 30/10", owner: "Marketing", status: "A iniciar", done: 0, total: 3 },
+    { id: "c14", name: "Relatório de sustentação de vendas", sub: "Estratégia: 7. Sustentação", period: "18/10 a 17/11", owner: "Não informado", status: "Não informado", done: 0, total: 1 }
+  ],
+
+  media: [
+    { id: "m1", name: "Domínio + landing page", sub: "Preparação", period: "01 a 13/09", owner: "—", status: "Concluído", invest: "Produção / a orçar",
+      detail: { "Fase": "Preparação", "Período": "01 a 13/09", "Responsável": "Não informado", "Campanha / entrega": "Domínio + landing page", "Público": "Comprador final e corretores", "Objetivo": "Criar base de conversão e mensuração", "Criativos": "LP responsiva, formulário, WhatsApp, pixel e analytics", "Destino": "residencialalameda.exemplo", "Investimento": "Produção / a orçar", "Métrica": "Taxa de conversão" } },
+    { id: "m2", name: "Meta Ads – vídeos teaser", sub: "Teaser Corretores", period: "14 a 28/09", owner: "—", status: "Concluído", invest: "R$ 12.500",
+      detail: { "Fase": "Teaser Corretores", "Período": "14 a 28/09", "Responsável": "Marketing", "Campanha / entrega": "Vídeos teaser", "Público": "Corretores parceiros e região", "Objetivo": "Gerar expectativa antes do meeting", "Criativos": "Vídeos 15s e 30s, stories", "Destino": "residencialalameda.exemplo/teaser", "Investimento": "R$ 12.500", "Métrica": "Alcance e visualizações" } },
+    { id: "m3", name: "Meta Ads – geração de leads", sub: "Pré-lançamento", period: "30/09 a 09/10", owner: "—", status: "Concluído", invest: "R$ 28.000",
+      detail: { "Fase": "Pré-lançamento", "Período": "30/09 a 09/10", "Responsável": "Marketing", "Campanha / entrega": "Geração de leads", "Público": "Comprador final", "Objetivo": "Captar cadastros qualificados", "Criativos": "Anúncio de formulário, carrossel", "Destino": "Formulário nativo e landing page", "Investimento": "R$ 28.000", "Métrica": "CPL" } },
+    { id: "m4", name: "Meta Ads – remarketing e conversão", sub: "Rodada de Negócios", period: "10 a 16/10", owner: "—", status: "Em andamento", invest: "R$ 18.000",
+      detail: { "Fase": "Rodada de Negócios", "Período": "10 a 16/10", "Responsável": "Marketing", "Campanha / entrega": "Remarketing e conversão", "Público": "Leads e visitantes da landing page", "Objetivo": "Converter interesse em visita ao estande", "Criativos": "Carrossel, vídeo 15s, stories", "Destino": "WhatsApp do comercial", "Investimento": "R$ 18.000", "Métrica": "Agendamentos de visita" } },
+    { id: "m5", name: "Meta Ads – abertura de vendas", sub: "Lançamento", period: "17 a 19/10", owner: "—", status: "A iniciar", invest: "R$ 22.000",
+      detail: { "Fase": "Lançamento", "Período": "17 a 19/10", "Responsável": "Marketing", "Campanha / entrega": "Abertura de vendas", "Público": "Leads, corretores e região", "Objetivo": "Dar visibilidade à abertura de vendas", "Criativos": "Vídeo de lançamento, carrossel de plantas", "Destino": "residencialalameda.exemplo", "Investimento": "R$ 22.000", "Métrica": "Visitas e propostas" } },
+    { id: "m6", name: "Meta Ads – performance", sub: "Sustentação", period: "18/10 a 17/11", owner: "—", status: "A iniciar", invest: "R$ 24.000",
+      detail: { "Fase": "Sustentação", "Período": "18/10 a 17/11", "Responsável": "Não informado", "Campanha / entrega": "Performance contínua", "Público": "Comprador final", "Objetivo": "Manter o ritmo de vendas após o lançamento", "Criativos": "A definir", "Destino": "residencialalameda.exemplo", "Investimento": "R$ 24.000", "Métrica": "Custo por venda" } }
+  ]
+};
