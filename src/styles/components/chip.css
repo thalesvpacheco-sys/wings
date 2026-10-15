@@ -1,0 +1,45 @@
+/* Etiqueta de status (hero e demonstração). */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 9px 3px 7px;
+  border-radius: 6px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  background: var(--c, var(--royal));
+  flex: none;
+}
+.chip.ok {
+  background: #ddf4eb;
+  color: #0b7a53;
+  --c: var(--ok);
+}
+.chip.wn {
+  background: #fceedb;
+  color: #8a5410;
+  --c: var(--warn);
+}
+.chip.cr {
+  background: #fde3e4;
+  color: #a3262a;
+  --c: var(--crit);
+}
+.chip.in {
+  background: #e1eeff;
+  color: var(--royal-txt);
+  --c: var(--royal);
+}
+.chip.nt {
+  background: #e9eef6;
+  color: var(--slate);
+  --c: #9aa5b6;
+}

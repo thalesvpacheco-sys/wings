@@ -1,0 +1,39 @@
+/* Ponto de entrada do CSS. A ordem dos imports é a ordem da cascata. */
+
+/* fundação */
+@import "./tokens.css";
+@import "./fonts.css";
+@import "./base.css";
+
+/* layout */
+@import "./layout/section.css";
+@import "./layout/header.css";
+@import "./layout/footer.css";
+
+/* componentes */
+@import "./components/logo.css";
+@import "./components/eyebrow.css";
+@import "./components/button.css";
+@import "./components/icon-button.css";
+@import "./components/link-arrow.css";
+@import "./components/chip.css";
+@import "./components/quote.css";
+@import "./components/bands.css";
+
+/* seções, na ordem da página */
+@import "./sections/hero.css";
+@import "./sections/problem.css";
+@import "./sections/platform.css";
+@import "./sections/showcase/layout.css";
+@import "./sections/showcase/app.css";
+@import "./sections/showcase/widgets.css";
+@import "./sections/showcase/records.css";
+@import "./sections/showcase/dialog.css";
+@import "./sections/audience.css";
+@import "./sections/method.css";
+@import "./sections/about.css";
+@import "./sections/benefits.css";
+@import "./sections/cta.css";
+
+/* movimento por último: as revelações precisam vencer os estados das seções */
+@import "./motion.css";

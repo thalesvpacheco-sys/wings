@@ -1,0 +1,53 @@
+---
+/** 02 · Clareza: o problema (operação fragmentada) e a proposta de conexão. */
+const fragments = [
+  { label: "planilhas", x: "2%", y: "26px", r: "-6deg", cx: "0%" },
+  { label: "sistemas isolados", x: "38%", y: "10px", r: "5deg", cx: "15%" },
+  { label: "informações desencontradas", x: "14%", y: "132px", r: "4deg", cx: "36%" },
+  { label: "processos manuais", x: "66%", y: "118px", r: "-7deg", cx: "64%" },
+];
+---
+
+<section id="por-que" class="sec why" aria-labelledby="why-title">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-reveal>
+        Por que WingsBr?
+      </div>
+      <h2 id="why-title" data-reveal style="--d:80ms">
+        O mercado imobiliário evoluiu.
+        <br />
+        <span class="accent">Sua gestão também precisa evoluir.</span>
+      </h2>
+    </div>
+    <div class="copy">
+      <p data-reveal style="--d:120ms">
+        Um lançamento envolve decisões, equipes, investimentos e oportunidades. Mas ainda há empresas operando com
+        planilhas, sistemas isolados, informações desencontradas e processos manuais.
+      </p>
+      <p data-reveal style="--d:200ms">
+        A WingsBr nasceu para conectar pessoas, organizar a operação e transformar dados em decisões estratégicas.
+        Porque o sucesso de um empreendimento não depende apenas de gerar leads: depende de fazer toda a operação
+        funcionar.
+      </p>
+    </div>
+    <div class="frag" id="frag" aria-hidden="true">
+      {fragments.map((f) => (
+        <span class="tag" style={`--x:${f.x};--y:${f.y};--r:${f.r};--cx:${f.cx}`}>
+          {f.label}
+        </span>
+      ))}
+      <span class="line"></span>
+    </div>
+  </div>
+  <div class="wrap">
+    <blockquote class="quote" data-reveal>
+      <p>Menos processos desconectados. Mais controle, produtividade e negócios fechados.</p>
+    </blockquote>
+  </div>
+</section>
+
+<script>
+  import { initFragments } from "../../scripts/reveal.js";
+  initFragments();
+</script>

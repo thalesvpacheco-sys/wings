@@ -1,0 +1,29 @@
+/* Rótulo acima dos títulos e destaque de cor dentro deles. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--royal-txt);
+}
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: currentColor;
+  transform: rotate(45deg);
+  flex: none;
+}
+.dark .eyebrow {
+  color: var(--sky);
+}
+.accent {
+  color: var(--royal);
+}
+.dark .accent {
+  color: var(--sky);
+}

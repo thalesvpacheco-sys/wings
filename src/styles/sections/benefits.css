@@ -1,0 +1,90 @@
+/* 08 · Valor: muito além dos lançamentos */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+.ben {
+  grid-column: span 2;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  min-height: 210px;
+  transition:
+    transform var(--t-ui) var(--ease),
+    box-shadow var(--t-ui);
+}
+.ben:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -34px rgba(5, 31, 68, 0.45);
+}
+.ben svg {
+  width: 32px;
+  height: 32px;
+  color: var(--royal-ui);
+  margin-bottom: auto;
+}
+.ben h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.ben p {
+  color: var(--slate);
+  font-size: 15px;
+}
+.ben.wide {
+  grid-column: span 3;
+}
+.ben.wide.center {
+  grid-column: 2 / span 4;
+}
+.ben.navy {
+  background: var(--navy);
+  color: #fff;
+}
+.ben.navy svg {
+  color: var(--sky);
+}
+.ben.navy p {
+  color: #b4c3db;
+}
+.ben.royal {
+  background: var(--royal-ui);
+  color: #fff;
+}
+.ben.royal svg {
+  color: #fff;
+}
+.ben.royal p {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ben,
+  .ben.wide,
+  .ben.wide.center {
+    grid-column: span 1;
+  }
+}
+@media (max-width: 600px) {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ben,
+  .ben.wide,
+  .ben.wide.center {
+    grid-column: auto;
+    min-height: 0;
+  }
+  .ben svg {
+    margin-bottom: 18px;
+  }
+}

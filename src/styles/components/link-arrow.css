@@ -1,0 +1,22 @@
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--sky);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(63, 191, 238, 0.4);
+}
+.link-arrow i {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+.link-arrow.light {
+  color: var(--royal-txt);
+  border-color: rgba(0, 98, 204, 0.35);
+}

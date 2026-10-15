@@ -1,2 +1,23 @@
-.DS_Store
+# dependências
 node_modules/
+
+# build
+dist/
+.astro/
+
+# ambiente
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# editores
+.vscode/*
+!.vscode/extensions.json
+.idea/

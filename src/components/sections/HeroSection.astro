@@ -1,0 +1,180 @@
+---
+/** 01 · Impacto: promessa principal e composição ilustrativa do produto. */
+import Bands from "../brand/Bands.astro";
+import Logo from "../brand/Logo.astro";
+
+const connectorNodes = [
+  { left: 18, top: 30 },
+  { left: 50, top: 30 },
+  { left: 86, top: 14 },
+  { left: 50, top: 62 },
+  { left: 22, top: 78 },
+  { left: 82, top: 74 },
+];
+const miniBars = [{ h: 38 }, { h: 62 }, { h: 51 }, { h: 84 }, { h: 70, muted: true }, { h: 44, muted: true }];
+const investment = [
+  { label: "Rádio e outdoor", share: 29, color: "#051F44" },
+  { label: "Digital", share: 27, color: "#017EFF" },
+  { label: "PDV e estande", share: 25, color: "#3FBFEE" },
+  { share: 19, color: "#9AA5B6" },
+];
+---
+
+<section id="inicio" class="hero dark" aria-labelledby="hero-title">
+  <Bands />
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="eyebrow" data-hero style="--d:80ms">
+        WingsBr · Real Estate Intelligence
+      </div>
+      <h1 id="hero-title">
+        <span class="line">
+          <span style="--d:40ms">Seu projeto imobiliário</span>
+        </span>
+        <span class="line">
+          <span class="accent" style="--d:120ms">
+            ganha asas.
+          </span>
+        </span>
+        <span class="line">
+          <span style="--d:200ms">Sua operação ganha resultados.</span>
+        </span>
+      </h1>
+      <p class="lead" data-hero style="--d:300ms">
+        Do planejamento ao pós-venda, tudo conectado em uma única plataforma. Inteligência, gestão e performance para
+        incorporadoras, construtoras, loteadoras e imobiliárias.
+      </p>
+      <div class="actions" data-hero style="--d:400ms">
+        <a class="btn" href="#demonstracao">
+          Agende sua demonstração <span class="arw" aria-hidden="true"></span>
+        </a>
+        <a class="btn ghost" href="#plataforma">
+          Conheça a plataforma <span class="arw down" aria-hidden="true"></span>
+        </a>
+      </div>
+      <p class="micro" data-hero style="--d:500ms">
+        Planeje melhor. Execute com inteligência. Venda mais.
+      </p>
+    </div>
+
+    <div class="hero-stage" aria-hidden="true">
+      <div class="stage-rig" id="stage-rig">
+        <svg class="connector" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path
+            id="hero-connector"
+            vector-effect="non-scaling-stroke"
+            d="M18 30 L50 30 L66 14 L86 14 M50 30 L50 62 L34 78 L22 78 M50 62 L70 62 L82 74"
+          ></path>
+        </svg>
+        <div class="cnodes">
+          {connectorNodes.map((n, i) => (
+            <i style={`left:${n.left}%;top:${n.top}%;--d:${1300 + i * 120}ms`} />
+          ))}
+        </div>
+
+        <div class="pcard pc-main" style="--d:420ms">
+          <div class="bar">
+            <Logo class="logo" decorative />
+            <span>Controle de campanha</span>
+            <span class="sync">
+              <i></i>Dados sincronizados
+            </span>
+          </div>
+          <div class="in">
+            <small>Visão geral · exemplo</small>
+            <h5>Residencial Alameda</h5>
+            <div class="mini-k">
+              <div>
+                <small>Investimento previsto</small>
+                <b>R$ 386,4 mil</b>
+              </div>
+              <div>
+                <small>Entregas concluídas</small>
+                <b>16/32</b>
+              </div>
+              <div>
+                <small>Registros</small>
+                <b>49</b>
+              </div>
+            </div>
+            <div class="mini-bars">
+              {miniBars.map((b, i) => (
+                <i class={b.muted ? "m" : undefined} style={`height:${b.h}%;--d:${700 + i * 80}ms`} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard pc-steps" style="--d:620ms">
+          <div class="t">
+            Jornada do lançamento <span>Etapa atual · Rodada</span>
+          </div>
+          <div class="steps">
+            <i></i>
+            <s></s>
+            <i></i>
+            <s></s>
+            <i></i>
+            <s></s>
+            <i></i>
+            <s></s>
+            <i class="cur"></i>
+            <s class="next"></s>
+            <i class="next"></i>
+          </div>
+          <div class="steps-l">
+            <span>Preparação</span>
+            <span>Rodada de Negócios</span>
+            <span>Sustentação</span>
+          </div>
+        </div>
+
+        <div class="pcard pc-dist" style="--d:780ms">
+          <div class="t">Composição do investimento</div>
+          <div class="stack">
+            {investment.map((item) => (
+              <i style={`flex:${item.share};background:${item.color}`} />
+            ))}
+          </div>
+          <div class="legend-rows">
+            {investment
+              .filter((item) => item.label)
+              .map((item) => (
+                <div>
+                  <span style={`--c:${item.color}`}>{item.label}</span>
+                  <b>{item.share}%</b>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        <div class="pcard pc-status" style="--d:920ms">
+          <div class="t">Cronograma</div>
+          <div class="status-list">
+            <div>
+              <span>Landing page</span>
+              <span class="chip ok">Concluído</span>
+            </div>
+            <div>
+              <span>Vídeos teaser</span>
+              <span class="chip in">Em andamento</span>
+            </div>
+            <div>
+              <span>Book digital</span>
+              <span class="chip nt">A iniciar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span class="stage-note">Interface ilustrativa · dados fictícios</span>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#por-que" aria-label="Rolar para a próxima seção">
+    <i></i>Role
+  </a>
+</section>
+
+<script>
+  import { initHero } from "../../scripts/hero.js";
+  initHero();
+</script>

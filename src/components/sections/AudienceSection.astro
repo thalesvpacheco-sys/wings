@@ -1,0 +1,26 @@
+---
+/** 05 · Para quem é: os três segmentos atendidos. */
+import SectionHeading from "../ui/SectionHeading.astro";
+import { audiences } from "../../data/content";
+
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<section id="solucoes" class="sec" aria-labelledby="who-title">
+  <div class="wrap">
+    <SectionHeading eyebrow="Para quem é" titleId="who-title">
+      Uma plataforma que <span class="accent">entende o seu mercado.</span>
+    </SectionHeading>
+    <div class="who-grid">
+      {audiences.map((a, i) => (
+        <article class="who" data-reveal style={i ? `--d:${i * 100}ms` : undefined}>
+          <span class="n mono">{pad(i + 1)}</span>
+          <div class="pill eyebrow">{a.segment}</div>
+          <h3>{a.title}</h3>
+          <p>{a.text}</p>
+          <p class="sign">{a.signature}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

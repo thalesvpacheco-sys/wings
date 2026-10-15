@@ -1,0 +1,32 @@
+---
+/** 08 · Valor: benefícios da operação contínua, em bento. */
+import Icon from "../ui/Icon.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { benefits } from "../../data/content";
+
+// atraso de entrada por posição no bento (cada linha começa do zero)
+const delays = [0, 80, 0, 80, 160, 0];
+---
+
+<section id="alem" class="sec mist" aria-labelledby="beyond-title">
+  <div class="wrap">
+    <SectionHeading eyebrow="Muito além dos lançamentos" titleId="beyond-title">
+      Seu negócio não para depois do lançamento.
+      <br />
+      <span class="accent">A WingsBr também não.</span>
+      <Fragment slot="lead">
+        A plataforma foi pensada para a operação contínua de incorporadoras, construtoras, loteadoras e imobiliárias:
+        novos empreendimentos, campanhas de estoque, relacionamento com clientes e rotinas comerciais.
+      </Fragment>
+    </SectionHeading>
+    <div class="bento">
+      {benefits.map((b, i) => (
+        <article class:list={["ben", b.variant]} data-reveal style={delays[i] ? `--d:${delays[i]}ms` : undefined}>
+          <Icon name={b.icon} />
+          <h3>{b.title}</h3>
+          <p>{b.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

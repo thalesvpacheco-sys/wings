@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import HeroSection from "../components/sections/HeroSection.astro";
+import ProblemSection from "../components/sections/ProblemSection.astro";
+import PlatformSection from "../components/sections/PlatformSection.astro";
+import ShowcaseSection from "../components/sections/ShowcaseSection.astro";
+import AudienceSection from "../components/sections/AudienceSection.astro";
+import MethodSection from "../components/sections/MethodSection.astro";
+import AboutSection from "../components/sections/AboutSection.astro";
+import BenefitsSection from "../components/sections/BenefitsSection.astro";
+import CtaSection from "../components/sections/CtaSection.astro";
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main id="conteudo">
+    <HeroSection />
+    <ProblemSection />
+    <PlatformSection />
+    <ShowcaseSection />
+    <AudienceSection />
+    <MethodSection />
+    <AboutSection />
+    <BenefitsSection />
+    <CtaSection />
+  </main>
+  <SiteFooter />
+
+  <script>
+    import { initReveal } from "../scripts/reveal.js";
+    initReveal();
+  </script>
+</BaseLayout>

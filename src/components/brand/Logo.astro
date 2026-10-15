@@ -1,0 +1,16 @@
+---
+/** Assinatura horizontal da marca, lida do sprite (BrandSprite.astro). */
+interface Props {
+  /** Fundo onde a logo aparece: define as cores oficiais. */
+  on?: "dark" | "light";
+  class?: string;
+  /** Logo decorativa (dentro de um link com rótulo próprio, ou em ilustração). */
+  decorative?: boolean;
+}
+
+const { on = "dark", class: className, decorative = false } = Astro.props;
+const role = decorative ? undefined : "img";
+const label = decorative ? undefined : "Wingsbr.";
+---
+
+<svg class:list={[className, `on-${on}`]} viewBox="0 0 1982 398" role={role} aria-label={label}><use href="#lk-h"></use></svg>

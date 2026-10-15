@@ -1,0 +1,113 @@
+/* 02 · Clareza: por que WingsBr */
+.why .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+.why h2 {
+  margin-top: 22px;
+}
+.why .copy {
+  display: grid;
+  gap: 22px;
+  padding-top: 58px;
+}
+.why .copy p {
+  font-size: clamp(17px, 1.35vw, 19px);
+  color: var(--slate);
+}
+
+/* fragmentos que se conectam numa linha */
+.frag {
+  position: relative;
+  margin-top: clamp(48px, 6vw, 80px);
+  height: 200px;
+  border-top: 1px solid var(--haze);
+  grid-column: 1/-1;
+}
+.frag .tag {
+  position: absolute;
+  z-index: 1;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(0, 0) rotate(var(--r));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px dashed #b7c3d6;
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+  transition:
+    transform 1100ms var(--ease-io),
+    left 1100ms var(--ease-io),
+    top 1100ms var(--ease-io),
+    background-color 600ms,
+    border-color 600ms,
+    color 600ms;
+}
+.frag .tag::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: #b7c3d6;
+  transition: background-color 600ms;
+}
+.frag .line {
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 121px;
+  height: 2px;
+  background: var(--royal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1100ms var(--ease-io) 300ms;
+}
+.frag.connected .tag {
+  left: var(--cx);
+  top: 100px;
+  background: #fff;
+  transform: none;
+  border-style: solid;
+  border-color: var(--royal);
+  color: var(--navy);
+}
+.frag.connected .tag::before {
+  background: var(--royal);
+}
+.frag.connected .line {
+  transform: scaleX(1);
+}
+
+/* abaixo de 1024px os fragmentos viram uma linha de etiquetas (sem sobreposição) */
+@media (max-width: 1024px) {
+  .frag {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 24px;
+  }
+  .frag .tag {
+    position: static;
+    transform: none;
+  }
+  .frag .line {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .why .wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .why .copy {
+    padding-top: 0;
+  }
+}

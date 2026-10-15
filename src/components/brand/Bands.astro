@@ -1,0 +1,9 @@
+---
+/** Faixas concêntricas sobre navy: linguagem gráfica aprovada para fundos escuros. */
+const radii = [2350, 2650, 2950, 3250, 3550];
+---
+
+<svg class="bands" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <rect width="1600" height="1000" fill="#051F44"></rect>
+  {radii.map((r) => <circle cx="2300" cy="3300" r={r} fill="none" stroke="#092952" stroke-width="150" />)}
+</svg>
