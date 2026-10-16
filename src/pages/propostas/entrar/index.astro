@@ -113,10 +113,10 @@ const API = 'https://studio-api.grifo.agency/api';
           return;
         }
 
-        // A API so deixa admin gravar orcamento (403 "so o admin pode salvar
-        // orcamentos"). Barrar aqui evita a pessoa montar a proposta inteira
-        // e so descobrir no primeiro salvamento.
-        if (!dados.user || dados.user.role !== 'admin') {
+        // admin = diretoria da Grifo; wings = equipe comercial da WingsBR.
+        // Os dois sao aceitos aqui e os dois passam em /api/wings/* no backend.
+        var papel = dados.user && dados.user.role;
+        if (papel !== 'admin' && papel !== 'wings') {
           b.disabled = false;
           m.className = 'msg erro';
           m.textContent = 'As propostas da WingsBR ficam com a diretoria. Fale com o Nalbert ou o Bruno.';
