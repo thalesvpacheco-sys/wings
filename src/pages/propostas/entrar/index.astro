@@ -1,0 +1,141 @@
+---
+// src/pages/propostas/entrar/index.astro
+// Entrada da ferramenta de propostas. Faz o POST /api/login no backend da
+// Grifo e guarda o token nesta origem (sessionStorage e por origem, por isso
+// o login do tools.grifo.agency nao serve aqui).
+const API = 'https://studio-api.grifo.agency/api';
+---
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Entrar — Propostas WingsBR</title>
+  <link rel="icon" type="image/svg+xml" href="/propostas/assets/marca/wingsbr-simbolo-royal.svg" />
+  <style>
+    :root {
+      --bg: #F5F7FB; --ink: #051F44; --ink-3: #5B6779;
+      --line: #DCE3EE; --accent: #0070E8; --accent-ink: #0062CC;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100dvh; display: grid; place-items: center;
+      padding: 24px; background: var(--bg); color: var(--ink);
+      font: 400 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    .card {
+      width: 100%; max-width: 380px; background: #fff; border: 1px solid var(--line);
+      border-radius: 14px; padding: 32px 28px;
+    }
+    .logo { display: block; height: 40px; margin: 0 auto 22px; }
+    h1 { margin: 0 0 4px; font-size: 19px; font-weight: 600; text-align: center; }
+    .sub { margin: 0 0 24px; font-size: 13px; color: var(--ink-3); text-align: center; }
+    label { display: block; font-size: 13px; font-weight: 500; margin: 0 0 6px; }
+    input {
+      width: 100%; padding: 10px 12px; margin: 0 0 16px; font: inherit; color: inherit;
+      background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    }
+    input:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: var(--accent); }
+    button {
+      width: 100%; padding: 11px; font: inherit; font-weight: 600; color: #fff;
+      background: var(--accent); border: 0; border-radius: 8px; cursor: pointer;
+    }
+    button:hover:not(:disabled) { background: var(--accent-ink); }
+    button:disabled { opacity: .6; cursor: default; }
+    .msg { margin: 16px 0 0; font-size: 13px; text-align: center; min-height: 1.2em; }
+    .msg.erro { color: #B3261E; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <img class="logo" src="/propostas/assets/marca/wingsbr-logo-fundo-claro.svg" alt="WingsBR" />
+    <h1>Propostas</h1>
+    <p class="sub">Entre com sua conta do grifo-tools.</p>
+
+    <form id="f" novalidate>
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="username" required />
+      <label for="senha">Senha</label>
+      <input id="senha" type="password" autocomplete="current-password" required />
+      <button id="b" type="submit">Entrar</button>
+    </form>
+    <p class="msg" id="m" role="status"></p>
+  </main>
+
+  <script is:inline define:vars={{ API }}>
+    (function () {
+      var f = document.getElementById('f');
+      var b = document.getElementById('b');
+      var m = document.getElementById('m');
+
+      function destino() {
+        var n = new URLSearchParams(location.search).get('next');
+        // so caminho interno: nao deixar ?next= virar redirect para fora do site
+        return (n && n.charAt(0) === '/' && n.charAt(1) !== '/') ? n : '/propostas/';
+      }
+
+      // ja logado nesta origem? segue direto
+      try { if (sessionStorage.getItem('studio_token')) location.replace(destino()); } catch (e) {}
+
+      f.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var email = document.getElementById('email').value.trim();
+        var senha = document.getElementById('senha').value;
+        if (!email || !senha) return;
+
+        b.disabled = true;
+        m.className = 'msg';
+        m.textContent = 'Entrando…';
+
+        var r, dados;
+        try {
+          r = await fetch(API + '/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ email: email, password: senha })
+          });
+        } catch (err) {
+          b.disabled = false;
+          m.className = 'msg erro';
+          m.textContent = 'Sem conexao com o servidor. Se o erro no console for de CORS, o wingsbr.app ainda nao foi liberado na API.';
+          return;
+        }
+
+        try { dados = await r.json(); } catch (err) { dados = {}; }
+
+        if (!r.ok) {
+          b.disabled = false;
+          m.className = 'msg erro';
+          // 401 fica generico de proposito: nao dizer se o e-mail existe
+          m.textContent = (r.status !== 401 && dados.message) || 'Credenciais invalidas. Verifique seu e-mail e senha.';
+          return;
+        }
+
+        // A API so deixa admin gravar orcamento (403 "so o admin pode salvar
+        // orcamentos"). Barrar aqui evita a pessoa montar a proposta inteira
+        // e so descobrir no primeiro salvamento.
+        if (!dados.user || dados.user.role !== 'admin') {
+          b.disabled = false;
+          m.className = 'msg erro';
+          m.textContent = 'As propostas da WingsBR ficam com a diretoria. Fale com o Nalbert ou o Bruno.';
+          return;
+        }
+
+        try {
+          sessionStorage.setItem('studio_token', dados.token);
+          sessionStorage.setItem('studio_user', JSON.stringify(dados.user));
+        } catch (err) {
+          b.disabled = false;
+          m.className = 'msg erro';
+          m.textContent = 'O navegador bloqueou o armazenamento da sessao. Saia da navegacao anonima e tente de novo.';
+          return;
+        }
+
+        location.replace(destino());
+      });
+    })();
+  </script>
+</body>
+</html>
