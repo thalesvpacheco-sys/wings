@@ -1,0 +1,403 @@
+/* ==========================================================================
+   Orçamento no design system do app Wings (versão A do protótipo).
+
+   Só a INTERFACE DE EDIÇÃO muda: barra, editor, gaveta de propostas, avisos e login.
+   As folhas da proposta (.sheet), a mesa de pré-visualização e o modo apresentação
+   (.present) não são tocados: o documento do cliente sai igual.
+
+   Carregado depois dos estilos do index.html, então cada regra aqui sobrepõe a original.
+   As fontes do documento (--font/--display) são trocadas só dentro das áreas de edição,
+   nunca no :root, porque as folhas usam as mesmas variáveis.
+   ========================================================================== */
+
+/* Tokens do app Wings (styles/tools/tokens.css), só nas áreas de edição. */
+.bar,
+.mtabs,
+.editor,
+.desk-head,
+.drawer,
+.toast,
+.login-card {
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font);
+}
+:root:not([data-theme="dark"]) :is(.bar, .mtabs, .editor, .desk-head, .drawer, .login-card) {
+  --line: #e3e8ef;
+  --line-2: #d5dde8;
+  --ink: #020d1f;
+  --ink-2: #5b6779;
+  --ink-3: #8a94a3;
+  --panel-2: #f5f7fb;
+  --accent-soft: #e6f1fd;
+}
+
+/* ── Barra: cabeçalho de página do app (claro), não mais a faixa navy ── */
+.bar {
+  min-height: 64px;
+  padding: 12px 24px;
+  background: var(--panel);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.bar .brand b {
+  color: var(--ink-2);
+  border-left-color: var(--line);
+  font-weight: 500;
+}
+.bar .num {
+  color: var(--ink-2);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+.save {
+  color: var(--ink-2);
+}
+.save.warn {
+  color: #92400e;
+}
+.status {
+  border-color: var(--line);
+  color: var(--ink);
+  background-color: var(--panel);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238a94a3' stroke-width='1.5'/%3E%3C/svg%3E");
+  font-weight: 500;
+  padding: 4px 28px 4px 12px;
+}
+.status:hover {
+  border-color: var(--line-2);
+}
+.status[data-s="aprovada"] {
+  color: #12825a;
+  border-color: #b9e6d2;
+  background-color: #e9f7f0;
+}
+.status[data-s="enviada"] {
+  color: #0062cc;
+  border-color: #c5dcf8;
+  background-color: #e6f1fd;
+}
+.status[data-s="recusada"] {
+  color: #b42318;
+  border-color: #f4c7c3;
+  background-color: #fdecec;
+}
+
+/* Botões do design system (.gt-btn-*) */
+.bar .btn,
+.editor .btn,
+.drawer .btn,
+.login-card .btn {
+  height: 36px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 13.5px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+}
+.bar .btn:hover,
+.editor .btn:hover,
+.drawer .btn:hover {
+  background: var(--panel);
+  border-color: #0070e8;
+}
+.bar .btn.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-2);
+}
+.bar .btn.ghost:hover {
+  background: var(--panel-2);
+  border-color: transparent;
+  color: var(--ink);
+}
+.bar .btn.primary,
+.editor .btn.primary,
+.drawer .btn.primary,
+.login-card .btn.primary {
+  background: #0070e8;
+  border-color: #0070e8;
+  color: #fff;
+  font-weight: 600;
+}
+.bar .btn.primary:hover,
+.editor .btn.primary:hover,
+.drawer .btn.primary:hover,
+.login-card .btn.primary:hover {
+  background: #0062cc;
+  border-color: #0062cc;
+  filter: none;
+}
+#countBadge:not(:empty) {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* Abas do celular */
+.mtabs button {
+  font-weight: 500;
+}
+.mtabs button[aria-selected="true"] {
+  border-bottom-color: #0070e8;
+}
+
+/* ── Resumo da proposta: cartão claro com três números, sem a arte navy ── */
+.hero {
+  margin: 20px 24px 8px;
+  padding: 16px 18px 18px;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.hero .w,
+.hero .s {
+  display: none;
+}
+.hero .k {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--ink-2);
+}
+.hero .nm {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 4px;
+  max-width: 100%;
+}
+.hero .nm.empty {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.hero .vl {
+  gap: 0;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 12px;
+}
+.hero .vl span {
+  flex: 1;
+  padding: 10px 12px 0;
+  border-left: 1px solid var(--line);
+}
+.hero .vl span:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.hero .vl b {
+  margin-top: 2px;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap; /* "R$ 12.000,00" nunca quebra entre o R$ e o número */
+}
+.hero .vl span {
+  min-width: 0;
+}
+/* Barra de preenchimento: azul do app, na base do cartão */
+.hero .bar2 {
+  left: 0;
+  height: 3px;
+  background: #0070e8;
+  border-radius: 0 3px 3px 0;
+}
+
+/* ── Etapas: número em círculo (padrão do app) no lugar do losango ── */
+.step>summary {
+  padding: 16px 24px;
+}
+.step h2 {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.step .sum {
+  color: var(--ink-2);
+}
+.step .n {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.step .n::before {
+  inset: 2px;
+  transform: none;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+}
+.step[open] .n::before {
+  background: #0070e8;
+  border-color: #0070e8;
+}
+.step.done:not([open]) .n {
+  color: #12825a;
+}
+.step.done:not([open]) .n::before {
+  background: #e9f7f0;
+  border-color: #b9e6d2;
+}
+.step>summary:hover h2 {
+  color: #0062cc;
+}
+
+/* ── Campos (.gt-input / .gt-label) ── */
+.field > label,
+.lbl {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.field .help {
+  color: var(--ink-2);
+}
+.editor .in,
+.drawer .in,
+.login-card .in {
+  border-color: var(--line);
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+.editor .in:hover,
+.drawer .in:hover {
+  border-color: var(--line-2);
+}
+.editor .in:focus,
+.drawer .in:focus,
+.login-card .in:focus {
+  border-color: #0070e8;
+  box-shadow: 0 0 0 3px rgba(0, 112, 232, 0.14);
+}
+.editor .in::placeholder {
+  color: var(--ink-3);
+}
+
+/* Seletor pacote / por módulo: segmento claro, ativo em branco com sombra */
+.seg {
+  border-color: var(--line);
+  background: var(--panel-2);
+}
+.seg button[aria-pressed="true"] {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow:
+    0 1px 2px rgba(2, 13, 31, 0.08),
+    0 0 0 1px var(--line);
+}
+
+/* Frentes (filtro de módulos): chips do app; ativo em escuro, como os filtros da casca */
+.frentes button {
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+.frentes button[aria-selected="true"] {
+  background: #020d1f;
+  border-color: #020d1f;
+}
+
+/* Catálogo e módulos escolhidos */
+.cat .cat-h,
+.pg-h {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.cat button[aria-pressed="true"] {
+  background: var(--accent-soft);
+}
+.cat button::before {
+  background: #0070e8;
+}
+.cat button[aria-pressed="true"] .box::before {
+  background: #0070e8;
+  border-color: #0070e8;
+}
+.pi .nmi {
+  font-weight: 600;
+}
+.tot {
+  border-color: var(--line);
+  border-radius: 10px;
+}
+.tot b {
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+/* Textos editáveis das páginas */
+.texts {
+  border-color: var(--line);
+  border-radius: 10px;
+}
+.texts > summary {
+  font-weight: 600;
+}
+
+/* Cabeçalho da mesa ("Proposta para o cliente") */
+.desk-head strong {
+  font-weight: 600;
+}
+
+/* ── Gaveta de propostas ── */
+.drawer header h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.filters button {
+  border-color: var(--line);
+}
+.filters button[aria-pressed="true"] {
+  background: #020d1f;
+  border-color: #020d1f;
+}
+.q .c {
+  font-weight: 600;
+}
+.q .v {
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+/* Aviso flutuante */
+.toast {
+  background: #020d1f;
+  font-weight: 500;
+}
+
+/* Login da equipe (modo Supabase) */
+.login-card h1 {
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .bar {
+    padding: 10px 16px;
+  }
+  .hero {
+    margin: 14px 16px 4px;
+  }
+  .step>summary {
+    padding: 14px 16px;
+  }
+}
+@media (max-width: 480px) {
+  .hero .vl span {
+    padding: 10px 8px 0;
+  }
+  .hero .vl b {
+    font-size: 13.5px;
+  }
+}
