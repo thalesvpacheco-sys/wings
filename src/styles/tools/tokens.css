@@ -1,0 +1,62 @@
+/* =====================================================================
+   Ferramentas WingsBr — tokens
+   Mesmos nomes e medidas do design system do grifo-tools (aprovado); só as cores
+   da marca mudam para as do Mini Brand Book do WingsBr (ver styles/v1/tokens.css).
+   Light-only, como no grifo-tools.
+   ===================================================================== */
+
+:root {
+  /* Marca: só em ação (botão primário, check marcado, foco de campo, badge). */
+  --brand-600: #0070e8; /* royal-ui do WingsBr; branco sobre ele: 4.7:1 */
+  --brand-700: #0062cc; /* royal-txt: hover do primário */
+  --brand-100: #e6f1fd;
+  --focus-ring: 0 0 0 3px rgba(0, 112, 232, 0.14);
+
+  /* Assinatura da topbar: símbolo sky sobre navy, igual ao favicon. */
+  --logo-bg: #051f44;
+  --logo-ink: #3fbfee;
+
+  /* Ferramentas */
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --border: #e3e8ef;
+  --text-hi: #020d1f;
+  --text-md: #8a94a3; /* rótulo e dica; para texto que precisa ser lido use --sh-muted */
+
+  /* Casca */
+  --sh-top-bg: #ffffff;
+  --sh-side-bg: #f5f7fb;
+  --sh-main-bg: #ffffff;
+  --sh-line: #e3e8ef;
+  --sh-line-soft: #eef2f7;
+  --sh-text: #020d1f;
+  --sh-muted: #5b6779;
+  --sh-faint: #8a94a3;
+  --sh-hover: #eaeff6;
+  --sh-active: #dce3ee;
+
+  /* Estado */
+  --overdue: #dc2626;
+  --done: #12a672;
+  --warn-bg: #fef6e7;
+  --warn-fg: #92400e;
+  --wa-bg: #dcf8c6;
+  --wa-chat: #e8f5e3;
+
+  /* Espaço, raio, sombra */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 9999px;
+  --shadow-menu: 0 12px 32px rgba(2, 13, 31, 0.14);
+
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+}

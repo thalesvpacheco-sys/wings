@@ -1,0 +1,102 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+import Icon from "../../components/tools/Icon.astro";
+
+const levels = [
+  { value: "light", label: "Leve", hint: "Qualidade máxima", checked: false },
+  { value: "balanced", label: "Equilibrado", hint: "Recomendado", checked: true },
+  { value: "strong", label: "Forte", hint: "Menor arquivo", checked: false },
+];
+---
+
+<ToolsLayout title="Compressor de PDF" active="compressor-de-pdf">
+  <div class="tk-page">
+    <PageHeader
+      icon="documentArrowDown"
+      title="Compressor de PDF"
+      subtitle="Reduza o tamanho de PDFs para enviar por e-mail ou WhatsApp."
+    />
+
+    <div class="tk-grid">
+      <div class="tk-col">
+        <section class="tk-card">
+          <label class="tk-drop" id="pdf-drop">
+            <span class="tk-drop-icon">
+              <Icon name="upload" size={20} />
+            </span>
+            <strong id="pdf-drop-title">Arraste o PDF aqui</strong>
+            <span id="pdf-drop-sub">ou clique para escolher · até 100 MB</span>
+            <input type="file" accept="application/pdf,.pdf" hidden />
+          </label>
+
+          <div style="margin-top: 20px">
+            <span class="gt-label">Nível de compressão</span>
+            <div class="tk-options three">
+              {levels.map((level) => (
+                <label class="tk-option">
+                  <input type="radio" name="pdf-level" value={level.value} checked={level.checked} />
+                  <span class="tk-option-text">
+                    {level.label}
+                    <small>{level.hint}</small>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
+          <div class="tk-actions">
+            <button class="gt-btn-primary" id="pdf-compress" type="button">
+              Comprimir
+            </button>
+            <button class="gt-btn-secondary" id="pdf-download" type="button" disabled>
+              Baixar
+            </button>
+          </div>
+          <div class="tk-progress" id="pdf-progress" hidden>
+            <span></span>
+          </div>
+          <p class="tk-status" id="pdf-status"></p>
+        </section>
+
+        <section class="tk-card">
+          <h2 class="tk-card-title">Resultado</h2>
+          <p class="tk-empty" id="pdf-result">
+            O tamanho original, o novo tamanho e quanto foi economizado aparecem aqui.
+          </p>
+        </section>
+      </div>
+
+      <div class="tk-col">
+        <section class="tk-card">
+          <h2 class="tk-card-title">Como usar</h2>
+          <ol class="tk-steps">
+            <li>
+              <span>Arraste o PDF (book, tabela de vendas, memorial) para a área de envio.</span>
+            </li>
+            <li>
+              <span>
+                Escolha o nível. <b>Equilibrado</b> serve para quase tudo.
+              </span>
+            </li>
+            <li>
+              <span>
+                Clique em <b>Comprimir</b> e depois em <b>Baixar</b>.
+              </span>
+            </li>
+            <li>
+              <span>
+                As páginas viram imagem: o texto deixa de ser selecionável. Funciona melhor em PDFs com muitas fotos e
+                plantas. Tudo acontece no seu navegador.
+              </span>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initPdfCompressor } from "../../scripts/tools/pdf-compressor.js";
+    initPdfCompressor();
+  </script>
+</ToolsLayout>

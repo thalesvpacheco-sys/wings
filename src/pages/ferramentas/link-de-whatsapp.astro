@@ -1,0 +1,170 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+
+const examples = [
+  { title: "Boas-vindas", text: "👋 Olá! Obrigado pelo interesse no empreendimento. Como posso ajudar?" },
+  { title: "Follow-up", text: "🗓️ Oi! Passando para saber se ficou alguma dúvida sobre as unidades." },
+  {
+    title: "Recuperação de leads",
+    text: "🏠 Vi que você demonstrou interesse no lançamento. Ainda temos unidades disponíveis!",
+  },
+  {
+    title: "Agendar visita",
+    text: "📍 Que tal conhecer o decorado? *Horários disponíveis:* sábado, das 9h às 12h.",
+  },
+  { title: "Proposta", text: "📄 Segue a proposta da unidade que conversamos. Qualquer dúvida, é só chamar." },
+  { title: "Pós-venda", text: "✨ Parabéns pela conquista! Como foi sua experiência com a nossa equipe?" },
+];
+---
+
+<ToolsLayout title="Link de WhatsApp" active="link-de-whatsapp">
+  <div class="tk-page">
+    <PageHeader
+      icon="chat"
+      title="Link de WhatsApp"
+      subtitle="Crie links que abrem o WhatsApp com a mensagem já escrita."
+    />
+
+    <div class="tk-grid">
+      <div class="tk-col">
+        <section class="tk-card">
+          <div class="tk-fields">
+            <div>
+              <label class="gt-label" for="wa-number">
+                Número <span class="tk-req">*</span>
+              </label>
+              <input class="gt-input" id="wa-number" inputmode="tel" placeholder="+55 (62) 9XXXX-XXXX" />
+              <div class="tk-hint-row">
+                <p class="tk-hint">DDI + DDD + Número</p>
+                <span class="tk-tag" id="wa-number-state" hidden>
+                  Incompleto
+                </span>
+              </div>
+            </div>
+            <div>
+              <label class="gt-label" for="wa-target">
+                Destino
+              </label>
+              <select class="gt-input" id="wa-target">
+                <option value="auto">Automático</option>
+                <option value="app">Aplicativo (celular)</option>
+                <option value="web">WhatsApp Web</option>
+              </select>
+              <p class="tk-hint">Automático detecta celular ou computador.</p>
+            </div>
+            <div class="full">
+              <div class="tk-label-row">
+                <label class="gt-label" for="wa-message">
+                  Mensagem
+                </label>
+                <div class="tk-format" aria-label="Formatação">
+                  <button type="button" title="Negrito" data-wrap="*">
+                    <b>B</b>
+                  </button>
+                  <button type="button" title="Itálico" data-wrap="_">
+                    <i>I</i>
+                  </button>
+                  <button type="button" title="Tachado" data-wrap="~">
+                    <s>S</s>
+                  </button>
+                  <button type="button" title="Monoespaçado" data-wrap="```">
+                    M
+                  </button>
+                </div>
+              </div>
+              <textarea
+                class="gt-input"
+                id="wa-message"
+                placeholder="🏠 *LANÇAMENTO* Conheça o novo empreendimento!"
+              ></textarea>
+              <div class="tk-hint-row">
+                <p class="tk-hint" id="wa-count">
+                  0 caracteres
+                </p>
+                <p class="tk-hint">Use os exemplos para textos frequentes.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tk-actions">
+            <button class="gt-btn-primary" id="wa-generate" type="button">
+              Gerar link
+            </button>
+            <button class="gt-btn-secondary" id="wa-open" type="button">
+              Abrir WhatsApp
+            </button>
+            <button class="gt-btn-secondary" id="wa-copy" type="button">
+              Copiar link
+            </button>
+          </div>
+          <div style="margin-top: 20px">
+            <label class="gt-label" for="wa-url">
+              URL gerada
+            </label>
+            <input class="gt-input" id="wa-url" placeholder="Clique em Gerar link para ver a URL…" readonly />
+            <p class="tk-hint tk-error" id="wa-error" hidden></p>
+          </div>
+        </section>
+
+        <section class="tk-card">
+          <h2 class="tk-card-title">Tutorial rápido</h2>
+          <ol class="tk-steps">
+            <li>
+              <span>Digite o número com DDI e DDD. Normalizamos automaticamente.</span>
+            </li>
+            <li>
+              <span>Escreva a mensagem: a pré-visualização no estilo do WhatsApp atualiza em tempo real.</span>
+            </li>
+            <li>
+              <span>
+                Clique em <b>Gerar link</b> e depois em <b>Copiar link</b> para usar no anúncio ou na bio.
+              </span>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <div class="tk-col">
+        <section class="tk-card">
+          <h2 class="tk-card-title">
+            Pré-visualização da mensagem <small id="wa-preview-number">+55 · aguardando número…</small>
+          </h2>
+          <div class="tk-wa">
+            <span class="tk-wa-bubble">
+              <span id="wa-preview">Sua mensagem aparecerá aqui…</span>
+              <time id="wa-time">10:24</time>
+            </span>
+          </div>
+          <p class="tk-hint">
+            Dica: use <code>*negrito*</code>, <code>_itálico_</code>, <code>~tachado~</code>.
+          </p>
+        </section>
+
+        <section class="tk-card">
+          <h2 class="tk-card-title">Exemplos</h2>
+          <p class="tk-card-sub">
+            Clique em <b>Usar</b> para aplicar à mensagem.
+          </p>
+          <div class="tk-examples">
+            {examples.map((example) => (
+              <div class="tk-example">
+                <div class="tk-example-text">
+                  <strong>{example.title}</strong>
+                  <span>{example.text}</span>
+                </div>
+                <button class="tk-btn-sm" type="button" data-example={example.text}>
+                  Usar
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initWhatsApp } from "../../scripts/tools/whatsapp.js";
+    initWhatsApp();
+  </script>
+</ToolsLayout>

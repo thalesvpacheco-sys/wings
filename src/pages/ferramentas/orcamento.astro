@@ -1,0 +1,23 @@
+---
+/**
+ * Orçamento: o gerador de propostas da WingsBR dentro da casca do app.
+ * O gerador é o app de um arquivo só (public/ferramentas/orcamento/app/), o mesmo motor que estava no
+ * tools; aqui ele roda num iframe do próprio site. Sem banco configurado no config.js dele, as propostas
+ * ficam salvas no navegador (o próprio app avisa no topo).
+ */
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+---
+
+<ToolsLayout title="Orçamento" active="orcamento">
+  <iframe
+    class="tk-app-frame"
+    src="/ferramentas/orcamento/app/"
+    title="Gerador de orçamentos e propostas"
+    data-app-frame
+  ></iframe>
+
+  <script>
+    import { initAppFrame } from "../../scripts/tools/app-frame.js";
+    initAppFrame();
+  </script>
+</ToolsLayout>

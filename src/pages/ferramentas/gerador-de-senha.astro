@@ -1,0 +1,111 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+import Icon from "../../components/tools/Icon.astro";
+
+const options = [
+  { key: "upper", label: "Maiúsculas", sample: "A – Z", checked: true },
+  { key: "lower", label: "Minúsculas", sample: "a – z", checked: true },
+  { key: "digits", label: "Números", sample: "0 – 9", checked: true },
+  { key: "symbols", label: "Símbolos", sample: "!@#$%…", checked: false },
+];
+---
+
+<ToolsLayout title="Gerador de senha" active="gerador-de-senha">
+  <div class="tk-page narrow">
+    <PageHeader
+      icon="key"
+      title="Gerador de senha"
+      subtitle="Crie senhas fortes com a criptografia do próprio navegador. Nada sai da sua máquina."
+    />
+
+    <div class="tk-col">
+      <section class="tk-card">
+        <div class="tk-range-head">
+          <label class="gt-label" for="pw-length">
+            Comprimento
+          </label>
+          <strong>
+            <span id="pw-length-value">16</span> caracteres
+          </strong>
+        </div>
+        <input class="tk-range" id="pw-length" type="range" min="8" max="64" value="16" />
+        <div class="tk-range-ends">
+          <span>8</span>
+          <span>64</span>
+        </div>
+
+        <div class="tk-options" style="margin-top: 20px">
+          {options.map((option) => (
+            <label class="tk-option">
+              <input type="checkbox" name="pw-set" value={option.key} checked={option.checked} />
+              <span class="tk-option-text">
+                {option.label}
+                <small>{option.sample}</small>
+              </span>
+            </label>
+          ))}
+        </div>
+
+        <div class="tk-output">
+          <input class="gt-input mono" id="pw-output" readonly aria-label="Senha gerada" />
+          <button class="gt-btn-secondary" id="pw-copy" type="button">
+            <Icon name="clipboard" size={16} />
+            Copiar
+          </button>
+        </div>
+        <div class="tk-meter">
+          <span id="pw-meter" data-level="0"></span>
+        </div>
+        <div class="tk-meter-label">
+          <span>Força da senha</span>
+          <strong id="pw-strength" data-level="0">
+            —
+          </strong>
+        </div>
+
+        <button class="gt-btn-primary block" id="pw-generate" type="button">
+          <Icon name="refresh" size={16} />
+          Gerar senha
+        </button>
+      </section>
+
+      <section class="tk-card" id="pw-history-card" hidden>
+        <h2 class="tk-card-title">
+          Senhas recentes <small>só nesta aba</small>
+        </h2>
+        <div class="tk-examples" id="pw-history"></div>
+      </section>
+
+      <section class="tk-card">
+        <h2 class="tk-card-title">Como funciona</h2>
+        <ol class="tk-steps">
+          <li>
+            <span>
+              Escolha o <b>comprimento</b> e os <b>tipos de caracteres</b>. A senha é regenerada automaticamente.
+            </span>
+          </li>
+          <li>
+            <span>
+              A geração usa a <b>Web Crypto API</b> com rejection sampling: aleatoriedade criptográfica real, sem
+              Math.random().
+            </span>
+          </li>
+          <li>
+            <span>
+              Clique em <b>Gerar senha</b> para criar uma nova e adicioná-la ao histórico da sessão.
+            </span>
+          </li>
+          <li>
+            <span>Nenhum dado é enviado a servidores. Tudo acontece no seu navegador.</span>
+          </li>
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    import { initPassword } from "../../scripts/tools/password.js";
+    initPassword();
+  </script>
+</ToolsLayout>

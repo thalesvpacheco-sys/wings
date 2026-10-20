@@ -1,0 +1,872 @@
+/* Meu perfil (/perfil/), no molde do perfil do GitHub: abas no topo, coluna da pessoa à esquerda,
+   conteúdo à direita. Cores e medidas dos tokens do app (tokens.css). */
+
+.pf {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ── Abas ── */
+.pf-tabs {
+  display: flex;
+  gap: 4px;
+  margin: -8px 0 28px;
+  border-bottom: 1px solid var(--sh-line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pf-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 12px;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sh-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+}
+.pf-tab:hover {
+  color: var(--sh-text);
+  background: var(--sh-hover);
+}
+.pf-tab[aria-pressed="true"] {
+  color: var(--sh-text);
+  font-weight: 600;
+}
+.pf-tab[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand-600);
+}
+.pf-count {
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 9999px;
+  background: var(--sh-line-soft);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sh-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: 296px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* ── Coluna da pessoa ── */
+.pf-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pf-avatar-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 296px;
+  aspect-ratio: 1;
+  margin-bottom: 18px;
+}
+.pf-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(56px, 8vw, 92px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  background:
+    radial-gradient(70% 70% at 25% 20%, rgba(63, 191, 238, 0.55), transparent 70%),
+    linear-gradient(150deg, var(--brand-600), var(--logo-bg));
+  box-shadow: 0 0 0 1px var(--sh-line);
+}
+.pf-badge {
+  position: absolute;
+  right: 6%;
+  bottom: 6%;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  box-shadow:
+    0 0 0 1px var(--sh-line),
+    0 4px 12px rgba(2, 13, 31, 0.12);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--logo-bg);
+}
+.pf-badge svg {
+  height: 18px;
+  width: auto;
+  fill: var(--logo-bg);
+}
+.pf-badge-diamond {
+  fill: var(--brand-600);
+}
+
+/* Foto: botão sobre o avatar (aparece ao passar o mouse; no toque fica sempre visível) */
+.pf-photo-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: rgba(2, 13, 31, 0.72);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.15s ease,
+    background 0.15s ease;
+}
+.pf-avatar-wrap:hover .pf-photo-btn,
+.pf-photo-btn:focus-visible,
+.pf-photo-btn[aria-expanded="true"] {
+  opacity: 1;
+}
+.pf-photo-btn:hover {
+  background: rgba(2, 13, 31, 0.88);
+}
+@media (hover: none) {
+  .pf-photo-btn {
+    opacity: 1;
+  }
+}
+.pf-photo-menu {
+  position: absolute;
+  left: 50%;
+  top: calc(90% + 4px);
+  transform: translateX(-50%);
+  z-index: 5;
+  min-width: 180px;
+  padding: 6px;
+  background: #ffffff;
+  border: 1px solid var(--sh-line);
+  border-radius: 10px;
+  box-shadow: var(--shadow-menu);
+}
+.pf-photo-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--sh-text);
+  text-align: left;
+  cursor: pointer;
+}
+.pf-photo-menu button:hover {
+  background: var(--sh-hover);
+}
+.pf-photo-menu button svg {
+  color: var(--sh-muted);
+}
+.pf-photo-menu .danger,
+.pf-photo-menu .danger svg {
+  color: var(--overdue);
+}
+.pf-photo-status {
+  margin: -8px 0 12px;
+  font-size: 12.5px;
+  color: var(--sh-muted);
+}
+.pf-name {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.pf-handle {
+  margin: 2px 0 16px;
+  font-size: 16px;
+  color: var(--sh-muted);
+  overflow-wrap: anywhere;
+}
+.pf-bio {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--sh-text);
+  white-space: pre-line;
+}
+.pf-bio.is-empty {
+  font-size: 13.5px;
+  color: var(--sh-muted);
+}
+.pf-side [data-edit] {
+  width: 100%;
+}
+.pf-meta {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+.pf-meta li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.pf-meta svg {
+  flex-shrink: 0;
+  color: var(--sh-muted);
+}
+.pf-meta span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.pf-meta a {
+  color: var(--sh-text);
+}
+.pf-meta a:hover {
+  color: var(--brand-600);
+  text-decoration: underline;
+}
+
+.pf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pf-form textarea.gt-input {
+  min-height: 0;
+}
+.pf-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pf-team {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--sh-line);
+}
+.pf-team h2,
+.pf-h {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.pf-team h2 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.pf-team h2 span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--sh-muted);
+}
+.pf-team ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pf-team li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.pf-team li.is-you {
+  background: var(--brand-100);
+}
+.pf-team .sh-avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 10.5px;
+}
+.pf-team-who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pf-team-who strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.pf-team-who > span {
+  font-size: 12px;
+  color: var(--sh-muted);
+}
+.pf-you {
+  margin-left: 6px;
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--brand-700);
+}
+
+.pf-access {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sh-line);
+  font-size: 13px;
+  color: var(--sh-faint);
+}
+.pf-access .tk-hint {
+  flex-basis: 100%;
+  margin: 4px 0 0;
+}
+.pf-link-btn {
+  border: 0;
+  padding: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sh-muted);
+  cursor: pointer;
+}
+.pf-link-btn:hover {
+  color: var(--brand-600);
+  text-decoration: underline;
+}
+.pf-link-btn.danger:hover {
+  color: var(--overdue);
+}
+
+/* ── Conteúdo ── */
+.pf-main {
+  min-width: 0;
+}
+.pf-h-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0 12px;
+}
+.pf-main > section > .pf-h-row:first-child {
+  margin-top: 0;
+}
+.pf-h-aside {
+  font-size: 12.5px;
+  color: var(--sh-muted);
+}
+.pf-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.pf-chip {
+  flex-shrink: 0;
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sh-muted);
+}
+
+/* Mais usadas */
+.pf-pins {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.pf-pin {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+}
+.pf-pin-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.pf-pin-icon {
+  display: flex;
+  color: var(--sh-muted);
+}
+.pf-pin-head a {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--brand-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pf-pin-head a:hover {
+  text-decoration: underline;
+}
+.pf-pin p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--sh-muted);
+}
+.pf-pin-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 12.5px;
+  color: var(--sh-muted);
+}
+.pf-pin-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.pf-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brand-600);
+}
+.pf-dot.is-off {
+  background: var(--sh-active);
+}
+
+/* Gráfico do ano */
+.pf-heat-card {
+  padding: 16px 18px 12px;
+}
+.pf-heat-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+/* Quadradinhos fluidos: o ano inteiro cabe na largura; abaixo de 560px o cartão rola de lado. */
+.pf-heat {
+  display: grid;
+  grid-template-columns: 28px repeat(53, minmax(0, 1fr));
+  grid-template-rows: 16px repeat(7, auto);
+  gap: 3px;
+  min-width: 560px;
+}
+.pf-heat-months {
+  display: contents;
+}
+.pf-heat-months span {
+  grid-row: 1;
+  font-size: 11px;
+  color: var(--sh-muted);
+  white-space: nowrap;
+}
+.pf-heat b {
+  grid-column: 1;
+  align-self: center;
+  font-size: 10.5px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--sh-muted);
+}
+.pf-heat i,
+.pf-legend i {
+  display: block;
+  border-radius: 3px;
+  background: var(--sh-line-soft);
+  box-shadow: inset 0 0 0 1px rgba(2, 13, 31, 0.04);
+}
+.pf-heat i {
+  width: 100%;
+  aspect-ratio: 1;
+}
+.pf-legend i {
+  width: 11px;
+  height: 11px;
+}
+.pf-heat i.is-future {
+  background: transparent;
+  box-shadow: none;
+}
+/* Escala de azul do gráfico (0 = sem ação). */
+:is(.pf-heat, .pf-legend) i[data-l="1"] {
+  background: #bfdcfb;
+}
+:is(.pf-heat, .pf-legend) i[data-l="2"] {
+  background: #7db8f5;
+}
+:is(.pf-heat, .pf-legend) i[data-l="3"] {
+  background: #3a93ee;
+}
+:is(.pf-heat, .pf-legend) i[data-l="4"] {
+  background: var(--brand-600);
+}
+.pf-heat-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--sh-muted);
+}
+.pf-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.pf-legend i {
+  display: inline-block;
+}
+
+/* Anos */
+.pf-years {
+  display: flex;
+  gap: 6px;
+}
+.pf-year {
+  min-width: 76px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sh-text);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+.pf-year[aria-pressed="true"] {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+  color: #ffffff;
+}
+
+/* Linha do tempo */
+.pf-month {
+  position: relative;
+  padding-left: 4px;
+}
+.pf-month-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sh-text);
+}
+.pf-month-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--sh-line);
+}
+.pf-event {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding-bottom: 22px;
+}
+/* Fio vertical ligando os eventos do mês. */
+.pf-event::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  bottom: 4px;
+  width: 2px;
+  background: var(--sh-line);
+}
+.pf-event:last-child::before {
+  display: none;
+}
+.pf-event-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--sh-line-soft);
+  color: var(--sh-muted);
+  box-shadow: 0 0 0 4px var(--panel);
+}
+.pf-event-body {
+  flex: 1;
+  min-width: 0;
+  padding-top: 5px;
+}
+.pf-event-body h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.pf-event-sub {
+  margin: -6px 0 0;
+  font-size: 12.5px;
+  color: var(--sh-muted);
+}
+.pf-bars,
+.pf-files-mini {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pf-bars li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(80px, 34%);
+  align-items: center;
+  gap: 12px;
+  font-size: 13.5px;
+}
+.pf-bars span,
+.pf-files-mini span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--brand-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pf-bars svg {
+  flex-shrink: 0;
+  color: var(--sh-muted);
+}
+.pf-bars em,
+.pf-files-mini em,
+.pf-files-mini time {
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--sh-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pf-bars i {
+  height: 8px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, var(--brand-600) var(--w), var(--sh-line-soft) var(--w));
+}
+.pf-files-mini li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 12px;
+  font-size: 13.5px;
+}
+.pf-files-mini span {
+  color: var(--sh-text);
+}
+.pf-event-body .pf-link-btn {
+  margin-top: 10px;
+  color: var(--brand-600);
+}
+
+/* Atividade (lista completa) */
+.pf-day h3 {
+  margin: 18px 0 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sh-muted);
+}
+.pf-day:first-child h3 {
+  margin-top: 0;
+}
+.pf-day ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pf-day li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 16px;
+  border-top: 1px solid var(--sh-line-soft);
+  font-size: 13.5px;
+}
+.pf-day li:first-child {
+  border-top: 0;
+}
+.pf-feed-icon {
+  display: flex;
+  color: var(--sh-muted);
+}
+.pf-feed-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.pf-day time {
+  font-size: 12.5px;
+  color: var(--sh-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Arquivos */
+.pf-table-wrap {
+  overflow-x: auto;
+}
+.pf-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.pf-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sh-muted);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.pf-table td {
+  padding: 11px 16px;
+  border-top: 1px solid var(--sh-line-soft);
+  white-space: nowrap;
+}
+.pf-table tr:first-child td {
+  border-top: 0;
+}
+.pf-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.pf-table a {
+  color: var(--brand-600);
+}
+.pf-table a:hover {
+  text-decoration: underline;
+}
+.pf-table time {
+  color: var(--sh-muted);
+}
+.pf-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.pf-file svg {
+  color: var(--sh-muted);
+}
+
+.pf-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--sh-muted);
+}
+.pf-empty p {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.pf-note {
+  margin: 32px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--sh-muted);
+}
+
+/* ── Telas menores ── */
+@media (max-width: 1000px) {
+  .pf-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .pf-side {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: center;
+  }
+  .pf-avatar-wrap {
+    grid-row: span 2;
+    margin: 0;
+  }
+  .pf-avatar {
+    font-size: 40px;
+  }
+  .pf-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+    right: 0;
+    bottom: 0;
+  }
+  .pf-handle {
+    margin-bottom: 0;
+  }
+  .pf-side > [data-view],
+  .pf-side > .pf-form,
+  .pf-team,
+  .pf-access {
+    grid-column: 1 / -1;
+  }
+  .pf-side > [data-view],
+  .pf-side > .pf-form {
+    margin-top: 18px;
+  }
+}
+@media (max-width: 600px) {
+  .pf-pins {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pf-bars li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .pf-bars i {
+    grid-column: 1 / -1;
+  }
+  .pf-files-mini li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .pf-files-mini time {
+    display: none;
+  }
+}

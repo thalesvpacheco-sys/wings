@@ -1,0 +1,136 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+import Icon from "../../components/tools/Icon.astro";
+---
+
+<ToolsLayout title="QR Code" active="qr-code">
+  <div class="tk-page">
+    <PageHeader icon="qrCode" title="QR Code" subtitle="Gere e personalize QR Codes para qualquer link ou texto." />
+
+    <div class="tk-grid">
+      <div class="tk-col">
+        <div class="tk-fields">
+          <div class="full">
+            <label class="gt-label" for="qr-text">
+              URL / Texto <span class="tk-req">*</span>
+            </label>
+            <input class="gt-input" id="qr-text" data-qr="t" value="https://wingsbr.app/" />
+            <p class="tk-hint">Cole um link ou qualquer texto.</p>
+          </div>
+          <div>
+            <label class="gt-label" for="qr-size">
+              Tamanho (px)
+            </label>
+            <input class="gt-input" id="qr-size" data-qr="s" type="number" min="64" max="4096" step="16" value="320" />
+            <p class="tk-hint">Tamanho do arquivo gerado.</p>
+          </div>
+          <div>
+            <label class="gt-label" for="qr-margin">
+              Margem
+            </label>
+            <input class="gt-input" id="qr-margin" data-qr="m" type="number" min="0" max="16" value="4" />
+            <p class="tk-hint">Borda branca ao redor. Padrão: 4.</p>
+          </div>
+          <div>
+            <label class="gt-label" for="qr-level">
+              Qualidade de leitura
+            </label>
+            <select class="gt-input" id="qr-level" data-qr="l">
+              <option value="L">L — Baixa (7%)</option>
+              <option value="M" selected>
+                M — Normal (15%)
+              </option>
+              <option value="Q">Q — Alta (25%)</option>
+              <option value="H">H — Máxima (30%)</option>
+            </select>
+          </div>
+          <div>
+            <label class="gt-label" for="qr-format">
+              Formato de download
+            </label>
+            <select class="gt-input" id="qr-format" data-qr="f">
+              <option value="png">PNG (raster)</option>
+              <option value="svg">SVG (vetor)</option>
+            </select>
+          </div>
+          <div>
+            <label class="gt-label" for="qr-fg">
+              Cor dos pontos
+            </label>
+            <input class="gt-input" id="qr-fg" data-qr="c" type="color" value="#051f44" />
+          </div>
+          <div>
+            <label class="gt-label" for="qr-bg">
+              Cor de fundo
+            </label>
+            <input class="gt-input" id="qr-bg" data-qr="b" type="color" value="#ffffff" />
+          </div>
+          <div class="full">
+            <span class="gt-label">Estilo dos pontos</span>
+            <div class="tk-radios">
+              <label class="tk-radio">
+                <input type="radio" name="qr-style" value="square" checked /> Quadrado
+              </label>
+              <label class="tk-radio">
+                <input type="radio" name="qr-style" value="round" /> Arredondado
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="tk-actions">
+          <button class="gt-btn-primary" id="qr-generate" type="button">
+            Gerar QR
+          </button>
+          <button class="gt-btn-secondary" id="qr-download" type="button">
+            Baixar
+          </button>
+          <button class="gt-btn-secondary" id="qr-share" type="button">
+            Compartilhar
+          </button>
+        </div>
+        <p class="tk-status" id="qr-status">
+          Pronto. Cole seu link e clique em "Gerar".
+        </p>
+      </div>
+
+      <div class="tk-col">
+        <section class="tk-card">
+          <h2 class="tk-card-title">Pré-visualização</h2>
+          <div class="tk-preview" id="qr-preview">
+            <Icon name="qrCode" size={40} />O QR Code aparece aqui.
+          </div>
+          <p class="tk-hint">
+            Use qualidade <kbd>Q</kbd> ou <kbd>H</kbd> para impressão.
+          </p>
+        </section>
+        <section class="tk-card">
+          <h2 class="tk-card-title">Como usar</h2>
+          <ol class="tk-steps">
+            <li>
+              <span>Cole o link ou texto no campo acima.</span>
+            </li>
+            <li>
+              <span>Ajuste tamanho, cores e estilo.</span>
+            </li>
+            <li>
+              <span>
+                Clique em <b>Gerar QR</b> e depois em <b>Baixar</b>.
+              </span>
+            </li>
+            <li>
+              <span>
+                Use <b>Compartilhar</b> para copiar um link com estas configurações.
+              </span>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initQrCode } from "../../scripts/tools/qr-code.js";
+    initQrCode();
+  </script>
+</ToolsLayout>

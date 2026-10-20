@@ -1,0 +1,6 @@
+/* Ponto de entrada do CSS da área de ferramentas (/ferramentas). */
+@import "./tokens.css";
+@import "../fonts.css";
+@import "./shell.css";
+@import "./tools.css";
+@import "./profile.css";

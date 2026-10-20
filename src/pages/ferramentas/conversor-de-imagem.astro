@@ -1,0 +1,118 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+import Icon from "../../components/tools/Icon.astro";
+---
+
+<ToolsLayout title="Conversor de imagem" active="conversor-de-imagem">
+  <div class="tk-page">
+    <PageHeader
+      icon="photo"
+      title="Conversor de imagem"
+      subtitle="Converta imagens para WebP, PNG, JPG ou AVIF e ajuste o tamanho."
+    />
+
+    <div class="tk-grid">
+      <div class="tk-col">
+        <section class="tk-card">
+          <label class="tk-drop" id="img-drop">
+            <span class="tk-drop-icon">
+              <Icon name="upload" size={20} />
+            </span>
+            <strong>Arraste as imagens aqui</strong>
+            <span>ou clique para escolher · JPG, PNG, WebP, AVIF, GIF</span>
+            <input type="file" accept="image/*" multiple hidden />
+          </label>
+
+          <div class="tk-fields" style="margin-top: 20px">
+            <div>
+              <label class="gt-label" for="img-format">
+                Converter para
+              </label>
+              <select class="gt-input" id="img-format">
+                <option value="image/webp" selected>
+                  WebP
+                </option>
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPG</option>
+                <option value="image/avif">AVIF</option>
+              </select>
+            </div>
+            <div>
+              <label class="gt-label" for="img-width">
+                Largura máxima (px)
+              </label>
+              <input class="gt-input" id="img-width" type="number" min="16" placeholder="Original" />
+              <p class="tk-hint">Deixe vazio para manter o tamanho.</p>
+            </div>
+            <div class="full" id="img-quality-field">
+              <div class="tk-range-head">
+                <label class="gt-label" for="img-quality">
+                  Qualidade
+                </label>
+                <strong>
+                  <span id="img-quality-value">82</span>%
+                </strong>
+              </div>
+              <input class="tk-range" id="img-quality" type="range" min="10" max="100" value="82" />
+              <div class="tk-range-ends">
+                <span>Arquivo menor</span>
+                <span>Mais nitidez</span>
+              </div>
+            </div>
+          </div>
+          <div class="tk-actions">
+            <button class="gt-btn-primary" id="img-convert" type="button">
+              Converter
+            </button>
+            <button class="gt-btn-secondary" id="img-download-all" type="button">
+              Baixar todas
+            </button>
+            <button class="gt-btn-secondary" id="img-clear" type="button">
+              Limpar
+            </button>
+          </div>
+        </section>
+
+        <section class="tk-card">
+          <h2 class="tk-card-title">
+            Arquivos <small id="img-summary"></small>
+          </h2>
+          <p class="tk-empty" id="img-empty">
+            As imagens convertidas aparecem aqui, com o tamanho antes e depois.
+          </p>
+          <div class="tk-examples" id="img-list"></div>
+        </section>
+      </div>
+
+      <div class="tk-col">
+        <section class="tk-card">
+          <h2 class="tk-card-title">Como usar</h2>
+          <ol class="tk-steps">
+            <li>
+              <span>Arraste uma ou mais imagens para a área de envio.</span>
+            </li>
+            <li>
+              <span>
+                Escolha o <b>formato</b> e a <b>qualidade</b>. WebP é o melhor para site e landing page.
+              </span>
+            </li>
+            <li>
+              <span>
+                Clique em <b>Converter</b> e baixe cada arquivo ou todos de uma vez.
+              </span>
+            </li>
+            <li>
+              <span>A conversão acontece no seu navegador. Nenhuma imagem é enviada a servidores.</span>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initImageConverter } from "../../scripts/tools/image-converter.js";
+    initImageConverter();
+  </script>
+</ToolsLayout>

@@ -1,0 +1,529 @@
+/* Casca estilo Asana (.sh-), copiada do grifo-tools (src/assets/css/global.css).
+   Topbar + uma sidebar; layout de aplicativo: topbar e sidebar nunca saem da tela.
+   A sidebar fica recolhida nos ícones (trilho) e abre por cima do conteúdo ao passar o mouse. */
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+}
+body {
+  font-family: var(--font-sans);
+  background: var(--sh-main-bg);
+  color: var(--sh-text);
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+:focus-visible {
+  outline: 2px solid var(--brand-600);
+  outline-offset: 2px;
+}
+
+/* Sem sessão confirmada, nada da página aparece (o script manda para o login). */
+.auth-pending .sh-app {
+  visibility: hidden;
+}
+
+.sh-app {
+  --sh-top-h: 52px;
+  --sh-rail-w: 60px;
+  --sh-side-w: 248px;
+  --sh-ease: cubic-bezier(0.2, 0.7, 0.1, 1);
+
+  display: grid;
+  grid-template-rows: var(--sh-top-h) minmax(0, 1fr);
+  grid-template-columns: var(--sh-rail-w) minmax(0, 1fr);
+  grid-template-areas: "top top" "side main";
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--sh-main-bg);
+  transition: grid-template-columns 0.28s var(--sh-ease);
+}
+.sh-pinned .sh-app {
+  grid-template-columns: var(--sh-side-w) minmax(0, 1fr);
+}
+
+/* ── Topbar ── */
+.sh-topbar {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 14px;
+  background: var(--sh-top-bg);
+  border-bottom: 1px solid var(--sh-line);
+  position: relative;
+  z-index: 85;
+}
+.sh-top-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.sh-top-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.sh-icon-btn {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--sh-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease;
+}
+.sh-icon-btn:hover {
+  background: var(--sh-hover);
+  color: var(--sh-text);
+}
+
+/* Marca: só o símbolo, solto (sem quadrado, sem nome). */
+.sh-brand {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+.sh-brand:hover {
+  background: var(--sh-hover);
+}
+.sh-symbol {
+  display: block;
+  height: 22px;
+  width: auto;
+  fill: var(--logo-bg);
+}
+.sh-symbol-diamond {
+  fill: var(--brand-600);
+}
+
+/* Avatar + menu da conta */
+.sh-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--logo-bg);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sh-avatar-lg {
+  width: 36px;
+  height: 36px;
+  font-size: 12px;
+}
+/* Com foto de perfil: a imagem cobre o círculo (vale para todos os avatares do app). */
+.has-photo {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+.sh-avatar-btn {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+}
+.sh-avatar-btn:hover .sh-avatar,
+.sh-avatar-btn[aria-expanded="true"] .sh-avatar {
+  box-shadow: 0 0 0 3px var(--sh-active);
+}
+.sh-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 256px;
+  background: #ffffff;
+  border: 1px solid var(--sh-line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-menu);
+  padding: 6px;
+  z-index: 90;
+}
+.sh-menu-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px 10px;
+  border-bottom: 1px solid var(--sh-line-soft);
+  margin-bottom: 4px;
+}
+.sh-menu-who {
+  min-width: 0;
+}
+.sh-menu-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sh-menu-email {
+  font-size: 11.5px;
+  color: var(--sh-muted);
+  margin: 1px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sh-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--sh-text);
+  text-align: left;
+  cursor: pointer;
+}
+.sh-menu-item:hover {
+  background: var(--sh-hover);
+}
+.sh-menu-item svg {
+  color: var(--sh-muted);
+  flex-shrink: 0;
+}
+.sh-menu-item.danger,
+.sh-menu-item.danger svg {
+  color: var(--overdue);
+}
+
+/* ── Sidebar ── */
+.sh-sidebar {
+  grid-area: side;
+  position: relative;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  width: var(--sh-rail-w);
+  min-height: 0;
+  background: var(--sh-side-bg);
+  border-right: 1px solid var(--sh-line);
+  transition:
+    width 0.28s var(--sh-ease),
+    box-shadow 0.28s var(--sh-ease);
+}
+/* Aberta por hover: cresce por cima do conteúdo, sem empurrar a página. */
+.sh-sidebar.is-open {
+  width: var(--sh-side-w);
+  box-shadow: 12px 0 32px rgba(2, 13, 31, 0.08);
+}
+.sh-pinned .sh-sidebar {
+  width: var(--sh-side-w);
+  box-shadow: none;
+}
+.sh-side-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 14px 10px 12px;
+  scrollbar-width: none;
+}
+
+.sh-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sh-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: var(--sh-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.12s ease;
+}
+.sh-nav-item:hover {
+  background: var(--sh-hover);
+}
+.sh-nav-item.active {
+  background: var(--sh-active);
+  font-weight: 600;
+}
+/* Marca do item ativo: um filete azul, visível também com a sidebar recolhida. */
+.sh-nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--brand-600);
+}
+.sh-nav-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sh-muted);
+  flex-shrink: 0;
+  transition:
+    color 0.12s ease,
+    transform 0.2s var(--sh-ease);
+}
+.sh-nav-item:hover .sh-nav-icon {
+  color: var(--sh-text);
+}
+.sh-nav-item.active .sh-nav-icon {
+  color: var(--brand-600);
+}
+
+/* Rótulos: somem no trilho e entram deslizando quando a sidebar abre. */
+.sh-nav-label,
+.sh-nav-end,
+.sh-group-label span,
+.sh-side-who {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.24s var(--sh-ease);
+  pointer-events: none;
+}
+.sh-sidebar.is-open :is(.sh-nav-label, .sh-nav-end, .sh-group-label span, .sh-side-who),
+.sh-pinned .sh-sidebar :is(.sh-nav-label, .sh-nav-end, .sh-group-label span, .sh-side-who) {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.06s;
+}
+.sh-nav-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sh-sidebar.is-open .sh-nav-item:hover .sh-nav-label,
+.sh-pinned .sh-sidebar .sh-nav-item:hover .sh-nav-label {
+  transform: translateX(3px);
+  transition-delay: 0s;
+}
+.sh-nav-end {
+  display: flex;
+  color: var(--sh-faint);
+}
+
+.sh-group {
+  margin-top: 16px;
+}
+/* Título do grupo: no trilho vira um traço, aberto vira texto. */
+.sh-group-label {
+  position: relative;
+  height: 24px;
+  margin: 0 0 2px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sh-muted);
+  white-space: nowrap;
+}
+.sh-group-label::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 1px;
+  background: var(--sh-active);
+  transition: opacity 0.16s ease;
+}
+.sh-sidebar.is-open .sh-group-label::before,
+.sh-pinned .sh-sidebar .sh-group-label::before {
+  opacity: 0;
+}
+.sh-group-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Perfil no rodapé da sidebar */
+.sh-side-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px 12px;
+  padding: 8px 4px;
+  border-top: 1px solid var(--sh-line);
+  padding-top: 12px;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.sh-side-profile .sh-avatar {
+  width: 32px;
+  height: 32px;
+  transition: box-shadow 0.15s ease;
+}
+.sh-side-profile:hover .sh-avatar,
+.sh-side-profile.active .sh-avatar {
+  box-shadow: 0 0 0 3px var(--sh-active);
+}
+.sh-side-who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.sh-side-name {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sh-side-role {
+  font-size: 11.5px;
+  color: var(--sh-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Área principal ── */
+.sh-main {
+  grid-area: main;
+  overflow-y: auto;
+  background: var(--sh-main-bg);
+  padding: 24px 32px 64px;
+  min-width: 0;
+}
+/* App embutido (Orçamento): ocupa a área inteira, sem margem nem rolagem da casca. */
+.sh-main.has-app {
+  padding: 0;
+  overflow: hidden;
+}
+.tk-app-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--sh-main-bg);
+}
+
+/* Cabeçalho de página */
+.sh-page-head {
+  margin-bottom: 14px;
+}
+.sh-page-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.sh-page-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--sh-line-soft);
+  color: var(--sh-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sh-page-titles {
+  min-width: 0;
+}
+.sh-page-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--sh-text);
+}
+.sh-page-sub {
+  font-size: 12.5px;
+  color: var(--sh-muted);
+  margin: 2px 0 0;
+}
+
+/* Mobile: sidebar vira gaveta por cima do conteúdo, sempre com os rótulos */
+.sh-scrim {
+  display: none;
+}
+@media (max-width: 900px) {
+  .sh-app,
+  .sh-pinned .sh-app {
+    grid-template-columns: 0 minmax(0, 1fr);
+  }
+  .sh-app .sh-sidebar {
+    position: fixed;
+    top: var(--sh-top-h);
+    left: 0;
+    bottom: 0;
+    width: var(--sh-side-w);
+    z-index: 75;
+    transform: translateX(-100%);
+    transition: transform 0.22s var(--sh-ease);
+  }
+  .sh-app .sh-sidebar :is(.sh-nav-label, .sh-nav-end, .sh-group-label span, .sh-side-who) {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .sh-app .sh-group-label::before {
+    opacity: 0;
+  }
+  .sh-app.sh-mobile-open .sh-sidebar {
+    transform: none;
+    box-shadow: 8px 0 24px rgba(2, 13, 31, 0.12);
+  }
+  .sh-app.sh-mobile-open .sh-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--sh-top-h) 0 0 0;
+    background: rgba(2, 13, 31, 0.24);
+    z-index: 74;
+  }
+  .sh-main {
+    padding: 18px 16px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-app,
+  .sh-sidebar,
+  .sh-sidebar * {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,659 @@
+/* Ferramentas: campos, botões e cards (padrão v2 do grifo-tools, .gt-* e .tk-*). */
+
+/* ── Página ── */
+.tk-page {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 16px;
+}
+.tk-page.narrow {
+  max-width: 672px;
+}
+.tk-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+.tk-grid.wide-side {
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+}
+.tk-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.tk-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-5);
+}
+.tk-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 var(--space-4);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.tk-card-title small {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--sh-faint);
+}
+.tk-card-sub {
+  font-size: 12px;
+  color: var(--sh-muted);
+  margin: -10px 0 var(--space-4);
+}
+.tk-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-4);
+}
+.tk-fields > .full {
+  grid-column: 1 / -1;
+}
+.tk-hint {
+  font-size: 11.5px;
+  color: var(--text-md);
+  margin: 6px 0 0;
+}
+.tk-req {
+  color: var(--brand-600);
+}
+.tk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+.tk-status {
+  font-size: 11.5px;
+  color: var(--text-md);
+  margin: var(--space-3) 0 0;
+  text-align: right;
+}
+
+/* ── Campos e botões ── */
+.gt-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  min-height: 40px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background-color: var(--panel);
+  color: var(--text-hi);
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  outline: none;
+}
+.gt-input:focus {
+  border-color: var(--brand-600);
+  box-shadow: var(--focus-ring);
+}
+.gt-input::placeholder {
+  color: var(--text-md);
+}
+textarea.gt-input {
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.5;
+}
+select.gt-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%238a94a3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+input[type="color"].gt-input {
+  padding: 6px;
+  cursor: pointer;
+}
+.gt-input.mono {
+  font-family: var(--font-mono);
+  background: var(--bg);
+}
+
+.gt-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-md);
+  margin-bottom: 0.375rem;
+}
+
+.gt-btn-primary,
+.gt-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+.gt-btn-primary {
+  background-color: var(--brand-600);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.15s ease;
+}
+.gt-btn-primary:hover {
+  background-color: var(--brand-700);
+}
+.gt-btn-primary.block {
+  width: 100%;
+}
+.gt-btn-secondary {
+  background-color: transparent;
+  color: var(--text-hi);
+  font-weight: 500;
+  border: 1px solid var(--border);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+.gt-btn-secondary:hover {
+  background-color: var(--panel);
+  border-color: var(--brand-600);
+}
+
+.tk-btn-sm {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text-hi);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.12s ease,
+    border-color 0.12s ease;
+}
+.tk-btn-sm:hover {
+  background-color: var(--bg);
+  border-color: var(--sh-active);
+}
+
+/* Rádio e checkbox na cor da marca */
+.tk-radios {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+.tk-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+input[type="radio"],
+input[type="checkbox"],
+input[type="range"] {
+  accent-color: var(--brand-600);
+}
+
+/* ── Passos (Como usar / Como funciona) ── */
+.tk-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: step;
+}
+.tk-steps li {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--sh-muted);
+  counter-increment: step;
+}
+.tk-steps li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--sh-text);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tk-steps b {
+  color: var(--sh-text);
+  font-weight: 600;
+}
+
+code,
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* ── Pré-visualização ── */
+.tk-preview {
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--sh-faint);
+  font-size: 12px;
+  text-align: center;
+  padding: var(--space-5);
+}
+
+/* ── Área de envio de arquivo ── */
+.tk-drop {
+  border: 1.5px dashed var(--sh-active);
+  border-radius: 12px;
+  background: var(--bg);
+  padding: 36px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+.tk-drop:hover {
+  border-color: var(--brand-600);
+  background: var(--brand-100);
+}
+.tk-drop-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--sh-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tk-drop strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.tk-drop span {
+  font-size: 12px;
+  color: var(--sh-muted);
+}
+.tk-empty {
+  font-size: 12.5px;
+  color: var(--sh-muted);
+  margin: 0;
+}
+
+/* ── Cards de opção (Gerador de senha, Compressor de PDF) ── */
+.tk-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.tk-options.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+.tk-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    border-color 0.12s ease,
+    background 0.12s ease;
+}
+.tk-option:has(input:checked) {
+  border-color: var(--sh-active);
+  background: var(--bg);
+}
+.tk-option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.tk-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.tk-option-text small {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-md);
+}
+
+/* ── Gerador de senha ── */
+.tk-range-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.tk-range-head strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+.tk-range {
+  width: 100%;
+  margin: 12px 0 4px;
+}
+.tk-range-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-md);
+}
+.tk-output {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+.tk-meter {
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--sh-line);
+  margin-top: var(--space-3);
+  overflow: hidden;
+}
+.tk-meter span {
+  display: block;
+  height: 100%;
+  background: var(--done);
+  border-radius: inherit;
+}
+.tk-meter-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-md);
+  margin: 6px 0 var(--space-5);
+}
+.tk-meter-label strong {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--done);
+}
+
+/* ── Link de WhatsApp ── */
+.tk-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 9999px;
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+  border: 1px solid #f4d48a;
+}
+.tk-hint-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+.tk-hint-row .tk-hint {
+  margin: 0;
+}
+.tk-format {
+  display: flex;
+  gap: 4px;
+}
+.tk-format button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--sh-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tk-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.375rem;
+}
+.tk-label-row .gt-label {
+  margin: 0;
+}
+.tk-wa {
+  background: var(--wa-chat);
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 128px;
+}
+.tk-wa-bubble {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  box-shadow: 0 1px 1px rgba(2, 13, 31, 0.06);
+  max-width: 90%;
+}
+.tk-wa-bubble time {
+  font-size: 10.5px;
+  color: var(--sh-faint);
+}
+.tk-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tk-example {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.tk-example-text {
+  flex: 1;
+  min-width: 0;
+}
+.tk-example-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+.tk-example-text span {
+  display: block;
+  font-size: 12px;
+  color: var(--sh-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Estados das ferramentas em funcionamento ── */
+[hidden] {
+  display: none !important;
+}
+.gt-btn-primary:disabled,
+.gt-btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.gt-btn-secondary:disabled:hover {
+  border-color: var(--border);
+}
+.tk-error,
+.tk-error-text {
+  color: var(--overdue);
+}
+.tk-result {
+  min-height: 72px;
+  resize: none;
+  word-break: break-all;
+  font-size: 12.5px;
+}
+.tk-mono-line {
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text-hi);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tk-drop.over {
+  border-color: var(--brand-600);
+  background: var(--brand-100);
+}
+.tk-preview.has-qr {
+  padding: var(--space-4);
+}
+.tk-preview.has-qr svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  border-radius: 4px;
+}
+.tk-progress {
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--sh-line);
+  margin-top: var(--space-4);
+  overflow: hidden;
+}
+.tk-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--brand-600);
+  transition: width 0.2s ease;
+}
+
+/* Força da senha: fraca, razoável, forte, muito forte */
+.tk-meter span {
+  transition:
+    width 0.2s ease,
+    background 0.2s ease;
+}
+.tk-meter span[data-level="0"] {
+  background: var(--overdue);
+}
+.tk-meter span[data-level="1"] {
+  background: #e8962c;
+}
+.tk-meter-label strong[data-level="0"] {
+  color: var(--overdue);
+}
+.tk-meter-label strong[data-level="1"] {
+  color: var(--warn-fg);
+}
+
+/* ── Início ── */
+.tk-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+.tk-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-5);
+  transition: border-color 0.15s ease;
+}
+.tk-tile:hover {
+  border-color: var(--sh-active);
+}
+.tk-tile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tk-tile strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+.tk-tile p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--sh-muted);
+  margin: 0;
+}
+.tk-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--sh-line-soft);
+  color: var(--sh-muted);
+}
+.tk-pill.live {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+
+@media (max-width: 900px) {
+  .tk-grid,
+  .tk-grid.wide-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .tk-fields,
+  .tk-options,
+  .tk-options.three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tk-actions > * {
+    flex: 1 1 auto;
+  }
+}

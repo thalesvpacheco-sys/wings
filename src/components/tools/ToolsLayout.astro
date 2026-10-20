@@ -1,0 +1,161 @@
+---
+/**
+ * Casca do app Wings: topbar + sidebar recolhível (ícones; abre ao passar o mouse) e o conteúdo no <slot />.
+ * Só abre com sessão: sem login, o script manda para /entrar/ e volta para cá depois.
+ * Página interna: fora do índice de busca.
+ */
+import "../../styles/tools/main.css";
+import Icon from "./Icon.astro";
+import { budget, toolHref, tools, toolsBase } from "../../data/tools/catalog";
+
+interface Props {
+  title: string;
+  /** item ativo da sidebar: slug da ferramenta, "inicio" ou "perfil". */
+  active: string;
+}
+
+const { title, active } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="auth-pending">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{`${title} · WingsBr`}</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+    />
+    <script is:inline>
+      // Sidebar fixada aberta (preferência do aparelho), aplicada antes de pintar para não piscar.
+      try {
+        if (localStorage.getItem("wings.sidebar") === "pinned") document.documentElement.classList.add("sh-pinned");
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div class="sh-app" data-shell>
+      <header class="sh-topbar">
+        <div class="sh-top-left">
+          <button class="sh-icon-btn" type="button" aria-label="Fixar ou recolher o menu" data-shell-toggle>
+            <Icon name="menu" />
+          </button>
+          <a class="sh-brand" href={`${toolsBase}/`} aria-label="WingsBr: início">
+            <!-- Símbolo solto: peças em navy, losango em azul. -->
+            <svg class="sh-symbol" viewBox="0 0 632 772" aria-hidden="true">
+              <path d="M245 0 L189 59 L418 288 L328 388 L421 482 L189 715 L248 772 L632 387Z M279 412 L62 628 L119 685 L335 470Z M119 94 L63 152 L278 367 L335 309Z"></path>
+              <path class="sh-symbol-diamond" d="M114 271 L0 388 L116 502 L231 386Z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="sh-top-right">
+          <button
+            class="sh-avatar-btn"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-label="Conta"
+            data-account-toggle
+          >
+            <span class="sh-avatar" data-member="initials"></span>
+          </button>
+          <div class="sh-menu" role="menu" data-account-menu hidden>
+            <div class="sh-menu-head">
+              <span class="sh-avatar sh-avatar-lg" data-member="initials"></span>
+              <div class="sh-menu-who">
+                <p class="sh-menu-name" data-member="name"></p>
+                <p class="sh-menu-email" data-member="email"></p>
+              </div>
+            </div>
+            <a class="sh-menu-item" role="menuitem" href="/perfil/">
+              <Icon name="user" size={16} />
+              Meu perfil
+            </a>
+            <button class="sh-menu-item danger" role="menuitem" type="button" data-sign-out>
+              <Icon name="logout" size={16} />
+              Sair
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <aside class="sh-sidebar" aria-label="Menu" data-sidebar>
+        <div class="sh-side-scroll">
+          <nav class="sh-nav">
+            <a class:list={["sh-nav-item", { active: active === "inicio" }]} href={`${toolsBase}/`} data-tip="Início">
+              <span class="sh-nav-icon">
+                <Icon name="home" />
+              </span>
+              <span class="sh-nav-label">Início</span>
+            </a>
+            <a
+              class:list={["sh-nav-item", { active: active === "orcamento" }]}
+              href={budget.href}
+              aria-current={active === "orcamento" ? "page" : undefined}
+              data-tip={budget.title}
+            >
+              <span class="sh-nav-icon">
+                <Icon name={budget.icon} />
+              </span>
+              <span class="sh-nav-label">{budget.title}</span>
+            </a>
+          </nav>
+
+          <div class="sh-group">
+            <p class="sh-group-label">
+              <span>Ferramentas</span>
+            </p>
+            <div class="sh-group-body">
+              {tools.map((tool) => (
+                <a
+                  class:list={["sh-nav-item", { active: active === tool.slug }]}
+                  href={toolHref(tool.slug)}
+                  aria-current={active === tool.slug ? "page" : undefined}
+                  data-tip={tool.title}
+                >
+                  <span class="sh-nav-icon">
+                    <Icon name={tool.icon} />
+                  </span>
+                  <span class="sh-nav-label">{tool.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a class:list={["sh-side-profile", { active: active === "perfil" }]} href="/perfil/">
+          <span class="sh-avatar" data-member="initials"></span>
+          <span class="sh-side-who">
+            <span class="sh-side-name" data-member="name"></span>
+            <span class="sh-side-role" data-member="roleCompany"></span>
+          </span>
+        </a>
+      </aside>
+      <div class="sh-scrim" data-shell-scrim></div>
+
+      <main class="sh-main">
+        <slot />
+      </main>
+    </div>
+
+    <!-- símbolo da marca (mesmo desenho do BrandSprite) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="tools-sym" viewBox="0 0 632 772">
+        <path d="M245.0 0.0 L189.0 59.0 L418.0 288.0 L328.0 388.0 L421.0 482.0 L189.0 715.0 L248.0 772.0 L632.0 387.0ZM114.0 271.0 L0.0 388.0 L116.0 502.0 L231.0 386.0ZM279.0 412.0 L62.0 628.0 L119.0 685.0 L335.0 470.0ZM119.0 94.0 L63.0 152.0 L278.0 367.0 L335.0 309.0Z"></path>
+      </symbol>
+    </svg>
+
+    <script>
+      import { initShell } from "../../scripts/tools/shell.js";
+      initShell();
+    </script>
+  </body>
+</html>

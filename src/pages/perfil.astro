@@ -1,0 +1,242 @@
+---
+/**
+ * Meu perfil, no molde do perfil do GitHub: coluna da pessoa à esquerda (avatar, descrição, links, equipe)
+ * e, à direita, abas com visão geral (mais usadas, gráfico do ano, linha do tempo), atividade e arquivos.
+ * Os dados do usuário e o histórico são preenchidos no navegador por scripts/tools/profile.js.
+ */
+import ToolsLayout from "../components/tools/ToolsLayout.astro";
+import Icon from "../components/tools/Icon.astro";
+import { initials, roleLabel, team } from "../data/team";
+
+interface Field {
+  name: string;
+  label: string;
+  placeholder: string;
+  type: "text" | "tel" | "url";
+}
+
+const fields: Field[] = [
+  { name: "company", label: "Empresa", placeholder: "Onde você trabalha", type: "text" },
+  { name: "title", label: "Cargo ou área", placeholder: "Ex.: Estratégia e comercial", type: "text" },
+  { name: "phone", label: "Telefone (WhatsApp)", placeholder: "+55 (62) 9XXXX-XXXX", type: "tel" },
+  { name: "site", label: "Site", placeholder: "wingsbr.app", type: "url" },
+  { name: "instagram", label: "Instagram", placeholder: "@usuario", type: "text" },
+  { name: "linkedin", label: "LinkedIn", placeholder: "linkedin.com/in/usuario", type: "text" },
+];
+---
+
+<ToolsLayout title="Meu perfil" active="perfil">
+  <div class="pf">
+    <nav class="pf-tabs" role="group" aria-label="Seções do perfil">
+      <button type="button" class="pf-tab" data-tab="geral" aria-pressed="true">
+        <Icon name="user" size={16} />
+        Visão geral
+      </button>
+      <button type="button" class="pf-tab" data-tab="atividade" aria-pressed="false">
+        <Icon name="clock" size={16} />
+        Atividade{" "}
+        <span class="pf-count" data-count="atividade">
+          0
+        </span>
+      </button>
+      <button type="button" class="pf-tab" data-tab="arquivos" aria-pressed="false">
+        <Icon name="download" size={16} />
+        Arquivos{" "}
+        <span class="pf-count" data-count="arquivos">
+          0
+        </span>
+      </button>
+    </nav>
+
+    <div class="pf-grid">
+      <!-- Coluna da pessoa -->
+      <aside class="pf-side">
+        <div class="pf-avatar-wrap">
+          <span class="pf-avatar" data-member="initials"></span>
+          <!-- Selo de administrador do Wings: o símbolo da marca. -->
+          <span class="pf-badge" title="Administrador do Wings">
+            <svg viewBox="0 0 632 772" aria-hidden="true">
+              <path d="M245 0 L189 59 L418 288 L328 388 L421 482 L189 715 L248 772 L632 387Z M279 412 L62 628 L119 685 L335 470Z M119 94 L63 152 L278 367 L335 309Z"></path>
+              <path class="pf-badge-diamond" d="M114 271 L0 388 L116 502 L231 386Z"></path>
+            </svg>
+          </span>
+          <!-- Foto de perfil: botão sobre o avatar abre o menu (enviar / remover). -->
+          <button
+            class="pf-photo-btn"
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-label="Alterar foto de perfil"
+            data-photo-toggle
+          >
+            <Icon name="camera" size={18} />
+            <span>Alterar foto</span>
+          </button>
+          <div class="pf-photo-menu" role="menu" data-photo-menu hidden>
+            <button type="button" role="menuitem" data-photo-upload>
+              <Icon name="upload" size={16} />
+              Enviar foto
+            </button>
+            <button type="button" role="menuitem" class="danger" data-photo-remove hidden>
+              <Icon name="logout" size={16} />
+              Remover foto
+            </button>
+          </div>
+          <input type="file" accept="image/*" hidden data-photo-input />
+        </div>
+        <p class="pf-photo-status" role="status" data-photo-status hidden></p>
+        <h1 class="pf-name" data-member="name"></h1>
+        <p class="pf-handle" data-member="email"></p>
+
+        <div data-view>
+          <p class="pf-bio" data-profile="bio"></p>
+          <button class="gt-btn-secondary block" type="button" data-edit>
+            <Icon name="pencil" size={16} />
+            Editar perfil
+          </button>
+          <ul class="pf-meta" data-meta></ul>
+        </div>
+
+        <form class="pf-form" data-edit-form hidden>
+          <div>
+            <label class="gt-label" for="pf-bio">
+              Descrição
+            </label>
+            <textarea
+              class="gt-input"
+              id="pf-bio"
+              name="bio"
+              rows="4"
+              maxlength="280"
+              placeholder="Conte em poucas linhas o que você faz no Wings."
+            ></textarea>
+            <p class="tk-hint">
+              <span data-bio-count>0</span>/280
+            </p>
+          </div>
+          {fields.map((field) => (
+            <div>
+              <label class="gt-label" for={`pf-${field.name}`}>
+                {field.label}
+              </label>
+              <input
+                class="gt-input"
+                id={`pf-${field.name}`}
+                name={field.name}
+                type={field.type === "url" ? "text" : field.type}
+                inputmode={field.type === "url" ? "url" : undefined}
+                placeholder={field.placeholder}
+              />
+            </div>
+          ))}
+          <div class="pf-form-actions">
+            <button class="gt-btn-primary" type="submit">
+              Salvar
+            </button>
+            <button class="gt-btn-secondary" type="button" data-cancel>
+              Cancelar
+            </button>
+          </div>
+        </form>
+
+        <section class="pf-team">
+          <h2>
+            Equipe <span>{team.length} administradores</span>
+          </h2>
+          <ul>
+            {team.map((member) => (
+              <li data-email={member.email}>
+                <span class="sh-avatar" data-avatar data-initials={initials(member.name)}>
+                  {initials(member.name)}
+                </span>
+                <span class="pf-team-who">
+                  <strong>
+                    {member.name}
+                    <em class="pf-you" hidden>
+                      você
+                    </em>
+                  </strong>
+                  <span data-team-line>{roleLabel[member.role]}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="pf-access">
+          <button class="pf-link-btn" type="button" data-reset>
+            Trocar senha
+          </button>
+          <span aria-hidden="true">·</span>
+          <button class="pf-link-btn danger" type="button" data-sign-out>
+            Sair
+          </button>
+          <p class="tk-hint" data-reset-status hidden></p>
+        </section>
+      </aside>
+
+      <!-- Conteúdo das abas -->
+      <div class="pf-main">
+        <section data-panel="geral">
+          <div class="pf-h-row">
+            <h2 class="pf-h">Mais usadas</h2>
+            <span class="pf-h-aside">Pela quantidade de usos</span>
+          </div>
+          <div class="pf-pins" data-pins></div>
+
+          <div class="pf-h-row">
+            <h2 class="pf-h" data-heat-title>
+              Atividade no último ano
+            </h2>
+          </div>
+          <div class="pf-card pf-heat-card">
+            <div class="pf-heat-scroll" data-heat-scroll>
+              <div class="pf-heat" data-heat></div>
+            </div>
+            <div class="pf-heat-foot">
+              <span>Contamos ferramentas usadas, arquivos baixados e acessos.</span>
+              <span class="pf-legend">
+                Menos <i data-l="0"></i>
+                <i data-l="1"></i>
+                <i data-l="2"></i>
+                <i data-l="3"></i>
+                <i data-l="4"></i> Mais
+              </span>
+            </div>
+          </div>
+
+          <div class="pf-h-row">
+            <h2 class="pf-h">Linha do tempo</h2>
+            <div class="pf-years" data-years></div>
+          </div>
+          <div class="pf-timeline" data-timeline></div>
+        </section>
+
+        <section data-panel="atividade" hidden>
+          <div class="pf-h-row">
+            <h2 class="pf-h">Tudo o que você fez</h2>
+          </div>
+          <div class="pf-feed" data-feed></div>
+        </section>
+
+        <section data-panel="arquivos" hidden>
+          <div class="pf-h-row">
+            <h2 class="pf-h">Arquivos baixados</h2>
+            <span class="pf-h-aside" data-files-total></span>
+          </div>
+          <div class="pf-card pf-files" data-files></div>
+        </section>
+
+        <p class="pf-note">
+          O histórico e as edições do perfil ficam salvos neste navegador por enquanto. Quando o banco do Wings entrar,
+          eles passam a ser sincronizados entre aparelhos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initProfile } from "../scripts/tools/profile.js";
+    initProfile();
+  </script>
+</ToolsLayout>

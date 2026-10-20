@@ -1,0 +1,36 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+import Icon from "../../components/tools/Icon.astro";
+import { budget, toolHref, tools } from "../../data/tools/catalog";
+---
+
+<ToolsLayout title="Início" active="inicio">
+  <div class="tk-page">
+    <PageHeader icon="home" title="Ferramentas" subtitle="Utilitários do dia a dia do time WingsBr, num lugar só." />
+
+    <div class="tk-home">
+      <a class="tk-tile" href={budget.href}>
+        <div class="tk-tile-head">
+          <span class="sh-page-icon">
+            <Icon name={budget.icon} size={20} />
+          </span>
+          <span class="tk-pill live">Propostas</span>
+        </div>
+        <strong>{budget.title}</strong>
+        <p>{budget.description}</p>
+      </a>
+      {tools.map((tool) => (
+        <a class="tk-tile" href={toolHref(tool.slug)}>
+          <div class="tk-tile-head">
+            <span class="sh-page-icon">
+              <Icon name={tool.icon} size={20} />
+            </span>
+          </div>
+          <strong>{tool.title}</strong>
+          <p>{tool.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</ToolsLayout>

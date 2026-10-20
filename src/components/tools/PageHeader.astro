@@ -1,0 +1,25 @@
+---
+/** Cabeçalho de página: ícone em quadrado de 38px, título e subtítulo. */
+import Icon from "./Icon.astro";
+import type { ToolIconName } from "./icons";
+
+interface Props {
+  icon: ToolIconName;
+  title: string;
+  subtitle: string;
+}
+
+const { icon, title, subtitle } = Astro.props;
+---
+
+<header class="sh-page-head">
+  <div class="sh-page-title-row">
+    <span class="sh-page-icon">
+      <Icon name={icon} size={20} />
+    </span>
+    <div class="sh-page-titles">
+      <h1 class="sh-page-title">{title}</h1>
+      <p class="sh-page-sub">{subtitle}</p>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,142 @@
+---
+import ToolsLayout from "../../components/tools/ToolsLayout.astro";
+import PageHeader from "../../components/tools/PageHeader.astro";
+
+const presets = [
+  { title: "Meta Ads", source: "facebook", medium: "paid_social" },
+  { title: "Google Ads", source: "google", medium: "cpc" },
+  { title: "Instagram (bio)", source: "instagram", medium: "social" },
+  { title: "WhatsApp", source: "whatsapp", medium: "mensagem" },
+  { title: "Portal imobiliário", source: "portal", medium: "classificados" },
+];
+---
+
+<ToolsLayout title="Gerador de UTM" active="gerador-de-utm">
+  <div class="tk-page">
+    <PageHeader
+      icon="link"
+      title="Gerador de UTM"
+      subtitle="Monte links rastreáveis para saber de qual campanha veio cada lead."
+    />
+
+    <div class="tk-grid">
+      <div class="tk-col">
+        <section class="tk-card">
+          <div class="tk-fields">
+            <div class="full">
+              <label class="gt-label" for="utm-url">
+                URL de destino <span class="tk-req">*</span>
+              </label>
+              <input class="gt-input" id="utm-url" inputmode="url" placeholder="https://residencial-exemplo.com.br/" />
+              <p class="tk-hint">A página para onde o anúncio leva.</p>
+            </div>
+            <div>
+              <label class="gt-label" for="utm-source">
+                Origem (utm_source) <span class="tk-req">*</span>
+              </label>
+              <input class="gt-input" id="utm-source" data-utm="utm_source" placeholder="facebook" />
+            </div>
+            <div>
+              <label class="gt-label" for="utm-medium">
+                Mídia (utm_medium) <span class="tk-req">*</span>
+              </label>
+              <input class="gt-input" id="utm-medium" data-utm="utm_medium" placeholder="paid_social" />
+            </div>
+            <div class="full">
+              <label class="gt-label" for="utm-campaign">
+                Campanha (utm_campaign) <span class="tk-req">*</span>
+              </label>
+              <input
+                class="gt-input"
+                id="utm-campaign"
+                data-utm="utm_campaign"
+                placeholder="lancamento-residencial-exemplo"
+              />
+              <p class="tk-hint">Acentos e espaços viram hífen automaticamente.</p>
+            </div>
+            <div>
+              <label class="gt-label" for="utm-term">
+                Termo (utm_term)
+              </label>
+              <input class="gt-input" id="utm-term" data-utm="utm_term" placeholder="apartamento-3-quartos" />
+            </div>
+            <div>
+              <label class="gt-label" for="utm-content">
+                Conteúdo (utm_content)
+              </label>
+              <input class="gt-input" id="utm-content" data-utm="utm_content" placeholder="video-decorado" />
+            </div>
+          </div>
+          <div class="tk-actions">
+            <button class="gt-btn-primary" id="utm-copy" type="button">
+              Copiar link
+            </button>
+            <button class="gt-btn-secondary" id="utm-open" type="button">
+              Testar link
+            </button>
+            <button class="gt-btn-secondary" id="utm-clear" type="button">
+              Limpar
+            </button>
+          </div>
+          <div style="margin-top: 20px">
+            <label class="gt-label" for="utm-result">
+              Link gerado
+            </label>
+            <textarea
+              class="gt-input mono tk-result"
+              id="utm-result"
+              placeholder="Preencha os campos obrigatórios…"
+              readonly
+            ></textarea>
+            <p class="tk-hint tk-error" id="utm-error" hidden></p>
+          </div>
+        </section>
+      </div>
+
+      <div class="tk-col">
+        <section class="tk-card">
+          <h2 class="tk-card-title">Atalhos</h2>
+          <p class="tk-card-sub">
+            Clique em <b>Usar</b> para preencher origem e mídia.
+          </p>
+          <div class="tk-examples">
+            {presets.map((preset) => (
+              <div class="tk-example">
+                <div class="tk-example-text">
+                  <strong>{preset.title}</strong>
+                  <span>
+                    utm_source={preset.source} · utm_medium={preset.medium}
+                  </span>
+                </div>
+                <button class="tk-btn-sm" type="button" data-source={preset.source} data-medium={preset.medium}>
+                  Usar
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section class="tk-card">
+          <h2 class="tk-card-title">Como usar</h2>
+          <ol class="tk-steps">
+            <li>
+              <span>Cole a URL da página do empreendimento.</span>
+            </li>
+            <li>
+              <span>
+                Preencha <b>origem</b>, <b>mídia</b> e <b>campanha</b>, ou use um atalho.
+              </span>
+            </li>
+            <li>
+              <span>Use o link gerado no anúncio: a origem do lead chega junto no CRM.</span>
+            </li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { initUtm } from "../../scripts/tools/utm.js";
+    initUtm();
+  </script>
+</ToolsLayout>

@@ -1,0 +1,171 @@
+---
+/**
+ * Login do Wings (versão C do protótipo, fundo "Marca d'água"): tela inteira no azul-marinho da marca,
+ * com o contorno gigante do símbolo se desenhando ao fundo e um brilho correndo pelas linhas. O formulário
+ * fica num cartão branco à esquerda; à direita, o título e o símbolo se montando peça por peça, em branco.
+ */
+import "../styles/auth/login.css";
+import BrandSprite from "../components/brand/BrandSprite.astro";
+import Logo from "../components/brand/Logo.astro";
+
+// As quatro peças do símbolo (mesmo desenho do sprite), separadas para animar uma a uma.
+const pieces = [
+  { id: "chevron", d: "M245 0 L189 59 L418 288 L328 388 L421 482 L189 715 L248 772 L632 387Z" },
+  { id: "top", d: "M119 94 L63 152 L278 367 L335 309Z" },
+  { id: "diamond", d: "M114 271 L0 388 L116 502 L231 386Z" },
+  { id: "bottom", d: "M279 412 L62 628 L119 685 L335 470Z" },
+];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Entrar · WingsBr</title>
+    <meta name="description" content="Acesso à plataforma WingsBr." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#051F44" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"
+    />
+  </head>
+  <body>
+    <BrandSprite />
+    <!-- Marca d'água: eco atrás, contorno que se desenha e brilho correndo pela linha. -->
+    <svg class="lg-wm" viewBox="-20 -20 672 812" aria-hidden="true">
+      <g class="lg-wm-move lg-wm-echo" transform="translate(-26 14)">
+        {pieces.map((piece) => (
+          <path d={piece.d} />
+        ))}
+      </g>
+      <g class="lg-wm-move">
+        <g class="lg-wm-line">
+          {pieces.map((piece) => (
+            <path pathLength="1" d={piece.d} />
+          ))}
+        </g>
+        <g class="lg-wm-comet">
+          {pieces.map((piece) => (
+            <path pathLength="1" d={piece.d} />
+          ))}
+        </g>
+      </g>
+    </svg>
+    <main class="lg-page">
+      <section class="lg-form-side">
+        <div class="lg-form-wrap">
+          <a class="lg-logo" href="/" aria-label="WingsBr: página inicial">
+            <Logo on="light" decorative />
+          </a>
+
+          <header class="lg-head">
+            <h1>Entrar no Wings</h1>
+            <p>Do planejamento ao pós-venda, num só lugar.</p>
+          </header>
+
+          <p class="lg-notice" data-test-notice hidden>
+            <strong>Acesso provisório.</strong> Entre com o e-mail @wingsbr.app e a senha que você recebeu.
+          </p>
+
+          <form class="lg-form" novalidate data-login-form>
+            <label class="lg-field">
+              <input
+                type="email"
+                name="email"
+                autocomplete="username"
+                inputmode="email"
+                placeholder="E-mail"
+                aria-label="E-mail"
+                required
+                data-email
+              />
+            </label>
+
+            <label class="lg-field">
+              <input
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                placeholder="Senha"
+                aria-label="Senha"
+                required
+                data-password
+              />
+              <button class="lg-eye" type="button" aria-label="Mostrar senha" aria-pressed="false" data-toggle-password>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+                </svg>
+              </button>
+            </label>
+
+            <div class="lg-row">
+              <label class="lg-check">
+                <span class="lg-check-box">
+                  <input type="checkbox" name="remember" checked data-remember />
+                  <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path
+                      d="M3 6.2 5 8.1 9 3.9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </span>
+                Manter conectado
+              </label>
+              <button class="lg-link" type="button" data-forgot>
+                Esqueci minha senha
+              </button>
+            </div>
+
+            <p class="lg-message" role="alert" aria-live="polite" data-message hidden></p>
+
+            <button class="lg-submit" type="submit" data-submit>
+              <span>Entrar</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+              </svg>
+            </button>
+          </form>
+
+          <p class="lg-foot">Acesso restrito à equipe WingsBr. Problemas para entrar? Fale com um administrador.</p>
+        </div>
+      </section>
+
+      <section class="lg-art" aria-hidden="true">
+        <svg class="lg-symbol" viewBox="-40 -40 712 852">
+          {pieces.map((piece) => (
+            <path class={`lg-piece lg-piece-${piece.id}`} d={piece.d} />
+          ))}
+        </svg>
+
+        <div class="lg-art-copy">
+          <p class="lg-kicker">Da estratégia à última unidade vendida.</p>
+          <h2>
+            Planeje rápido,
+            <br />
+            venda mais rápido.
+          </h2>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      import { initLogin } from "../scripts/auth/login.js";
+      initLogin();
+    </script>
+  </body>
+</html>

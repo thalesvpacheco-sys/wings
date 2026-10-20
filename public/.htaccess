@@ -4,6 +4,9 @@
 Options -Indexes
 DirectoryIndex index.html
 
+# worker do pdf.js (Compressor de PDF) é módulo .mjs: precisa sair como JavaScript
+AddType text/javascript .mjs
+
 # o deploy por Git da Hostinger deixa a pasta .git no public_html: nunca servir
 RedirectMatch 404 /\.git
 
