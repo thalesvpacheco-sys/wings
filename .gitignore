@@ -10,6 +10,15 @@ dist/
 .env.*
 !.env.example
 
+# senhas provisórias da equipe (lista para repassar): só na máquina de quem gerou
+*.local.md
+
+# credenciais do Firebase (chave de serviço do admin): nunca no repositório
+*-firebase-adminsdk-*.json
+service-account*.json
+.firebaserc
+.firebase/
+
 # logs
 npm-debug.log*
 

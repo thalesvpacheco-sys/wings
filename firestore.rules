@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// Banco do Wings. Só os administradores (lista abaixo, a mesma de src/data/team.ts) acessam.
+// Ao incluir ou remover alguém em team.ts, atualize esta lista e publique de novo (npm run firebase:regras).
+// A foto de perfil fica no próprio documento do perfil (photoURL, JPEG pequeno em data: URL).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          'thales.pacheco@wingsbr.app',
+          'bruno.dourado@wingsbr.app',
+          'nalbert.guiliani@wingsbr.app',
+          'anderson@wingsbr.app',
+          'faustino@wingsbr.app',
+          'pedro.faustino@wingsbr.app'
+        ];
+    }
+    function isOwner(email) {
+      return isAdmin() && request.auth.token.email == email;
+    }
+
+    // Perfil: todos os admins leem (lista da equipe); cada um só edita o próprio.
+    match /profiles/{email} {
+      allow read: if isAdmin();
+      allow create, update: if isOwner(email)
+        && (!('photoURL' in request.resource.data)
+          || request.resource.data.photoURL == null
+          || (request.resource.data.photoURL is string && request.resource.data.photoURL.size() < 300000));
+      allow delete: if false;
+
+      // Histórico: cada um lê e registra só o próprio; eventos não são editados nem apagados.
+      match /activity/{entry} {
+        allow read: if isOwner(email);
+        allow create: if isOwner(email)
+          && request.resource.data.keys().hasOnly(['at', 'kind', 'tool', 'text', 'file'])
+          && request.resource.data.kind in ['login', 'action', 'download']
+          && request.resource.data.text is string
+          && request.resource.data.text.size() <= 300;
+        allow update, delete: if false;
+      }
+    }
+
+    // Todo o resto fica fechado até ter regra própria.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
