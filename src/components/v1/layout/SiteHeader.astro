@@ -1,6 +1,6 @@
 ---
 import Logo from "../../brand/Logo.astro";
-import { mainNav } from "../../../data/v1/navigation";
+import { demoWhatsapp, mainNav } from "../../../data/v1/navigation";
 ---
 
 <a class="skip" href="#conteudo">
@@ -19,7 +19,7 @@ import { mainNav } from "../../../data/v1/navigation";
       {mainNav.map((link) => (
         <a href={link.href}>{link.label}</a>
       ))}
-      <a class="btn sm" href="#demonstracao">
+      <a class="btn sm" href={demoWhatsapp} target="_blank" rel="noopener noreferrer">
         Agende uma demonstração <span class="arw" aria-hidden="true"></span>
       </a>
     </nav>

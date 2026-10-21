@@ -2,6 +2,7 @@
 /** 01 · Impacto: promessa principal e composição ilustrativa do produto. */
 import Bands from "../../brand/Bands.astro";
 import Logo from "../../brand/Logo.astro";
+import { demoWhatsapp } from "../../../data/v1/navigation";
 
 const connectorNodes = [
   { left: 18, top: 30 },
@@ -45,7 +46,7 @@ const investment = [
         incorporadoras, construtoras, loteadoras e imobiliárias.
       </p>
       <div class="actions" data-hero style="--d:400ms">
-        <a class="btn" href="#demonstracao">
+        <a class="btn" href={demoWhatsapp} target="_blank" rel="noopener noreferrer">
           Agende sua demonstração <span class="arw" aria-hidden="true"></span>
         </a>
         <a class="btn ghost" href="#plataforma">
