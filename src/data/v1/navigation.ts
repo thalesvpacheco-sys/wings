@@ -1,5 +1,5 @@
 /** Navegação e contato da versão principal (v1). */
-export { demoMailto, site } from "../site";
+export { demoWhatsapp, site } from "../site";
 
 export interface NavLink {
   label: string;

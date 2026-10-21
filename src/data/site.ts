@@ -12,11 +12,12 @@ export const site = {
   ogImage: { path: "/images/og-wingsbr.png", width: 1200, height: 630 },
   contact: {
     email: "contato@wingsbr.app",
-    demoSubject: "Demonstração WingsBr",
+    whatsapp: "5562981665914",
+    whatsappMessage: "Vim do site Wings e quero saber mais",
   },
 };
 
-export const demoMailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(site.contact.demoSubject)}`;
+export const demoWhatsapp = `https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(site.contact.whatsappMessage)}`;
 
 /** Dados estruturados (schema.org) da página inicial. */
 export const structuredData = {
